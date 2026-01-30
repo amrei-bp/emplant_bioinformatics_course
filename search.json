@@ -1,5 +1,82 @@
 [
   {
+    "objectID": "qc.html",
+    "href": "qc.html",
+    "title": "Quality Control of Sequencing Data",
+    "section": "",
+    "text": "By the end of the module, you should be able to:",
+    "crumbs": [
+      "Reproducibility",
+      "Quality control"
+    ]
+  },
+  {
+    "objectID": "qc.html#from-plant-tissue-to-sequencing-reads",
+    "href": "qc.html#from-plant-tissue-to-sequencing-reads",
+    "title": "Quality Control of Sequencing Data",
+    "section": "From plant tissue to sequencing reads",
+    "text": "From plant tissue to sequencing reads\nBefore we talk about quality control, it is important to understand how sequencing data is produced. Many of the problems we detect during QC originate early in the sequencing workflow.\nAt a high level, the process looks like this:\nPlant tissue → DNA extraction → Library preparation → Sequencing → FASTQ files\nEach step can introduce technical effects that later appear in quality control reports.\n\n\n\n\nWe start with plant tissue and extract DNA into a tube.\n\n\n\n\nThis step looks simple, but plant material often contains compounds that make extraction harder.\n\n\n\n\nCommon plant “contaminants” include:\n\n\n\n\nPolyphenols (can bind to DNA and interfere with enzymes)\n\n\n\n\nPolysaccharides (can make DNA sticky and hard to pipette)\n\n\n\n\nOther impurities (depending on tissue type and extraction method)\n\n\n\n\nIf extraction quality varies between samples, you can end up with differences in sequencing quality that are not biological.\n\n\n\n\nSequencing machines do not read whole chromosomes. Instead, DNA is broken into many small fragments, a so called DNA library.\n\n\n\n\nIf the DNA is already degraded (for example due to poor storage), fragmentation can become uneven.\n\n\n\n\nThat can later lead to: uneven coverage (some regions have very few reads)\n\n\n\n\nor over-representation of certain fragment sizes.\n\n\n\n\nIn QC, this can show up as unusual sequence length distributions or downstream effects on mapping.\n\n\n\n\nThe DNA library (with adapters added), is then run on a sequencing machine.\n\n\n\n\nDuring sequencing:\n\n\n\n\n\nthe machine calls bases one by one\neach base gets a quality score\nquality often decreases toward the end of reads\n\n\n\n\n\nThe final output is usually FASTQ files (containing raw reads + quality scores).\n\n\n\n\nQuality control tools, such as FastQC, can summarise these FASTQ files and helps us spot problems early.",
+    "crumbs": [
+      "Reproducibility",
+      "Quality control"
+    ]
+  },
+  {
+    "objectID": "qc.html#why-do-we-need-quality-control",
+    "href": "qc.html#why-do-we-need-quality-control",
+    "title": "Quality Control of Sequencing Data",
+    "section": "Why do we need quality control?",
+    "text": "Why do we need quality control?\nWhen we work with sequencing data, we usually want to answer a biological question.\nIn plant breeding, this could be for example:\n\nWhich genetic variants are associated with a trait?\nWhich alleles are present in a breeding line?\nHow similar are two plant populations?\nWhich genes are expressed under certain conditions?\n\nAll of these questions rely on one assumption:\nthe sequencing data reflects the real biology of the plant.\nQuality control (QC) is the step where we check whether this assumption is reasonable.\nQC is not about making the data “look nice”. It is about making sure that technical problems do not lead to wrong biological conclusions.",
+    "crumbs": [
+      "Reproducibility",
+      "Quality control"
+    ]
+  },
+  {
+    "objectID": "qc.html#what-can-go-wrong-if-data-quality-is-poor",
+    "href": "qc.html#what-can-go-wrong-if-data-quality-is-poor",
+    "title": "Quality Control of Sequencing Data",
+    "section": "What can go wrong if data quality is poor?",
+    "text": "What can go wrong if data quality is poor?\nSequencing errors do not stay “technical”. They can directly affect how we interpret the biology.\nFor example:\n\nLow-quality bases can lead to false SNPs.\nAdapter contamination can create artificial sequence variants.\nGC bias can distort allele frequency estimates.\nUneven read quality can make a sample look more heterozygous than it really is.\n\nIn a breeding context, this can mean:\n\nChoosing the wrong markers.\nMissing true marker–trait associations.\nOverestimating or underestimating genetic diversity.\n\nQuality control helps us detect these problems before we trust the results.",
+    "crumbs": [
+      "Reproducibility",
+      "Quality control"
+    ]
+  },
+  {
+    "objectID": "qc.html#where-do-sequencing-errors-come-from",
+    "href": "qc.html#where-do-sequencing-errors-come-from",
+    "title": "Quality Control of Sequencing Data",
+    "section": "Where do sequencing errors come from?",
+    "text": "Where do sequencing errors come from?\nSequencing errors can be introduced at several steps, long before we ever see a FASTQ file.\n\nDNA extraction\nPlant material is often challenging to work with.\n\nPolysaccharides and polyphenols can interfere with enzymes.\nDNA quality can vary strongly between samples.\nDegraded DNA can lead to uneven sequencing coverage.\n\nThese issues already affect the quality of the reads that will be sequenced.\n\n\nLibrary preparation\nDuring library preparation:\n\nAdapters are ligated to DNA fragments\nDNA is often amplified using PCR\n\nPossible problems include:\n\nAdapter sequences that are not fully removed\nPCR bias, where some fragments are amplified more than others\nPreferential amplification of certain GC contents\n\nThese effects are technical, but they shape the data we later analyse.\n\n\nSequencing\nDuring the sequencing run itself:\n\nBase calling becomes less accurate toward the end of reads\nErrors accumulate across sequencing cycles\nDifferent lanes or runs can have different overall quality\n\nThis is why read quality often decreases from the 5′ end to the 3′ end of a read.",
+    "crumbs": [
+      "Reproducibility",
+      "Quality control"
+    ]
+  },
+  {
+    "objectID": "qc.html#why-plant-genomes-are-special",
+    "href": "qc.html#why-plant-genomes-are-special",
+    "title": "Quality Control of Sequencing Data",
+    "section": "Why plant genomes are special",
+    "text": "Why plant genomes are special\nMany QC tools are generic. They do not “know” that your data comes from plants.\nHowever, plant genomes often have features that affect QC results:\n\nLarge genome sizes\nHigh repeat content\nPolyploidy\nHigh heterozygosity\nVariable GC content between species\n\nBecause of this:\n\nGC content plots may look unusual even for good data.\nHigh duplication levels are not always a technical problem.\nSome warnings are expected and acceptable.\n\nThis means that QC results must always be interpreted in a biological context.\nQuality control tools can show you what looks unusual — you need biological knowledge to decide why.",
+    "crumbs": [
+      "Reproducibility",
+      "Quality control"
+    ]
+  },
+  {
+    "objectID": "qc.html#what-is-fastqc",
+    "href": "qc.html#what-is-fastqc",
+    "title": "Quality Control of Sequencing Data",
+    "section": "What is FastQC?",
+    "text": "What is FastQC?\nFastQC is a tool that summarises raw sequencing data and provides a set of diagnostic plots and tests.\nFastQC works on raw FASTQ files, examines millions of reads quickly and produces an easy-to-read report.\nFastQC does not:\n\nCorrect errors\nRemove low-quality data\nDecide whether data is “good enough”\n\nFastQC only provides information, the interpretation and decisions are up to you.",
+    "crumbs": [
+      "Reproducibility",
+      "Quality control"
+    ]
+  },
+  {
     "objectID": "data_management.html#data-life-cycle",
     "href": "data_management.html#data-life-cycle",
     "title": "Tips and Tools for Reproducible Bioinformatics",
