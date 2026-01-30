@@ -1,93 +1,130 @@
 [
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "About this site"
+    "objectID": "data_management.html#data-life-cycle",
+    "href": "data_management.html#data-life-cycle",
+    "title": "Tips and Tools for Reproducible Bioinformatics",
+    "section": "Data Life Cycle",
+    "text": "Data Life Cycle\nWhen working with any type of data, it makes sense to sit down before the project starts to think through the different life stages of the data in your project. This will help counteract some of the problems that can arise when projects grow more organically, and will help consistency within the research group, ease collaboration, and mostly your future self that will understand what past-self has been up to in the project.\n\n\n\n\n\n\nNote\n\n\n\nMore and more funding agencies expect a Data Management Plan at some point of a project application. In there, you need to document that you have thought of, and planned for, the life cycle of your data.\n\n\n\n\n\nThe Research Data Management toolkit for Life Sciences",
+    "crumbs": [
+      "Reproducibility"
+    ]
+  },
+  {
+    "objectID": "data_management.html#fair-principles",
+    "href": "data_management.html#fair-principles",
+    "title": "Tips and Tools for Reproducible Bioinformatics",
+    "section": "FAIR principles",
+    "text": "FAIR principles\nIn the past, research data was often generated with one question in mind. Often, they would afterwards land in some drawer and be forgotten about. Nowadays researchers acknowledge that data can also be re-used, or combined with other data, to answer different questions.\nThe FAIR principles promote efficient data discovery and reuse by providing guidelines to make digital resources:\n\n\n\nWilkinson et al. (2016)\n\n\nFAIR principles, in turn, rely on good data management practices in all phases of research:\n\nResearch documentation\nData organisation\nInformation security\nEthics and legislation",
+    "crumbs": [
+      "Reproducibility"
+    ]
+  },
+  {
+    "objectID": "data_management.html#reproducible-research",
+    "href": "data_management.html#reproducible-research",
+    "title": "Tips and Tools for Reproducible Bioinformatics",
+    "section": "Reproducible research",
+    "text": "Reproducible research\nLucky for us, once we implement good data management practices, we will also increase the reproducibility of our analyses. Extensive documentation will increase faith in the outcome of analyses, and will help people (again, future-you) understand what has been done.\nLast, but not least, reproducible research practices make project hand-overs smoother, when the next person already understands the structure of the project, and can rely on good documentation.",
+    "crumbs": [
+      "Reproducibility"
+    ]
+  },
+  {
+    "objectID": "data_management.html#what-data-do-we-work-with",
+    "href": "data_management.html#what-data-do-we-work-with",
+    "title": "Tips and Tools for Reproducible Bioinformatics",
+    "section": "What data do we work with?",
+    "text": "What data do we work with?\n\nBioinformatics is an interdisciplinary field of science that develops methods and software tools for understanding biological data, especially when the data sets are large and complex. (Wikipedia)\n\nThis data can come from a variety of different biological processes:\n\n\n\nsource: Lizel Potgieter\n\n\nEarly on, sequencing data was not readily available, but due to decreasing costs and increased computational power biological data is now being produced in ever increasing quantities:\n\n\n\nGrowth of the Sequence Read Archive, SRA, from 2012 to 2021\n\n\nAt the same time, new technologies are being developed, and new tools that might or might not be maintained or benchmarked against existing tools. It’s the wild west out there!\n\n\n\nOverview of modern sequencing technologies and where they apply to biological processes",
+    "crumbs": [
+      "Reproducibility"
+    ]
+  },
+  {
+    "objectID": "data_management.html#working-with-data",
+    "href": "data_management.html#working-with-data",
+    "title": "Tips and Tools for Reproducible Bioinformatics",
+    "section": "Working with data",
+    "text": "Working with data\nOften, with a new project, one sits down with the data, tries out things and see if they worked. A lot of bioinformatics is not being afraid to try things, and reading the documentation.\nThis traditional way of working with bioinformatics data can have merits and lead to new discoveries. However, in this course we would like to introduce you to a more structured way to make sense of your data.\nLet’s have a look at a typical PhD student’s research project:\n\nThey might analyse their data, and get some results.\nAfter talking with their supervisor they might get a few other samples from a collaborator, or need to drop them from the analyses due to quality concerns.\nThey run the analyses again and get a different set of results.\nThere might be a few iterations of this process, and then the reviewers require some additional analyses…\n\nIn the “end” we have something like this:\n\n\n\nWhich one of these is the latest version?\n\n\n\n\n\n\n\n\nTipBest practices file organization\n\n\n\n\nThere is a folder for the raw data, which does not get altered.\nCode is kept separate from data.\nUse a version control system (at least for code) – e.g. git.\nThere should be a README in every directory, describing the purpose of the directory and its contents.\nUse file naming schemes that makes it easy to find files and understand what they are (for humans and machines) and document them.\nUse non-proprietary formats – .csv rather than .xlsx",
+    "crumbs": [
+      "Reproducibility"
+    ]
+  },
+  {
+    "objectID": "data_management.html#literate-programming",
+    "href": "data_management.html#literate-programming",
+    "title": "Tips and Tools for Reproducible Bioinformatics",
+    "section": "Literate programming",
+    "text": "Literate programming\nOur hypothetical PhD student, even if taking into account the best practice tips from above, is still likely to run the same analyses over and over whenever the input data changes. Sometimes, this might be months, or even years, after the original analysis was performed.\nLuckily, they can save their code snippets (with intuitive file names) and re-use the code from back then. This is often done with R-scripts, but can just as well be applied to bash scripts, python scripts etc.\nIn the past years, the development went even further and one can even combine code and documentation in the same document. The code is wrapped in so called chunks, or code cells, that are executable from within the document.\n\nDebugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it. Brian Kernighan\n\nBefore the course you have already worked with one such notebook - Quarto. We will continue to work with it during this course.\n\n\n\n\n\n\nTip\n\n\n\n\nDocument your methods and workflows.\nDocument where and when you downloaded data.\nDocument the versions of the software that you ran.",
+    "crumbs": [
+      "Reproducibility"
+    ]
+  },
+  {
+    "objectID": "data_management.html#version-control",
+    "href": "data_management.html#version-control",
+    "title": "Tips and Tools for Reproducible Bioinformatics",
+    "section": "Version control",
+    "text": "Version control\nNow that our student has reproducible documents, with reasonable names, that can execute their analyses reliably over and over again, what happens if they modify their analyses? Will they end up again with different result files and their project sink down in chaos?\nNo, because there is version control, the practice of tracking and managing changes to files.\nAgain, before the course you worked through the basics of git, and how to use it with GitHub collaboratively. We will continue using git during the course as well.",
+    "crumbs": [
+      "Reproducibility"
+    ]
+  },
+  {
+    "objectID": "data_management.html#environment-managers",
+    "href": "data_management.html#environment-managers",
+    "title": "Tips and Tools for Reproducible Bioinformatics",
+    "section": "Environment managers",
+    "text": "Environment managers\nUsing git, our PhD student can now share their reproducible code with their colloaborators, or between systems. They can rest assured that the different versions of the notebook are tracked and can be checked out when necessary. But what about the bioinformatic tools? Can they also be shared easily?\nDifferent computers can run on different operating systems, or can have different versions of databases installed. This can lead to conflicts between tools, or software versions and can impact code usability, or reproducibility.\nFortunately, smart people have developed environment managers such as conda, bioconda, or pixi. These tools find and install packages, so that the same package versions are being run between different computers. However, the code might still give different results on different operating systems.\nDuring this course we will be building our own environments with Pixi - you’ll see how great it is not having to manually install tools anymore!",
+    "crumbs": [
+      "Reproducibility"
+    ]
+  },
+  {
+    "objectID": "data_management.html#containers-in-bioinformatics",
+    "href": "data_management.html#containers-in-bioinformatics",
+    "title": "Tips and Tools for Reproducible Bioinformatics",
+    "section": "Containers in bioinformatics",
+    "text": "Containers in bioinformatics\nBut what if our PhD student needs to run their code on different operating systems?\nThey can use containers, that contain everything needed to run the application, even the operating system. Containers are being exchanged as container images, which makes them lightweight. Containers do not change over time, so the results will be the same today and in a few years. Everyone gets the same container that works in the same way.\nIn this course, you will have guessed it, we will learn about containers, where to get them and how to use them.",
+    "crumbs": [
+      "Reproducibility"
+    ]
+  },
+  {
+    "objectID": "data_management.html#workflow-manager",
+    "href": "data_management.html#workflow-manager",
+    "title": "Tips and Tools for Reproducible Bioinformatics",
+    "section": "Workflow manager",
+    "text": "Workflow manager\nNow our PhD student can use containers, or environments, to provide a uniform environment for their version controlled, wonderfully documented and reproducible code. Fantastic! But they still have to deploy, or at least monitor, their scripts manually.\nFortunately there are workflow managers that can integrate all of the above, submit your jobs for you, and even monitor and re-submit scripts after failure. They will automatically submit jobs for you, decreasing downtime and increasing efficiency.\n\n\n\n\n\n\nTip\n\n\n\nHumans tend to do mistakes, especially when it comes to tedious or repetitive tasks. If you automate data handling, formatting etc. you are less likely to make mistakes like typos, or changing colors in images.\n\n\nIn this course, we will also cover a workflow manager, Nextflow and learn how to make our own workflow, and how to run already developed workflows.",
+    "crumbs": [
+      "Reproducibility"
+    ]
+  },
+  {
+    "objectID": "data_management.html#goal-of-the-course",
+    "href": "data_management.html#goal-of-the-course",
+    "title": "Tips and Tools for Reproducible Bioinformatics",
+    "section": "Goal of the course",
+    "text": "Goal of the course\nWith this, we want to give you tools that will help you plan and carry out your research. These tools will make your work more efficient and more reproducible. No matter what kind of data you use, you will take something useful from this course.\n\n\n\nOverview of modern sequencing technologies and where they apply to biological processes",
+    "crumbs": [
+      "Reproducibility"
+    ]
   },
   {
     "objectID": "index.html",
     "href": "index.html",
     "title": "emPLANT Bioinformatics Course",
     "section": "",
-    "text": "This material is part of the emPLANT Bioinformatics Course.\nemPLANT is an international Master’s programme that trains students in modern plant breeding and innovative plant sciences, combining academic excellence with practical skills for research and industry.\nSee the course schedule here."
+    "text": "This material is part of the emPLANT Bioinformatics Course.\nemPLANT is an international Master’s programme that trains students in modern plant breeding and innovative plant sciences, combining academic excellence with practical skills for research and industry.\nSee the course schedule here.",
+    "crumbs": [
+      "Reproducibility",
+      "Home"
+    ]
   },
   {
-    "objectID": "data_management.html#data-life-cycle",
-    "href": "data_management.html#data-life-cycle",
-    "title": "Data Management for Reproducible Research",
-    "section": "Data Life Cycle",
-    "text": "Data Life Cycle\nWhen working with any type of data, it makes sense to sit down before the project starts to think through the different life stages of the data in your project. This will help counteract some of the problems that can arise when projects grow more organically, and will help consistency within the research group, ease collaboration, and mostly your future self that will understand what past-self has been up to in the project.\n\n\n\n\n\n\nNote\n\n\n\nMore and more funding agencies expect a Data Management Plan at some point of a project application. In there, you need to document that you have thought of, and planned for, the life cycle of your data.\n\n\n\n\n\nThe Research Data Management toolkit for Life Sciences"
-  },
-  {
-    "objectID": "data_management.html#fair-principles",
-    "href": "data_management.html#fair-principles",
-    "title": "Data Management for Reproducible Research",
-    "section": "FAIR principles",
-    "text": "FAIR principles\nIn the past, research data was often generated with one question in mind. Often, they would afterwards land in some drawer and be forgotten about. Nowadays researchers acknowledge that data can also be re-used, or combined with other data, to answer different questions.\nThe FAIR principles promote efficient data discovery and reuse by providing guidelines to make digital resources:\n\n\n\nWilkinson et al. (2016)\n\n\nFAIR principles, in turn, rely on good data management practices in all phases of research:\n\nResearch documentation\nData organisation\nInformation security\nEthics and legislation"
-  },
-  {
-    "objectID": "data_management.html#reproducible-research",
-    "href": "data_management.html#reproducible-research",
-    "title": "Data Management for Reproducible Research",
-    "section": "Reproducible research",
-    "text": "Reproducible research\nLucky for us, once we implement good data management practices, we will also increase the reproducibility of our analyses. Extensive documentation will increase faith in the outcome of analyses, and will help people (again, future-you) understand what has been done.\nLast, but not least, reproducible research practices make project hand-overs smoother, when the next person already understands the structure of the project, and can rely on good documentation."
-  },
-  {
-    "objectID": "data_management.html#what-data-do-we-work-with",
-    "href": "data_management.html#what-data-do-we-work-with",
-    "title": "Data Management for Reproducible Research",
-    "section": "What data do we work with?",
-    "text": "What data do we work with?\n\nBioinformatics is an interdisciplinary field of science that develops methods and software tools for understanding biological data, especially when the data sets are large and complex. (Wikipedia)\n\nThis data can come from a variety of different biological processes:\n\n\n\nsource: Lizel Potgieter\n\n\nEarly on, sequencing data was not readily available, but due to decreasing costs and increased computational power biological data is now being produced in ever increasing quantities:\n\n\n\nGrowth of the Sequence Read Archive, SRA, from 2012 to 2021\n\n\nAt the same time, new technologies are being developed, and new tools that might or might not be maintained or benchmarked against existing tools. It’s the wild west out there!\n\n\n\nOverview of modern sequencing technologies and where they apply to biological processes"
-  },
-  {
-    "objectID": "data_management.html#working-with-data",
-    "href": "data_management.html#working-with-data",
-    "title": "Data Management for Reproducible Research",
-    "section": "Working with data",
-    "text": "Working with data\nOften, with a new project, one sits down with the data, tries out things and see if they worked. A lot of bioinformatics is not being afraid to try things, and reading the documentation.\nThis traditional way of working with bioinformatics data can have merits and lead to new discoveries. However, in this course we would like to introduce you to a more structured way to make sense of your data.\nLet’s have a look at a typical PhD student’s research project:\n\nThey might analyse their data, and get some results.\nAfter talking with their supervisor they might get a few other samples from a collaborator, or need to drop them from the analyses due to quality concerns.\nThey run the analyses again and get a different set of results.\nThere might be a few iterations of this process, and then the reviewers require some additional analyses…\n\nIn the “end” we have something like this:\n\n\n\nWhich one of these is the latest version?\n\n\n\n\n\n\n\n\nTipBest practices file organization\n\n\n\n\nThere is a folder for the raw data, which does not get altered.\nCode is kept separate from data.\nUse a version control system (at least for code) – e.g. git.\nThere should be a README in every directory, describing the purpose of the directory and its contents.\nUse file naming schemes that makes it easy to find files and understand what they are (for humans and machines) and document them.\nUse non-proprietary formats – .csv rather than .xlsx"
-  },
-  {
-    "objectID": "data_management.html#literate-programming",
-    "href": "data_management.html#literate-programming",
-    "title": "Data Management for Reproducible Research",
-    "section": "Literate programming",
-    "text": "Literate programming\nOur hypothetical PhD student, even if taking into account the best practice tips from above, is still likely to run the same analyses over and over whenever the input data changes. Sometimes, this might be months, or even years, after the original analysis was performed.\nLuckily, they can save their code snippets (with intuitive file names) and re-use the code from back then. This is often done with R-scripts, but can just as well be applied to bash scripts, python scripts etc.\nIn the past years, the development went even further and one can even combine code and documentation in the same document. The code is wrapped in so called chunks, or code cells, that are executable from within the document.\n\nDebugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it. Brian Kernighan\n\nBefore the course you have already worked with one such notebook - Quarto. We will continue to work with it during this course.\n\n\n\n\n\n\nTip\n\n\n\n\nDocument your methods and workflows.\nDocument where and when you downloaded data.\nDocument the versions of the software that you ran."
-  },
-  {
-    "objectID": "data_management.html#version-control",
-    "href": "data_management.html#version-control",
-    "title": "Data Management for Reproducible Research",
-    "section": "Version control",
-    "text": "Version control\nNow that our student has reproducible documents, with reasonable names, that can execute their analyses reliably over and over again, what happens if they modify their analyses? Will they end up again with different result files and their project sink down in chaos?\nNo, because there is version control, the practice of tracking and managing changes to files.\nAgain, before the course you worked through the basics of git, and how to use it with GitHub collaboratively. We will continue using git during the course as well."
-  },
-  {
-    "objectID": "data_management.html#environment-managers",
-    "href": "data_management.html#environment-managers",
-    "title": "Data Management for Reproducible Research",
-    "section": "Environment managers",
-    "text": "Environment managers\nUsing git, our PhD student can now share their reproducible code with their colloaborators, or between systems. They can rest assured that the different versions of the notebook are tracked and can be checked out when necessary. But what about the bioinformatic tools? Can they also be shared easily?\nDifferent computers can run on different operating systems, or can have different versions of databases installed. This can lead to conflicts between tools, or software versions and can impact code usability, or reproducibility.\nFortunately, smart people have developed environment managers such as conda, bioconda, or pixi. These tools find and install packages, so that the same package versions are being run between different computers. However, the code might still give different results on different operating systems.\nDuring this course we will be building our own environments with Pixi - you’ll see how great it is not having to manually install tools anymore!"
-  },
-  {
-    "objectID": "data_management.html#containers-in-bioinformatics",
-    "href": "data_management.html#containers-in-bioinformatics",
-    "title": "Data Management for Reproducible Research",
-    "section": "Containers in bioinformatics",
-    "text": "Containers in bioinformatics\nBut what if our PhD student needs to run their code on different operating systems?\nThey can use containers, that contain everything needed to run the application, even the operating system. Containers are being exchanged as container images, which makes them lightweight. Containers do not change over time, so the results will be the same today and in a few years. Everyone gets the same container that works in the same way.\nIn this course, you will have guessed it, we will learn about containers, where to get them and how to use them."
-  },
-  {
-    "objectID": "data_management.html#workflow-manager",
-    "href": "data_management.html#workflow-manager",
-    "title": "Data Management for Reproducible Research",
-    "section": "Workflow manager",
-    "text": "Workflow manager\nNow our PhD student can use containers, or environments, to provide a uniform environment for their version controlled, wonderfully documented and reproducible code. Fantastic! But they still have to deploy, or at least monitor, their scripts manually.\nFortunately there are workflow managers that can integrate all of the above, submit your jobs for you, and even monitor and re-submit scripts after failure. They will automatically submit jobs for you, decreasing downtime and increasing efficiency.\n\n\n\n\n\n\nTip\n\n\n\nHumans tend to do mistakes, especially when it comes to tedious or repetitive tasks. If you automate data handling, formatting etc. you are less likely to make mistakes like typos, or changing colors in images.\n\n\nIn this course, we will also cover a workflow manager, Nextflow and learn how to make our own workflow, and how to run already developed workflows."
-  },
-  {
-    "objectID": "data_management.html#goal-of-the-course",
-    "href": "data_management.html#goal-of-the-course",
-    "title": "Data Management for Reproducible Research",
-    "section": "Goal of the course",
-    "text": "Goal of the course\nWith this, we want to give you tools that will help you plan and carry out your research. These tools will make your work more efficient and more reproducible. No matter what kind of data you use, you will take something useful from this course.\n\n\n\nOverview of modern sequencing technologies and where they apply to biological processes"
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site"
   }
 ]
