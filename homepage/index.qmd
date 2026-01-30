@@ -1,7 +1,13 @@
 ---
-title: "homepage"
+title: "emPLANT Bioinformatics Course"
 ---
 
-This is a Quarto website.
+This material is part of the [emPLANT](https://emplant-master.eu/) Bioinformatics Course. 
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+**emPLANT** is an international Master’s programme that trains students in modern plant breeding and innovative plant sciences, combining academic excellence with practical skills for research and industry.
+
+See the course schedule [here](https://astrocyte.com/EMPLANT2026/index.html). 
+
+<br>
+
+![](figures/logo-emplat-master-to-sucseed-2021.png)
