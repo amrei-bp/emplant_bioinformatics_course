@@ -1,12 +1,5 @@
 [
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "emPLANT Bioinformatics Course",
-    "section": "",
-    "text": "This material is part of the emPLANT Bioinformatics Course.\nemPLANT is an international Master’s programme that trains students in modern plant breeding and innovative plant sciences, combining academic excellence with practical skills for research and industry.\nSee the course schedule here."
-  },
-  {
     "objectID": "about.html",
     "href": "about.html",
     "title": "About",
@@ -89,5 +82,12 @@
     "title": "Data Management for Reproducible Research",
     "section": "Goal of the course",
     "text": "Goal of the course\nWith this, we want to give you tools that will help you plan and carry out your research. These tools will make your work more efficient and more reproducible. No matter what kind of data you use, you will take something useful from this course.\n\n\n\nOverview of modern sequencing technologies and where they apply to biological processes"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "emPLANT Bioinformatics Course",
+    "section": "",
+    "text": "This material is part of the emPLANT Bioinformatics Course.\nemPLANT is an international Master’s programme that trains students in modern plant breeding and innovative plant sciences, combining academic excellence with practical skills for research and industry.\nSee the course schedule here."
   }
 ]
