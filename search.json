@@ -7,6 +7,13 @@
     "text": "About this site"
   },
   {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "emPLANT Bioinformatics Course",
+    "section": "",
+    "text": "This material is part of the emPLANT Bioinformatics Course.\nemPLANT is an international Master’s programme that trains students in modern plant breeding and innovative plant sciences, combining academic excellence with practical skills for research and industry.\nSee the course schedule here."
+  },
+  {
     "objectID": "data_management.html#data-life-cycle",
     "href": "data_management.html#data-life-cycle",
     "title": "Data Management for Reproducible Research",
@@ -39,7 +46,7 @@
     "href": "data_management.html#working-with-data",
     "title": "Data Management for Reproducible Research",
     "section": "Working with data",
-    "text": "Working with data\nOften, with a new project, one sits down with the data, tries out things and see if they worked. A lot of bioinformatics is not being afraid to try things, and reading the documentation.\nThis traditional way of working with bioinformatics data can have merits and lead to new discoveries. However, in this course we would like to introduce you to a more structured way to make sense of your data.\nLet’s have a look at a typical PhD student’s research project:\n\nThey might analyse their data, and get some results.\nAfter talking with their supervisor they might get a few other samples from a collaborator, or need to drop them from the analyses due to quality concerns.\nThey run the analyses again and get a different set of results.\nThere might be a few iterations of this process, and then the reviewers require some additional analyses…\n\nIn the “end” we have something like this:\n\n\n\nWhich one of these is the latest version?\n\n\n\n\n\n\n\n\nBest practices file organization\n\n\n\n\nThere is a folder for the raw data, which does not get altered.\nCode is kept separate from data.\nUse a version control system (at least for code) – e.g. git.\nThere should be a README in every directory, describing the purpose of the directory and its contents.\nUse file naming schemes that makes it easy to find files and understand what they are (for humans and machines) and document them.\nUse non-proprietary formats – .csv rather than .xlsx"
+    "text": "Working with data\nOften, with a new project, one sits down with the data, tries out things and see if they worked. A lot of bioinformatics is not being afraid to try things, and reading the documentation.\nThis traditional way of working with bioinformatics data can have merits and lead to new discoveries. However, in this course we would like to introduce you to a more structured way to make sense of your data.\nLet’s have a look at a typical PhD student’s research project:\n\nThey might analyse their data, and get some results.\nAfter talking with their supervisor they might get a few other samples from a collaborator, or need to drop them from the analyses due to quality concerns.\nThey run the analyses again and get a different set of results.\nThere might be a few iterations of this process, and then the reviewers require some additional analyses…\n\nIn the “end” we have something like this:\n\n\n\nWhich one of these is the latest version?\n\n\n\n\n\n\n\n\nTipBest practices file organization\n\n\n\n\nThere is a folder for the raw data, which does not get altered.\nCode is kept separate from data.\nUse a version control system (at least for code) – e.g. git.\nThere should be a README in every directory, describing the purpose of the directory and its contents.\nUse file naming schemes that makes it easy to find files and understand what they are (for humans and machines) and document them.\nUse non-proprietary formats – .csv rather than .xlsx"
   },
   {
     "objectID": "data_management.html#literate-programming",
@@ -82,12 +89,5 @@
     "title": "Data Management for Reproducible Research",
     "section": "Goal of the course",
     "text": "Goal of the course\nWith this, we want to give you tools that will help you plan and carry out your research. These tools will make your work more efficient and more reproducible. No matter what kind of data you use, you will take something useful from this course.\n\n\n\nOverview of modern sequencing technologies and where they apply to biological processes"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "emPLANT Bioinformatics Course",
-    "section": "",
-    "text": "This material is part of the emPLANT Bioinformatics Course.\nemPLANT is an international Master’s programme that trains students in modern plant breeding and innovative plant sciences, combining academic excellence with practical skills for research and industry.\nSee the course schedule here."
   }
 ]
