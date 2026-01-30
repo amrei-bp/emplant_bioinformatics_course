@@ -1,3 +1,201 @@
 ---
 title: "Quality Control of Sequencing Data"
+format: 
+    closeread-html:
+        cr-section:
+            layout: "overlay-center"
+        cr-style:
+            section-background-color: "#ffffff"
 ---
+<br>
+By the end of the module, you should be able to:
+
+1. Explain why QC of sequencing data is necessary
+2. Interpret the main FastQC modules and their warnings
+3. Distinguish fatal vs tolerable issues depending on downstream analysis
+4. Decide what action (if any) to take based on QC results
+5. Communicate QC findings clearly (short written or verbal summary)
+
+## From plant tissue to sequencing reads
+
+Before we talk about quality control, it is important to understand how sequencing data is produced. Many of the problems we detect during QC originate *early* in the sequencing workflow.
+
+At a high level, the process looks like this:
+
+Plant tissue → DNA extraction → Library preparation → Sequencing → FASTQ files
+
+Each step can introduce technical effects that later appear in quality control reports.
+
+:::{.cr-section}
+
+::: {#cr-sticky_sampling}
+![](figures/qc/sampling.png)
+:::
+
+@cr-sticky_sampling We start with **plant tissue** and extract DNA into a tube.  
+
+
+This step looks simple, but plant material often contains compounds that make extraction harder.
+
+
+Common plant “contaminants” include:
+
+**Polyphenols** (can bind to DNA and interfere with enzymes)
+
+**Polysaccharides** (can make DNA sticky and hard to pipette)
+
+Other **impurities** (depending on tissue type and extraction method)
+
+If extraction quality varies between samples, you can end up with differences in sequencing quality that are **not biological**.
+
+::: {#cr-sticky_prep}
+![](figures/qc/library_prep.png)
+:::
+
+@cr-sticky_prep Sequencing machines do not read whole chromosomes. Instead, DNA is broken into **many small fragments**, a so called **DNA library**.
+
+If the DNA is already degraded (for example due to poor storage), fragmentation can become uneven.  
+
+That can later lead to:
+uneven coverage (some regions have very few reads)
+
+or 
+over-representation of certain fragment sizes.
+
+In QC, this can show up as unusual **sequence length distributions** or downstream effects on mapping.
+
+::: {#cr-sticky_seq}
+![](figures/qc/sequencing.png)
+:::
+
+@cr-sticky_seq The **DNA library** (with adapters added), is then run on a **sequencing machine**.
+
+During sequencing:
+
+- the machine calls bases one by one
+- each base gets a **quality score**
+- quality often decreases toward the **end of reads**
+
+The final output is usually **FASTQ files** (containing raw reads + quality scores).  
+
+Quality control tools, such as FastQC, can summarise these FASTQ files and helps us spot problems early.
+:::
+
+## Why do we need quality control?
+
+When we work with sequencing data, we usually want to answer a **biological question**.
+
+In plant breeding, this could be for example:
+
+- Which genetic variants are associated with a trait?
+- Which alleles are present in a breeding line?
+- How similar are two plant populations?
+- Which genes are expressed under certain conditions?
+
+All of these questions rely on one assumption:  
+**the sequencing data reflects the real biology of the plant.**
+
+Quality control (QC) is the step where we check whether this assumption is reasonable.
+
+QC is not about making the data “look nice”. It is about making sure that **technical problems do not lead to wrong biological conclusions**.
+
+
+## What can go wrong if data quality is poor?
+
+Sequencing errors do not stay “technical”. They can directly affect how we interpret the biology.
+
+For example:
+
+- Low-quality bases can lead to **false SNPs**.
+- Adapter contamination can create **artificial sequence variants**.
+- GC bias can distort **allele frequency estimates**.
+- Uneven read quality can make a sample look **more heterozygous than it really is**.
+
+In a breeding context, this can mean:
+
+- Choosing the wrong markers.
+- Missing true marker–trait associations.
+- Overestimating or underestimating genetic diversity.
+
+Quality control helps us detect these problems *before* we trust the results.
+
+
+## Where do sequencing errors come from?
+
+Sequencing errors can be introduced at several steps, long before we ever see a FASTQ file.
+
+### DNA extraction
+
+Plant material is often challenging to work with.
+
+- Polysaccharides and polyphenols can interfere with enzymes.
+- DNA quality can vary strongly between samples.
+- Degraded DNA can lead to uneven sequencing coverage.
+
+These issues already affect the quality of the reads that will be sequenced.
+
+
+### Library preparation
+
+During library preparation:
+
+- Adapters are ligated to DNA fragments
+- DNA is often amplified using PCR
+
+Possible problems include:
+
+- Adapter sequences that are not fully removed
+- PCR bias, where some fragments are amplified more than others
+- Preferential amplification of certain GC contents
+
+These effects are *technical*, but they shape the data we later analyse.
+
+
+### Sequencing
+
+During the sequencing run itself:
+
+- Base calling becomes less accurate toward the end of reads
+- Errors accumulate across sequencing cycles
+- Different lanes or runs can have different overall quality
+
+This is why read quality often decreases from the 5′ end to the 3′ end of a read.
+
+
+
+## Why plant genomes are special
+
+Many QC tools are **generic**. They do not “know” that your data comes from plants.
+
+However, plant genomes often have features that affect QC results:
+
+- Large genome sizes
+- High repeat content
+- Polyploidy
+- High heterozygosity
+- Variable GC content between species
+
+Because of this:
+
+- GC content plots may look unusual even for good data.
+- High duplication levels are not always a technical problem.
+- Some warnings are expected and acceptable.
+
+This means that **QC results must always be interpreted in a biological context**.
+
+Quality control tools can show you *what* looks unusual —  you need biological knowledge to decide *why*.
+
+
+## What is FastQC?
+
+FastQC is a tool that summarises raw sequencing data and provides a set of diagnostic plots and tests.
+
+FastQC works on **raw FASTQ files**, examines millions of reads quickly and produces an **easy-to-read report**.
+
+FastQC does **not**:
+
+- Correct errors
+- Remove low-quality data
+- Decide whether data is “good enough”
+
+FastQC only provides information, the **interpretation and decisions are up to you.**

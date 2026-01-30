@@ -39,6 +39,9 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/intersection-observer-polyfill-1.0.0/intersection-observer.js"></script>
+<script src="site_libs/quarto-contrib/scrollama-3.2.0/scrollama.min.js"></script>
+<script src="site_libs/quarto-contrib/closeread-0.1.0/closeread.js"></script>
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -65,9 +68,11 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<meta cr-debug-mode="false">
+<meta cr-remove-header-space="false">
 
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="site_libs/quarto-contrib/quarto-project/qmd-lab/closeread/closeread.css">
 </head>
 
 <body class="nav-sidebar docked nav-fixed">
@@ -131,7 +136,7 @@ ul.task-list li input[type="checkbox"] {
   </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
@@ -169,11 +174,16 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    </div>
+    
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content column-page-right" id="quarto-document-content">
+      <!-- user-provided yaml closeread style options -->
+      <style>
+        :root {
+          --cr-section-background-color: #ffffff;
+        }
+      </style>
+    
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -182,7 +192,7 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<div class="quarto-title-meta">
+<div class="quarto-title-meta column-page-right">
 
     
   
@@ -194,8 +204,233 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p><br> By the end of the module, you should be able to:</p>
+<ol type="1">
+<li>Explain why QC of sequencing data is necessary</li>
+<li>Interpret the main FastQC modules and their warnings</li>
+<li>Distinguish fatal vs tolerable issues depending on downstream analysis</li>
+<li>Decide what action (if any) to take based on QC results</li>
+<li>Communicate QC findings clearly (short written or verbal summary)</li>
+</ol>
+<section id="from-plant-tissue-to-sequencing-reads" class="level2">
+<h2 class="anchored" data-anchor-id="from-plant-tissue-to-sequencing-reads">From plant tissue to sequencing reads</h2>
+<p>Before we talk about quality control, it is important to understand how sequencing data is produced. Many of the problems we detect during QC originate <em>early</em> in the sequencing workflow.</p>
+<p>At a high level, the process looks like this:</p>
+<p>Plant tissue → DNA extraction → Library preparation → Sequencing → FASTQ files</p>
+<p>Each step can introduce technical effects that later appear in quality control reports.</p>
+<div class="cr-section cr-column-screen overlay-center">
+<div class="narrative-col">
+<div class="trigger new-trigger" data-focus-on="cr-sticky_sampling">
+<div class="narrative">
+<p>We start with <strong>plant tissue</strong> and extract DNA into a tube.</p>
+</div>
+</div>
+<div class="trigger">
+<div class="narrative">
+<p>This step looks simple, but plant material often contains compounds that make extraction harder.</p>
+</div>
+</div>
+<div class="trigger">
+<div class="narrative">
+<p>Common plant “contaminants” include:</p>
+</div>
+</div>
+<div class="trigger">
+<div class="narrative">
+<p><strong>Polyphenols</strong> (can bind to DNA and interfere with enzymes)</p>
+</div>
+</div>
+<div class="trigger">
+<div class="narrative">
+<p><strong>Polysaccharides</strong> (can make DNA sticky and hard to pipette)</p>
+</div>
+</div>
+<div class="trigger">
+<div class="narrative">
+<p>Other <strong>impurities</strong> (depending on tissue type and extraction method)</p>
+</div>
+</div>
+<div class="trigger">
+<div class="narrative">
+<p>If extraction quality varies between samples, you can end up with differences in sequencing quality that are <strong>not biological</strong>.</p>
+</div>
+</div>
+<div class="trigger new-trigger" data-focus-on="cr-sticky_prep">
+<div class="narrative">
+<p>Sequencing machines do not read whole chromosomes. Instead, DNA is broken into <strong>many small fragments</strong>, a so called <strong>DNA library</strong>.</p>
+</div>
+</div>
+<div class="trigger">
+<div class="narrative">
+<p>If the DNA is already degraded (for example due to poor storage), fragmentation can become uneven.</p>
+</div>
+</div>
+<div class="trigger">
+<div class="narrative">
+<p>That can later lead to: uneven coverage (some regions have very few reads)</p>
+</div>
+</div>
+<div class="trigger">
+<div class="narrative">
+<p>or over-representation of certain fragment sizes.</p>
+</div>
+</div>
+<div class="trigger">
+<div class="narrative">
+<p>In QC, this can show up as unusual <strong>sequence length distributions</strong> or downstream effects on mapping.</p>
+</div>
+</div>
+<div class="trigger new-trigger" data-focus-on="cr-sticky_seq">
+<div class="narrative">
+<p>The <strong>DNA library</strong> (with adapters added), is then run on a <strong>sequencing machine</strong>.</p>
+</div>
+</div>
+<div class="trigger">
+<div class="narrative">
+<p>During sequencing:</p>
+</div>
+</div>
+<div class="trigger">
+<div class="narrative">
+<ul>
+<li>the machine calls bases one by one</li>
+<li>each base gets a <strong>quality score</strong></li>
+<li>quality often decreases toward the <strong>end of reads</strong></li>
+</ul>
+</div>
+</div>
+<div class="trigger">
+<div class="narrative">
+<p>The final output is usually <strong>FASTQ files</strong> (containing raw reads + quality scores).</p>
+</div>
+</div>
+<div class="trigger">
+<div class="narrative">
+<p>Quality control tools, such as FastQC, can summarise these FASTQ files and helps us spot problems early.</p>
+</div>
+</div>
+</div>
+<div class="sticky-col">
+<div class="sticky-col-stack">
+<div id="cr-sticky_sampling" class="sticky">
+<p><img src="figures/qc/sampling.png" class="img-fluid"></p>
+</div>
+<div id="cr-sticky_prep" class="sticky">
+<p><img src="figures/qc/library_prep.png" class="img-fluid"></p>
+</div>
+<div id="cr-sticky_seq" class="sticky">
+<p><img src="figures/qc/sequencing.png" class="img-fluid"></p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="why-do-we-need-quality-control" class="level2">
+<h2 class="anchored" data-anchor-id="why-do-we-need-quality-control">Why do we need quality control?</h2>
+<p>When we work with sequencing data, we usually want to answer a <strong>biological question</strong>.</p>
+<p>In plant breeding, this could be for example:</p>
+<ul>
+<li>Which genetic variants are associated with a trait?</li>
+<li>Which alleles are present in a breeding line?</li>
+<li>How similar are two plant populations?</li>
+<li>Which genes are expressed under certain conditions?</li>
+</ul>
+<p>All of these questions rely on one assumption:<br>
+<strong>the sequencing data reflects the real biology of the plant.</strong></p>
+<p>Quality control (QC) is the step where we check whether this assumption is reasonable.</p>
+<p>QC is not about making the data “look nice”. It is about making sure that <strong>technical problems do not lead to wrong biological conclusions</strong>.</p>
+</section>
+<section id="what-can-go-wrong-if-data-quality-is-poor" class="level2">
+<h2 class="anchored" data-anchor-id="what-can-go-wrong-if-data-quality-is-poor">What can go wrong if data quality is poor?</h2>
+<p>Sequencing errors do not stay “technical”. They can directly affect how we interpret the biology.</p>
+<p>For example:</p>
+<ul>
+<li>Low-quality bases can lead to <strong>false SNPs</strong>.</li>
+<li>Adapter contamination can create <strong>artificial sequence variants</strong>.</li>
+<li>GC bias can distort <strong>allele frequency estimates</strong>.</li>
+<li>Uneven read quality can make a sample look <strong>more heterozygous than it really is</strong>.</li>
+</ul>
+<p>In a breeding context, this can mean:</p>
+<ul>
+<li>Choosing the wrong markers.</li>
+<li>Missing true marker–trait associations.</li>
+<li>Overestimating or underestimating genetic diversity.</li>
+</ul>
+<p>Quality control helps us detect these problems <em>before</em> we trust the results.</p>
+</section>
+<section id="where-do-sequencing-errors-come-from" class="level2">
+<h2 class="anchored" data-anchor-id="where-do-sequencing-errors-come-from">Where do sequencing errors come from?</h2>
+<p>Sequencing errors can be introduced at several steps, long before we ever see a FASTQ file.</p>
+<section id="dna-extraction" class="level3">
+<h3 class="anchored" data-anchor-id="dna-extraction">DNA extraction</h3>
+<p>Plant material is often challenging to work with.</p>
+<ul>
+<li>Polysaccharides and polyphenols can interfere with enzymes.</li>
+<li>DNA quality can vary strongly between samples.</li>
+<li>Degraded DNA can lead to uneven sequencing coverage.</li>
+</ul>
+<p>These issues already affect the quality of the reads that will be sequenced.</p>
+</section>
+<section id="library-preparation" class="level3">
+<h3 class="anchored" data-anchor-id="library-preparation">Library preparation</h3>
+<p>During library preparation:</p>
+<ul>
+<li>Adapters are ligated to DNA fragments</li>
+<li>DNA is often amplified using PCR</li>
+</ul>
+<p>Possible problems include:</p>
+<ul>
+<li>Adapter sequences that are not fully removed</li>
+<li>PCR bias, where some fragments are amplified more than others</li>
+<li>Preferential amplification of certain GC contents</li>
+</ul>
+<p>These effects are <em>technical</em>, but they shape the data we later analyse.</p>
+</section>
+<section id="sequencing" class="level3">
+<h3 class="anchored" data-anchor-id="sequencing">Sequencing</h3>
+<p>During the sequencing run itself:</p>
+<ul>
+<li>Base calling becomes less accurate toward the end of reads</li>
+<li>Errors accumulate across sequencing cycles</li>
+<li>Different lanes or runs can have different overall quality</li>
+</ul>
+<p>This is why read quality often decreases from the 5′ end to the 3′ end of a read.</p>
+</section>
+</section>
+<section id="why-plant-genomes-are-special" class="level2">
+<h2 class="anchored" data-anchor-id="why-plant-genomes-are-special">Why plant genomes are special</h2>
+<p>Many QC tools are <strong>generic</strong>. They do not “know” that your data comes from plants.</p>
+<p>However, plant genomes often have features that affect QC results:</p>
+<ul>
+<li>Large genome sizes</li>
+<li>High repeat content</li>
+<li>Polyploidy</li>
+<li>High heterozygosity</li>
+<li>Variable GC content between species</li>
+</ul>
+<p>Because of this:</p>
+<ul>
+<li>GC content plots may look unusual even for good data.</li>
+<li>High duplication levels are not always a technical problem.</li>
+<li>Some warnings are expected and acceptable.</li>
+</ul>
+<p>This means that <strong>QC results must always be interpreted in a biological context</strong>.</p>
+<p>Quality control tools can show you <em>what</em> looks unusual — you need biological knowledge to decide <em>why</em>.</p>
+</section>
+<section id="what-is-fastqc" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-fastqc">What is FastQC?</h2>
+<p>FastQC is a tool that summarises raw sequencing data and provides a set of diagnostic plots and tests.</p>
+<p>FastQC works on <strong>raw FASTQ files</strong>, examines millions of reads quickly and produces an <strong>easy-to-read report</strong>.</p>
+<p>FastQC does <strong>not</strong>:</p>
+<ul>
+<li>Correct errors</li>
+<li>Remove low-quality data</li>
+<li>Decide whether data is “good enough”</li>
+</ul>
+<p>FastQC only provides information, the <strong>interpretation and decisions are up to you.</strong></p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
