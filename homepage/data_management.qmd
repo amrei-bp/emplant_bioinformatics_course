@@ -2,7 +2,7 @@
 title: "Data Management for Reproducible Research"
 ---
 
-## Or: what's in it for me?
+## What's in it for me?
 
 <br>
 
