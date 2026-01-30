@@ -1,8 +1,8 @@
 ---
-title: "Data Management for Reproducible Research"
+title: "Tips and Tools for Reproducible Bioinformatics"
 ---
 
-## What's in it for me?
+## Why should I care about reproducibility?
 
 <br>
 

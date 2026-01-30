@@ -1,19 +1,45 @@
 project:
   type: website
 
+# accessibility-focused syntax highlighting theme for code. 
+# alternatives: github, monokai, dracula
+highlight-style: a11y
+
 website:
   title: "EMPLANT course"
   navbar:
+    background: primary
+    tools:
+      - icon: github
+        menu:
+          - text: Source Code
+            href:  https://github.com/amrei-bp/emplant_bioinformatics_course
+          - text: Report a Bug
+            href:  https://github.com/amrei-bp/emplant_bioinformatics_course/issues
     left:
-      - href: index.qmd
-        text: Home
       - href: data_management.qmd
-        text: Reproducible Bioinformatics
-      - about.qmd
+        text: Reproducibility
+      - href: qc.qmd
+        text: Quality control
+  search: 
+    location: navbar
+    type: textbox
+
+  sidebar:
+    style: "docked"
+    search: true
+    logo: figures/logo/SLUBI_logo.png
+    contents:
+      - text: "Home"
+        href: index.qmd
+      - text: "Reproducibility"
+        href: data_management.qmd
+      - text: "Quality control"
+        href: qc.qmd
 
 format:
   html:
-    theme: cosmo
+    theme: yeti
     css: styles.css
     toc: true
 
