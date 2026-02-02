@@ -314,7 +314,7 @@ ul.task-list li input[type="checkbox"] {
 <p>Sequencing errors can be introduced at several steps, long before we ever see a FASTQ file.</p>
 <section id="step-1-dna-extraction" class="level3">
 <h3 class="anchored" data-anchor-id="step-1-dna-extraction">Step 1: DNA extraction</h3>
-<p><img src="figures/qc/sampling.png" class="img-fluid"></p>
+<p><img src="figures/qc/sampling.png" class="class img-fluid" style="width:40.0%"></p>
 <p>Plant material can be challenging to work with. Different issuea can affect the quality of the reads that will be sequenced:</p>
 <ul>
 <li>Compounds such as polyphenols and polysaccharides can interfere with enzymes or make the DNA sticky.</li>
@@ -323,23 +323,21 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="step-2-library-preparation" class="level3">
 <h3 class="anchored" data-anchor-id="step-2-library-preparation">Step 2: Library preparation</h3>
-<p><img src="figures/qc/library_prep.png" class="img-fluid"></p>
+<p><img src="figures/qc/library_prep.png" class="class img-fluid" style="width:40.0%"></p>
 <p>During library preparation, the DNA is sheared into fragments, adapters are ligated to these DNA fragments and the DNA is often amplified using PCR.</p>
-<p>Sometimes, the DNA already degrades before the library preparation. That can lead to <strong>uneven sequencing coverage</strong> in the sequenced reads.</p>
-<p>The <strong>PCR can introduce a bias</strong>, where some fragments are amplified more than others.</p>
+<p>Sometimes, the DNA already degrades before the library preparation. That can lead to <strong>uneven sequencing coverage</strong> in the sequenced reads. The <strong>PCR can introduce a bias</strong>, where some fragments are amplified more than others.</p>
 <p>All these effects are <em>technical</em>, but they <strong>shape the data we later analyse</strong>.</p>
 </section>
 <section id="sequencing" class="level3">
 <h3 class="anchored" data-anchor-id="sequencing">Sequencing</h3>
-<p><img src="figures/qc/sequencing.png" class="img-fluid"></p>
-<p>Sequencing run itself can introduce errors. Base calling becomes less accurate toward the end of reads - Errors accumulate across sequencing cycles - Different lanes or runs can have different overall quality</p>
-<p>This is why read quality often decreases from the 5′ end to the 3′ end of a read.</p>
+<p><img src="figures/qc/sequencing.png" class="class img-fluid" style="width:40.0%"></p>
+<p>Sequencing run itself can introduce errors. Base calling becomes less accurate toward the end of reads and errors accumulate across sequencing cycles. Different lanes or runs can have different overall quality.</p>
 </section>
 </section>
 <section id="why-plant-genomes-are-special" class="level2">
 <h2 class="anchored" data-anchor-id="why-plant-genomes-are-special">Why plant genomes are special</h2>
 <p>Many QC tools are <strong>generic</strong>. They do not “know” that your data comes from plants.</p>
-<p>However, plant genomes often have features that affect QC results:</p>
+<p>However, plant genomes often have features that affect quality:</p>
 <ul>
 <li>Large genome sizes</li>
 <li>High repeat content</li>
@@ -347,26 +345,23 @@ ul.task-list li input[type="checkbox"] {
 <li>High heterozygosity</li>
 <li>Variable GC content between species</li>
 </ul>
-<p>Because of this:</p>
-<ul>
-<li>GC content plots may look unusual even for good data.</li>
-<li>High duplication levels are not always a technical problem.</li>
-<li>Some warnings are expected and acceptable.</li>
-</ul>
+<p>As a result, the GC content plots may look unusual even for good data. High duplication levels are not always a technical problem. So, some warnings are expected and acceptable.</p>
 <p>This means that <strong>QC results must always be interpreted in a biological context</strong>.</p>
 <p>Quality control tools can show you <em>what</em> looks unusual — you need biological knowledge to decide <em>why</em>.</p>
 </section>
 <section id="what-is-fastqc" class="level2">
 <h2 class="anchored" data-anchor-id="what-is-fastqc">What is FastQC?</h2>
-<p>FastQC is a tool that summarises raw sequencing data and provides a set of diagnostic plots and tests.</p>
-<p>FastQC works on <strong>raw FASTQ files</strong>, examines millions of reads quickly and produces an <strong>easy-to-read report</strong>.</p>
-<p>FastQC does <strong>not</strong>:</p>
-<ul>
-<li>Correct errors</li>
-<li>Remove low-quality data</li>
-<li>Decide whether data is “good enough”</li>
-</ul>
-<p>FastQC only provides information, the <strong>interpretation and decisions are up to you.</strong></p>
+<p>After sequencing, the first files we usually receive are FASTQ files. These files contain millions of short sequencing reads together with a quality score for every base.</p>
+<p><strong>Looking directly at raw FASTQ files is not practical.</strong></p>
+<p>FastQC is a tool for quality control on raw sequence data coming from high throughput sequencing. It takes your raw data and performs a series of standardized tests, and produces an <strong>easy-to-read overview report</strong> with figures and tables for each sample.</p>
+<p>FastQC provides information about your samples, it does not know what experiment you performed, or what you plan to do with your data afterwards. Thus, the <strong>interpretation and decisions are up to you.</strong> After checking the quality you might want to use other tools to correct errors, remove low-quality data, etc.</p>
+</section>
+<section id="interpreting-fastqc-flags" class="level2">
+<h2 class="anchored" data-anchor-id="interpreting-fastqc-flags">Interpreting FastQC flags</h2>
+<p>Each FastQC module ends with a simple label: <strong>pass</strong>, <strong>warning</strong>, or <strong>fail</strong>. These labels are often misunderstood. A fail does not mean the data is unusable. Alternatively, a pass does not mean the data is perfect.</p>
+<p>The flags are based on generic thresholds that work reasonably well across many datasets, but they are not tailored to specific organisms or analyses.</p>
+<p>In plant breeding projects, it is common to see warnings or failures even in perfectly usable datasets.</p>
+<p>FastQC flags should therefore be treated as <strong>signals to investigate</strong>, not as automatic decisions.</p>
 
 
 </section>
