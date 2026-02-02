@@ -204,109 +204,40 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><br> By the end of the module, you should be able to:</p>
+<p><br> By the end of this module, you should be able to:</p>
 <ol type="1">
-<li>Explain why QC of sequencing data is necessary</li>
-<li>Interpret the main FastQC modules and their warnings</li>
-<li>Distinguish fatal vs tolerable issues depending on downstream analysis</li>
-<li>Decide what action (if any) to take based on QC results</li>
-<li>Communicate QC findings clearly (short written or verbal summary)</li>
+<li>Explain why QC of sequencing data is necessary.</li>
+<li>Interpret FastQC reports and their warnings.</li>
+<li>Decide what action (if any) to take based on QC results.</li>
 </ol>
 <section id="from-plant-tissue-to-sequencing-reads" class="level2">
 <h2 class="anchored" data-anchor-id="from-plant-tissue-to-sequencing-reads">From plant tissue to sequencing reads</h2>
-<p>Before we talk about quality control, it is important to understand how sequencing data is produced. Many of the problems we detect during QC originate <em>early</em> in the sequencing workflow.</p>
+<p>Before we talk about quality control, it is important to understand how sequencing data is produced. Many of the problems we detect during QC originate early in the sequencing workflow.</p>
 <p>At a high level, the process looks like this:</p>
+<blockquote class="blockquote">
 <p>Plant tissue → DNA extraction → Library preparation → Sequencing → FASTQ files</p>
-<p>Each step can introduce technical effects that later appear in quality control reports.</p>
+</blockquote>
+<p>Each step can introduce technical effects that later appear in quality control reports. Let’s have a closer look:</p>
 <div class="cr-section cr-column-screen overlay-center">
 <div class="narrative-col">
 <div class="trigger new-trigger" data-focus-on="cr-sticky_sampling">
 <div class="narrative">
-<p>We start with <strong>plant tissue</strong> and extract DNA into a tube.</p>
-</div>
-</div>
-<div class="trigger">
-<div class="narrative">
-<p>This step looks simple, but plant material often contains compounds that make extraction harder.</p>
-</div>
-</div>
-<div class="trigger">
-<div class="narrative">
-<p>Common plant “contaminants” include:</p>
-</div>
-</div>
-<div class="trigger">
-<div class="narrative">
-<p><strong>Polyphenols</strong> (can bind to DNA and interfere with enzymes)</p>
-</div>
-</div>
-<div class="trigger">
-<div class="narrative">
-<p><strong>Polysaccharides</strong> (can make DNA sticky and hard to pipette)</p>
-</div>
-</div>
-<div class="trigger">
-<div class="narrative">
-<p>Other <strong>impurities</strong> (depending on tissue type and extraction method)</p>
-</div>
-</div>
-<div class="trigger">
-<div class="narrative">
-<p>If extraction quality varies between samples, you can end up with differences in sequencing quality that are <strong>not biological</strong>.</p>
+<p>We start with <strong>plant tissue</strong> and extract the contained DNA.</p>
 </div>
 </div>
 <div class="trigger new-trigger" data-focus-on="cr-sticky_prep">
 <div class="narrative">
-<p>Sequencing machines do not read whole chromosomes. Instead, DNA is broken into <strong>many small fragments</strong>, a so called <strong>DNA library</strong>.</p>
-</div>
-</div>
-<div class="trigger">
-<div class="narrative">
-<p>If the DNA is already degraded (for example due to poor storage), fragmentation can become uneven.</p>
-</div>
-</div>
-<div class="trigger">
-<div class="narrative">
-<p>That can later lead to: uneven coverage (some regions have very few reads)</p>
-</div>
-</div>
-<div class="trigger">
-<div class="narrative">
-<p>or over-representation of certain fragment sizes.</p>
-</div>
-</div>
-<div class="trigger">
-<div class="narrative">
-<p>In QC, this can show up as unusual <strong>sequence length distributions</strong> or downstream effects on mapping.</p>
+<p>Next, sequencing machines do not read whole chromosomes. Instead, DNA is broken into <strong>many small fragments</strong>, the so called <strong>DNA library</strong>.</p>
 </div>
 </div>
 <div class="trigger new-trigger" data-focus-on="cr-sticky_seq">
 <div class="narrative">
-<p>The <strong>DNA library</strong> (with adapters added), is then run on a <strong>sequencing machine</strong>.</p>
+<p>The <strong>DNA library</strong> (with adapters added), is then run on a <strong>sequencing machine</strong>, which calls the bases of each fragment.</p>
 </div>
 </div>
 <div class="trigger">
 <div class="narrative">
-<p>During sequencing:</p>
-</div>
-</div>
-<div class="trigger">
-<div class="narrative">
-<ul>
-<li>the machine calls bases one by one</li>
-<li>each base gets a <strong>quality score</strong></li>
-<li>quality often decreases toward the <strong>end of reads</strong></li>
-</ul>
-</div>
-</div>
-<div class="trigger">
-<div class="narrative">
-<p>The final output is usually <strong>FASTQ files</strong> (containing raw reads + quality scores).</p>
-</div>
-</div>
-<div class="trigger">
-<div class="narrative">
-<p>Quality control tools, such as FastQC, can summarise these FASTQ files and helps us spot problems early.</p>
+<p>The final output are usually <strong>FASTQ files</strong>, which contain raw reads and quality scores.</p>
 </div>
 </div>
 </div>
@@ -328,72 +259,77 @@ ul.task-list li input[type="checkbox"] {
 <section id="why-do-we-need-quality-control" class="level2">
 <h2 class="anchored" data-anchor-id="why-do-we-need-quality-control">Why do we need quality control?</h2>
 <p>When we work with sequencing data, we usually want to answer a <strong>biological question</strong>.</p>
-<p>In plant breeding, this could be for example:</p>
+<p>In plant breeding, these could for example be:</p>
 <ul>
-<li>Which genetic variants are associated with a trait?</li>
+<li>Which genetic variants are associated with a certain trait?</li>
 <li>Which alleles are present in a breeding line?</li>
 <li>How similar are two plant populations?</li>
 <li>Which genes are expressed under certain conditions?</li>
 </ul>
-<p>All of these questions rely on one assumption:<br>
-<strong>the sequencing data reflects the real biology of the plant.</strong></p>
+<p>All of these questions rely on the assumption that <strong>the sequencing data reflects the real biology of the plant.</strong></p>
 <p>Quality control (QC) is the step where we check whether this assumption is reasonable.</p>
-<p>QC is not about making the data “look nice”. It is about making sure that <strong>technical problems do not lead to wrong biological conclusions</strong>.</p>
+<p>As such, QC is not about making the data “look nice”. It is about making sure that <strong>technical problems do not lead to wrong biological conclusions</strong>.</p>
 </section>
 <section id="what-can-go-wrong-if-data-quality-is-poor" class="level2">
 <h2 class="anchored" data-anchor-id="what-can-go-wrong-if-data-quality-is-poor">What can go wrong if data quality is poor?</h2>
-<p>Sequencing errors do not stay “technical”. They can directly affect how we interpret the biology.</p>
-<p>For example:</p>
-<ul>
-<li>Low-quality bases can lead to <strong>false SNPs</strong>.</li>
-<li>Adapter contamination can create <strong>artificial sequence variants</strong>.</li>
-<li>GC bias can distort <strong>allele frequency estimates</strong>.</li>
-<li>Uneven read quality can make a sample look <strong>more heterozygous than it really is</strong>.</li>
-</ul>
-<p>In a breeding context, this can mean:</p>
-<ul>
-<li>Choosing the wrong markers.</li>
-<li>Missing true marker–trait associations.</li>
-<li>Overestimating or underestimating genetic diversity.</li>
-</ul>
+<p>Sequencing errors do not stay “technical”. They can directly affect how we interpret the biology:</p>
+<table class="table">
+<colgroup>
+<col style="width: 45%">
+<col style="width: 54%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Technical issue</th>
+<th>Biological consequence</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Low base quality</td>
+<td>Identification of false SNPs</td>
+</tr>
+<tr class="even">
+<td>Adapter contamination</td>
+<td>Detection of artificial variants</td>
+</tr>
+<tr class="odd">
+<td>GC bias</td>
+<td>Skewed allele frequency estimates</td>
+</tr>
+<tr class="even">
+<td>High duplication</td>
+<td>Overconfidence in genotypes</td>
+</tr>
+</tbody>
+</table>
+<p><br> In a breeding context, this can mean that we might <strong>choose the wrong markers</strong>, <strong>miss true marker-trait associations</strong> or <strong>misjudgement or genetiv diversity</strong>.</p>
 <p>Quality control helps us detect these problems <em>before</em> we trust the results.</p>
 </section>
 <section id="where-do-sequencing-errors-come-from" class="level2">
 <h2 class="anchored" data-anchor-id="where-do-sequencing-errors-come-from">Where do sequencing errors come from?</h2>
 <p>Sequencing errors can be introduced at several steps, long before we ever see a FASTQ file.</p>
-<section id="dna-extraction" class="level3">
-<h3 class="anchored" data-anchor-id="dna-extraction">DNA extraction</h3>
-<p>Plant material is often challenging to work with.</p>
+<section id="step-1-dna-extraction" class="level3">
+<h3 class="anchored" data-anchor-id="step-1-dna-extraction">Step 1: DNA extraction</h3>
+<p><img src="figures/qc/sampling.png" class="img-fluid"></p>
+<p>Plant material can be challenging to work with. Different issuea can affect the quality of the reads that will be sequenced:</p>
 <ul>
-<li>Polysaccharides and polyphenols can interfere with enzymes.</li>
-<li>DNA quality can vary strongly between samples.</li>
-<li>Degraded DNA can lead to uneven sequencing coverage.</li>
+<li>Compounds such as polyphenols and polysaccharides can interfere with enzymes or make the DNA sticky.</li>
+<li>DNA quality can vary strongly between samples, depending on the extraction method, tissue and extractor.</li>
 </ul>
-<p>These issues already affect the quality of the reads that will be sequenced.</p>
 </section>
-<section id="library-preparation" class="level3">
-<h3 class="anchored" data-anchor-id="library-preparation">Library preparation</h3>
-<p>During library preparation:</p>
-<ul>
-<li>Adapters are ligated to DNA fragments</li>
-<li>DNA is often amplified using PCR</li>
-</ul>
-<p>Possible problems include:</p>
-<ul>
-<li>Adapter sequences that are not fully removed</li>
-<li>PCR bias, where some fragments are amplified more than others</li>
-<li>Preferential amplification of certain GC contents</li>
-</ul>
-<p>These effects are <em>technical</em>, but they shape the data we later analyse.</p>
+<section id="step-2-library-preparation" class="level3">
+<h3 class="anchored" data-anchor-id="step-2-library-preparation">Step 2: Library preparation</h3>
+<p><img src="figures/qc/library_prep.png" class="img-fluid"></p>
+<p>During library preparation, the DNA is sheared into fragments, adapters are ligated to these DNA fragments and the DNA is often amplified using PCR.</p>
+<p>Sometimes, the DNA already degrades before the library preparation. That can lead to <strong>uneven sequencing coverage</strong> in the sequenced reads.</p>
+<p>The <strong>PCR can introduce a bias</strong>, where some fragments are amplified more than others.</p>
+<p>All these effects are <em>technical</em>, but they <strong>shape the data we later analyse</strong>.</p>
 </section>
 <section id="sequencing" class="level3">
 <h3 class="anchored" data-anchor-id="sequencing">Sequencing</h3>
-<p>During the sequencing run itself:</p>
-<ul>
-<li>Base calling becomes less accurate toward the end of reads</li>
-<li>Errors accumulate across sequencing cycles</li>
-<li>Different lanes or runs can have different overall quality</li>
-</ul>
+<p><img src="figures/qc/sequencing.png" class="img-fluid"></p>
+<p>Sequencing run itself can introduce errors. Base calling becomes less accurate toward the end of reads - Errors accumulate across sequencing cycles - Different lanes or runs can have different overall quality</p>
 <p>This is why read quality often decreases from the 5′ end to the 3′ end of a read.</p>
 </section>
 </section>

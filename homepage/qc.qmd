@@ -8,23 +8,21 @@ format:
             section-background-color: "#ffffff"
 ---
 <br>
-By the end of the module, you should be able to:
+By the end of this module, you should be able to:
 
-1. Explain why QC of sequencing data is necessary
-2. Interpret the main FastQC modules and their warnings
-3. Distinguish fatal vs tolerable issues depending on downstream analysis
-4. Decide what action (if any) to take based on QC results
-5. Communicate QC findings clearly (short written or verbal summary)
+1. Explain why QC of sequencing data is necessary.
+2. Interpret FastQC reports and their warnings.
+3. Decide what action (if any) to take based on QC results.
 
 ## From plant tissue to sequencing reads
 
-Before we talk about quality control, it is important to understand how sequencing data is produced. Many of the problems we detect during QC originate *early* in the sequencing workflow.
+Before we talk about quality control, it is important to understand how sequencing data is produced. Many of the problems we detect during QC originate early in the sequencing workflow.
 
 At a high level, the process looks like this:
 
-Plant tissue → DNA extraction → Library preparation → Sequencing → FASTQ files
+> Plant tissue → DNA extraction → Library preparation → Sequencing → FASTQ files
 
-Each step can introduce technical effects that later appear in quality control reports.
+Each step can introduce technical effects that later appear in quality control reports. Let's have a closer look:
 
 :::{.cr-section}
 
@@ -32,90 +30,55 @@ Each step can introduce technical effects that later appear in quality control r
 ![](figures/qc/sampling.png)
 :::
 
-@cr-sticky_sampling We start with **plant tissue** and extract DNA into a tube.  
-
-
-This step looks simple, but plant material often contains compounds that make extraction harder.
-
-
-Common plant “contaminants” include:
-
-**Polyphenols** (can bind to DNA and interfere with enzymes)
-
-**Polysaccharides** (can make DNA sticky and hard to pipette)
-
-Other **impurities** (depending on tissue type and extraction method)
-
-If extraction quality varies between samples, you can end up with differences in sequencing quality that are **not biological**.
+@cr-sticky_sampling We start with **plant tissue** and extract the contained DNA.  
 
 ::: {#cr-sticky_prep}
 ![](figures/qc/library_prep.png)
 :::
 
-@cr-sticky_prep Sequencing machines do not read whole chromosomes. Instead, DNA is broken into **many small fragments**, a so called **DNA library**.
-
-If the DNA is already degraded (for example due to poor storage), fragmentation can become uneven.  
-
-That can later lead to:
-uneven coverage (some regions have very few reads)
-
-or 
-over-representation of certain fragment sizes.
-
-In QC, this can show up as unusual **sequence length distributions** or downstream effects on mapping.
+@cr-sticky_prep Next, sequencing machines do not read whole chromosomes. Instead, DNA is broken into **many small fragments**, the so called **DNA library**.
 
 ::: {#cr-sticky_seq}
 ![](figures/qc/sequencing.png)
 :::
 
-@cr-sticky_seq The **DNA library** (with adapters added), is then run on a **sequencing machine**.
+@cr-sticky_seq The **DNA library** (with adapters added), is then run on a **sequencing machine**, which calls the bases of each fragment.
 
-During sequencing:
-
-- the machine calls bases one by one
-- each base gets a **quality score**
-- quality often decreases toward the **end of reads**
-
-The final output is usually **FASTQ files** (containing raw reads + quality scores).  
-
-Quality control tools, such as FastQC, can summarise these FASTQ files and helps us spot problems early.
+The final output are usually **FASTQ files**, which contain raw reads and quality scores.  
 :::
 
 ## Why do we need quality control?
 
 When we work with sequencing data, we usually want to answer a **biological question**.
 
-In plant breeding, this could be for example:
+In plant breeding, these could for example be:
 
-- Which genetic variants are associated with a trait?
+- Which genetic variants are associated with a certain trait?
 - Which alleles are present in a breeding line?
 - How similar are two plant populations?
 - Which genes are expressed under certain conditions?
 
-All of these questions rely on one assumption:  
+All of these questions rely on the assumption that
 **the sequencing data reflects the real biology of the plant.**
 
 Quality control (QC) is the step where we check whether this assumption is reasonable.
 
-QC is not about making the data “look nice”. It is about making sure that **technical problems do not lead to wrong biological conclusions**.
+As such, QC is not about making the data “look nice”. It is about making sure that **technical problems do not lead to wrong biological conclusions**.
 
 
 ## What can go wrong if data quality is poor?
 
-Sequencing errors do not stay “technical”. They can directly affect how we interpret the biology.
+Sequencing errors do not stay “technical”. They can directly affect how we interpret the biology:
 
-For example:
+| Technical issue                | Biological consequence    |
+| --------------------- | ------------------------- |
+| Low base quality | Identification of false SNPs                |
+| Adapter contamination            | Detection of artificial variants       |
+| GC bias                      | Skewed allele frequency estimates |
+| High duplication           | Overconfidence in genotypes   |
 
-- Low-quality bases can lead to **false SNPs**.
-- Adapter contamination can create **artificial sequence variants**.
-- GC bias can distort **allele frequency estimates**.
-- Uneven read quality can make a sample look **more heterozygous than it really is**.
-
-In a breeding context, this can mean:
-
-- Choosing the wrong markers.
-- Missing true marker–trait associations.
-- Overestimating or underestimating genetic diversity.
+<br> 
+In a breeding context, this can mean that we might **choose the wrong markers**, **miss true marker-trait associations** or **misjudgement or genetiv diversity**.
 
 Quality control helps us detect these problems *before* we trust the results.
 
@@ -124,38 +87,35 @@ Quality control helps us detect these problems *before* we trust the results.
 
 Sequencing errors can be introduced at several steps, long before we ever see a FASTQ file.
 
-### DNA extraction
+### Step 1: DNA extraction
 
-Plant material is often challenging to work with.
+![](figures/qc/sampling.png)
 
-- Polysaccharides and polyphenols can interfere with enzymes.
-- DNA quality can vary strongly between samples.
-- Degraded DNA can lead to uneven sequencing coverage.
+Plant material can be challenging to work with. Different issuea can affect the quality of the reads that will be sequenced:
 
-These issues already affect the quality of the reads that will be sequenced.
+-  Compounds such as polyphenols and polysaccharides can interfere with enzymes or make the DNA sticky.
+- DNA quality can vary strongly between samples, depending on the extraction method, tissue and extractor.
 
 
-### Library preparation
 
-During library preparation:
+### Step 2: Library preparation
 
-- Adapters are ligated to DNA fragments
-- DNA is often amplified using PCR
+![](figures/qc/library_prep.png)
 
-Possible problems include:
+During library preparation, the DNA is sheared into fragments, adapters are ligated to these DNA fragments and the DNA is often amplified using PCR.
 
-- Adapter sequences that are not fully removed
-- PCR bias, where some fragments are amplified more than others
-- Preferential amplification of certain GC contents
+Sometimes, the DNA already degrades before the library preparation. That can lead to **uneven sequencing coverage** in the sequenced reads.
 
-These effects are *technical*, but they shape the data we later analyse.
+The **PCR can introduce a bias**, where some fragments are amplified more than others. 
+
+All these effects are *technical*, but they **shape the data we later analyse**.
 
 
 ### Sequencing
 
-During the sequencing run itself:
+![](figures/qc/sequencing.png)
 
-- Base calling becomes less accurate toward the end of reads
+Sequencing run itself can introduce errors. Base calling becomes less accurate toward the end of reads
 - Errors accumulate across sequencing cycles
 - Different lanes or runs can have different overall quality
 
