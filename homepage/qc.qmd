@@ -150,9 +150,77 @@ FastQC provides information about your samples, it does not know what experiment
 
 Each FastQC module ends with a simple label: **pass**, **warning**, or **fail**. These labels are often misunderstood. A fail does not mean the data is unusable. Alternatively, a pass does not mean the data is perfect.
 
-The flags are based on generic thresholds that work reasonably well across many datasets, but they are not tailored to specific organisms or analyses.
-
-In plant breeding projects, it is common to see warnings or failures even in perfectly usable datasets.
+The flags are based on generic thresholds that work reasonably well across many datasets, but they are not tailored to specific organisms or analyses. In plant breeding projects, it is common to see warnings or failures even in perfectly usable datasets.
 
 FastQC flags should therefore be treated as **signals to investigate**, not as automatic decisions.
+
+## A FastQC report
+
+### [Basic statistics](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/1%20Basic%20Statistics.html)
+
+![](figures/qc/bsic_stats_qc.png){.class width=50%}
+
+Simple summary statistics for the file that was analyzed. Good to check what sample was used, and to get initial stats on the sample. This section will never raise warnings. 
+
+### [Per base sequence quality](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/2%20Per%20Base%20Sequence%20Quality.html)
+
+![](figures/qc/per_base_qc.png){.class width=50%}
+
+This plot shows the **quality score at each position in the read**. The higher the score, the better the base call. 
+
+This plot answers a simple question: *How confident are we in the base calls along the read?*
+
+In most sequencing datasets, quality is highest at the beginning of the read and decreases toward the end. This pattern is normal and expected, a modest drop in quality at the end of reads is usually not a serious problem.
+
+However, the sample can be problematic when:
+
+- Quality drops very sharply. 
+- Large parts of the read have very low scores.
+- Quality varies strongly between samples. 
+
+
+### [Per Sequence Quality Scores](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/3%20Per%20Sequence%20Quality%20Scores.html)
+
+![](figures/qc/sequence_quality.png){.class width=50%}
+
+While the previous plot looks at quality **per position**, this plot looks at quality **per read**.
+
+It allows you to see if a subset of your sequences have low quality values, or if the quality is homogeneous across the reads of your sample. 
+
+The low quality reads should obviously only represent a small percentage of the total sequences. If a significant proportion of the sequences are of low quality there could be some kind of systematic problem. 
+
+In plant breeding data, poor per-sequence quality can indicate issues such as:
+
+- Problems during library preparation.
+- Technical issues during sequencing.
+- Low-quality starting material.
+
+### [Per Base Sequence Content]()
+
+![](figures/qc/Base_sequence_content.png){.class width=50%}
+
+This module shows the proportion of the bases - A, C, G, and T - at each position in the read. For random genomic DNA, these proportions should be relatively stable across the read length.
+
+Some types of library will always produce biased sequence composition, normally at the start of the read. Not every deviation from equal base content is a problem. The key question is whether the pattern is expected given the experiment.
+
+In plant genomes, GC content can vary naturally between regions, and this can influence this plot. 
+
+### [Per Sequence GC Content](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/5%20Per%20Sequence%20GC%20Content.html)
+
+![](figures/qc/gc_content.png){.class width=50%}
+
+The GC content plot shows the overall GC distribution of reads in the sample. FastQC compares the observed distribution to a theoretical expectation, and can help identify contamination.
+
+The **expectation is a roughly normal distribution** of GC content where the peak represents the overall GC content of the underlying genome. However, the acutal shape of the curve depends highly on your sample. 
+
+In plant datasets, unusual GC content does not automatically mean contamination.  
+
+It can reflect:
+
+- Genome composition
+- Repetitive regions
+- Targeted sequencing approaches
+
+This plot becomes **more informative when comparing samples to each other**, rather than judging a single sample in isolation.
+
 

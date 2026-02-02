@@ -356,11 +356,65 @@ ul.task-list li input[type="checkbox"] {
 <section id="interpreting-fastqc-flags" class="level2">
 <h2 class="anchored" data-anchor-id="interpreting-fastqc-flags">Interpreting FastQC flags</h2>
 <p>Each FastQC module ends with a simple label: <strong>pass</strong>, <strong>warning</strong>, or <strong>fail</strong>. These labels are often misunderstood. A fail does not mean the data is unusable. Alternatively, a pass does not mean the data is perfect.</p>
-<p>The flags are based on generic thresholds that work reasonably well across many datasets, but they are not tailored to specific organisms or analyses.</p>
-<p>In plant breeding projects, it is common to see warnings or failures even in perfectly usable datasets.</p>
+<p>The flags are based on generic thresholds that work reasonably well across many datasets, but they are not tailored to specific organisms or analyses. In plant breeding projects, it is common to see warnings or failures even in perfectly usable datasets.</p>
 <p>FastQC flags should therefore be treated as <strong>signals to investigate</strong>, not as automatic decisions.</p>
+</section>
+<section id="a-fastqc-report" class="level2">
+<h2 class="anchored" data-anchor-id="a-fastqc-report">A FastQC report</h2>
+<section id="basic-statistics" class="level3">
+<h3 class="anchored" data-anchor-id="basic-statistics"><a href="https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/1%20Basic%20Statistics.html">Basic statistics</a></h3>
+<p><img src="figures/qc/bsic_stats_qc.png" class="class img-fluid" style="width:50.0%"></p>
+<p>Simple summary statistics for the file that was analyzed. Good to check what sample was used, and to get initial stats on the sample. This section will never raise warnings.</p>
+</section>
+<section id="per-base-sequence-quality" class="level3">
+<h3 class="anchored" data-anchor-id="per-base-sequence-quality"><a href="https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/2%20Per%20Base%20Sequence%20Quality.html">Per base sequence quality</a></h3>
+<p><img src="figures/qc/per_base_qc.png" class="class img-fluid" style="width:50.0%"></p>
+<p>This plot shows the <strong>quality score at each position in the read</strong>. The higher the score, the better the base call.</p>
+<p>This plot answers a simple question: <em>How confident are we in the base calls along the read?</em></p>
+<p>In most sequencing datasets, quality is highest at the beginning of the read and decreases toward the end. This pattern is normal and expected, a modest drop in quality at the end of reads is usually not a serious problem.</p>
+<p>However, the sample can be problematic when:</p>
+<ul>
+<li>Quality drops very sharply.</li>
+<li>Large parts of the read have very low scores.</li>
+<li>Quality varies strongly between samples.</li>
+</ul>
+</section>
+<section id="per-sequence-quality-scores" class="level3">
+<h3 class="anchored" data-anchor-id="per-sequence-quality-scores"><a href="https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/3%20Per%20Sequence%20Quality%20Scores.html">Per Sequence Quality Scores</a></h3>
+<p><img src="figures/qc/sequence_quality.png" class="class img-fluid" style="width:50.0%"></p>
+<p>While the previous plot looks at quality <strong>per position</strong>, this plot looks at quality <strong>per read</strong>.</p>
+<p>It allows you to see if a subset of your sequences have low quality values, or if the quality is homogeneous across the reads of your sample.</p>
+<p>The low quality reads should obviously only represent a small percentage of the total sequences. If a significant proportion of the sequences are of low quality there could be some kind of systematic problem.</p>
+<p>In plant breeding data, poor per-sequence quality can indicate issues such as:</p>
+<ul>
+<li>Problems during library preparation.</li>
+<li>Technical issues during sequencing.</li>
+<li>Low-quality starting material.</li>
+</ul>
+</section>
+<section id="per-base-sequence-content" class="level3">
+<h3 class="anchored" data-anchor-id="per-base-sequence-content"><a href="">Per Base Sequence Content</a></h3>
+<p><img src="figures/qc/Base_sequence_content.png" class="class img-fluid" style="width:50.0%"></p>
+<p>This module shows the proportion of the bases - A, C, G, and T - at each position in the read. For random genomic DNA, these proportions should be relatively stable across the read length.</p>
+<p>Some types of library will always produce biased sequence composition, normally at the start of the read. Not every deviation from equal base content is a problem. The key question is whether the pattern is expected given the experiment.</p>
+<p>In plant genomes, GC content can vary naturally between regions, and this can influence this plot.</p>
+</section>
+<section id="per-sequence-gc-content" class="level3">
+<h3 class="anchored" data-anchor-id="per-sequence-gc-content"><a href="https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/5%20Per%20Sequence%20GC%20Content.html">Per Sequence GC Content</a></h3>
+<p><img src="figures/qc/gc_content.png" class="class img-fluid" style="width:50.0%"></p>
+<p>The GC content plot shows the overall GC distribution of reads in the sample. FastQC compares the observed distribution to a theoretical expectation, and can help identify contamination.</p>
+<p>The <strong>expectation is a roughly normal distribution</strong> of GC content where the peak represents the overall GC content of the underlying genome. However, the acutal shape of the curve depends highly on your sample.</p>
+<p>In plant datasets, unusual GC content does not automatically mean contamination.</p>
+<p>It can reflect:</p>
+<ul>
+<li>Genome composition</li>
+<li>Repetitive regions</li>
+<li>Targeted sequencing approaches</li>
+</ul>
+<p>This plot becomes <strong>more informative when comparing samples to each other</strong>, rather than judging a single sample in isolation.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
