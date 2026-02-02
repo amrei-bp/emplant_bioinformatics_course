@@ -89,7 +89,7 @@ Sequencing errors can be introduced at several steps, long before we ever see a 
 
 ### Step 1: DNA extraction
 
-![](figures/qc/sampling.png)
+![](figures/qc/sampling.png){.class width=40%}
 
 Plant material can be challenging to work with. Different issuea can affect the quality of the reads that will be sequenced:
 
@@ -100,26 +100,20 @@ Plant material can be challenging to work with. Different issuea can affect the 
 
 ### Step 2: Library preparation
 
-![](figures/qc/library_prep.png)
+![](figures/qc/library_prep.png){.class width=40%}
 
 During library preparation, the DNA is sheared into fragments, adapters are ligated to these DNA fragments and the DNA is often amplified using PCR.
 
-Sometimes, the DNA already degrades before the library preparation. That can lead to **uneven sequencing coverage** in the sequenced reads.
-
-The **PCR can introduce a bias**, where some fragments are amplified more than others. 
+Sometimes, the DNA already degrades before the library preparation. That can lead to **uneven sequencing coverage** in the sequenced reads. The **PCR can introduce a bias**, where some fragments are amplified more than others. 
 
 All these effects are *technical*, but they **shape the data we later analyse**.
 
 
 ### Sequencing
 
-![](figures/qc/sequencing.png)
+![](figures/qc/sequencing.png){.class width=40%}
 
-Sequencing run itself can introduce errors. Base calling becomes less accurate toward the end of reads
-- Errors accumulate across sequencing cycles
-- Different lanes or runs can have different overall quality
-
-This is why read quality often decreases from the 5′ end to the 3′ end of a read.
+Sequencing run itself can introduce errors. Base calling becomes less accurate toward the end of reads and errors accumulate across sequencing cycles. Different lanes or runs can have different overall quality. 
 
 
 
@@ -127,7 +121,7 @@ This is why read quality often decreases from the 5′ end to the 3′ end of a 
 
 Many QC tools are **generic**. They do not “know” that your data comes from plants.
 
-However, plant genomes often have features that affect QC results:
+However, plant genomes often have features that affect quality:
 
 - Large genome sizes
 - High repeat content
@@ -135,11 +129,7 @@ However, plant genomes often have features that affect QC results:
 - High heterozygosity
 - Variable GC content between species
 
-Because of this:
-
-- GC content plots may look unusual even for good data.
-- High duplication levels are not always a technical problem.
-- Some warnings are expected and acceptable.
+As a result, the GC content plots may look unusual even for good data. High duplication levels are not always a technical problem. So, some warnings are expected and acceptable.
 
 This means that **QC results must always be interpreted in a biological context**.
 
@@ -148,14 +138,21 @@ Quality control tools can show you *what* looks unusual —  you need biological
 
 ## What is FastQC?
 
-FastQC is a tool that summarises raw sequencing data and provides a set of diagnostic plots and tests.
+After sequencing, the first files we usually receive are FASTQ files. These files contain millions of short sequencing reads together with a quality score for every base.
 
-FastQC works on **raw FASTQ files**, examines millions of reads quickly and produces an **easy-to-read report**.
+**Looking directly at raw FASTQ files is not practical.**  
 
-FastQC does **not**:
+FastQC is a tool for quality control on raw sequence data coming from high throughput sequencing. It takes your raw data and performs a series of standardized tests, and produces an **easy-to-read overview report** with figures and tables for each sample. 
 
-- Correct errors
-- Remove low-quality data
-- Decide whether data is “good enough”
+FastQC provides information about your samples, it does not know what experiment you performed, or what you plan to do with your data afterwards. Thus, the **interpretation and decisions are up to you.** After checking the quality you might want to use other tools to correct errors, remove low-quality data, etc. 
 
-FastQC only provides information, the **interpretation and decisions are up to you.**
+## Interpreting FastQC flags
+
+Each FastQC module ends with a simple label: **pass**, **warning**, or **fail**. These labels are often misunderstood. A fail does not mean the data is unusable. Alternatively, a pass does not mean the data is perfect.
+
+The flags are based on generic thresholds that work reasonably well across many datasets, but they are not tailored to specific organisms or analyses.
+
+In plant breeding projects, it is common to see warnings or failures even in perfectly usable datasets.
+
+FastQC flags should therefore be treated as **signals to investigate**, not as automatic decisions.
+

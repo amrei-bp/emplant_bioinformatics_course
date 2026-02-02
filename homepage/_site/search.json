@@ -187,7 +187,7 @@
     "href": "qc.html#where-do-sequencing-errors-come-from",
     "title": "Quality Control of Sequencing Data",
     "section": "Where do sequencing errors come from?",
-    "text": "Where do sequencing errors come from?\nSequencing errors can be introduced at several steps, long before we ever see a FASTQ file.\n\nStep 1: DNA extraction\n\nPlant material can be challenging to work with. Different issuea can affect the quality of the reads that will be sequenced:\n\nCompounds such as polyphenols and polysaccharides can interfere with enzymes or make the DNA sticky.\nDNA quality can vary strongly between samples, depending on the extraction method, tissue and extractor.\n\n\n\nStep 2: Library preparation\n\nDuring library preparation, the DNA is sheared into fragments, adapters are ligated to these DNA fragments and the DNA is often amplified using PCR.\nSometimes, the DNA already degrades before the library preparation. That can lead to uneven sequencing coverage in the sequenced reads.\nThe PCR can introduce a bias, where some fragments are amplified more than others.\nAll these effects are technical, but they shape the data we later analyse.\n\n\nSequencing\n\nSequencing run itself can introduce errors. Base calling becomes less accurate toward the end of reads - Errors accumulate across sequencing cycles - Different lanes or runs can have different overall quality\nThis is why read quality often decreases from the 5′ end to the 3′ end of a read.",
+    "text": "Where do sequencing errors come from?\nSequencing errors can be introduced at several steps, long before we ever see a FASTQ file.\n\nStep 1: DNA extraction\n\nPlant material can be challenging to work with. Different issuea can affect the quality of the reads that will be sequenced:\n\nCompounds such as polyphenols and polysaccharides can interfere with enzymes or make the DNA sticky.\nDNA quality can vary strongly between samples, depending on the extraction method, tissue and extractor.\n\n\n\nStep 2: Library preparation\n\nDuring library preparation, the DNA is sheared into fragments, adapters are ligated to these DNA fragments and the DNA is often amplified using PCR.\nSometimes, the DNA already degrades before the library preparation. That can lead to uneven sequencing coverage in the sequenced reads. The PCR can introduce a bias, where some fragments are amplified more than others.\nAll these effects are technical, but they shape the data we later analyse.\n\n\nSequencing\n\nSequencing run itself can introduce errors. Base calling becomes less accurate toward the end of reads and errors accumulate across sequencing cycles. Different lanes or runs can have different overall quality.",
     "crumbs": [
       "Reproducibility",
       "Quality control"
@@ -198,7 +198,7 @@
     "href": "qc.html#why-plant-genomes-are-special",
     "title": "Quality Control of Sequencing Data",
     "section": "Why plant genomes are special",
-    "text": "Why plant genomes are special\nMany QC tools are generic. They do not “know” that your data comes from plants.\nHowever, plant genomes often have features that affect QC results:\n\nLarge genome sizes\nHigh repeat content\nPolyploidy\nHigh heterozygosity\nVariable GC content between species\n\nBecause of this:\n\nGC content plots may look unusual even for good data.\nHigh duplication levels are not always a technical problem.\nSome warnings are expected and acceptable.\n\nThis means that QC results must always be interpreted in a biological context.\nQuality control tools can show you what looks unusual — you need biological knowledge to decide why.",
+    "text": "Why plant genomes are special\nMany QC tools are generic. They do not “know” that your data comes from plants.\nHowever, plant genomes often have features that affect quality:\n\nLarge genome sizes\nHigh repeat content\nPolyploidy\nHigh heterozygosity\nVariable GC content between species\n\nAs a result, the GC content plots may look unusual even for good data. High duplication levels are not always a technical problem. So, some warnings are expected and acceptable.\nThis means that QC results must always be interpreted in a biological context.\nQuality control tools can show you what looks unusual — you need biological knowledge to decide why.",
     "crumbs": [
       "Reproducibility",
       "Quality control"
@@ -209,7 +209,7 @@
     "href": "qc.html#what-is-fastqc",
     "title": "Quality Control of Sequencing Data",
     "section": "What is FastQC?",
-    "text": "What is FastQC?\nFastQC is a tool that summarises raw sequencing data and provides a set of diagnostic plots and tests.\nFastQC works on raw FASTQ files, examines millions of reads quickly and produces an easy-to-read report.\nFastQC does not:\n\nCorrect errors\nRemove low-quality data\nDecide whether data is “good enough”\n\nFastQC only provides information, the interpretation and decisions are up to you.",
+    "text": "What is FastQC?\nAfter sequencing, the first files we usually receive are FASTQ files. These files contain millions of short sequencing reads together with a quality score for every base.\nLooking directly at raw FASTQ files is not practical.\nFastQC is a tool for quality control on raw sequence data coming from high throughput sequencing. It takes your raw data and performs a series of standardized tests, and produces an easy-to-read overview report with figures and tables for each sample.\nFastQC provides information about your samples, it does not know what experiment you performed, or what you plan to do with your data afterwards. Thus, the interpretation and decisions are up to you. After checking the quality you might want to use other tools to correct errors, remove low-quality data, etc.",
     "crumbs": [
       "Reproducibility",
       "Quality control"
@@ -221,6 +221,28 @@
     "title": "Quality Control of Sequencing Data",
     "section": "From plant tissue to sequencing reads",
     "text": "From plant tissue to sequencing reads\nBefore we talk about quality control, it is important to understand how sequencing data is produced. Many of the problems we detect during QC originate early in the sequencing workflow.\nAt a high level, the process looks like this:\n\nPlant tissue → DNA extraction → Library preparation → Sequencing → FASTQ files\n\nEach step can introduce technical effects that later appear in quality control reports. Let’s have a closer look:\n\n\n\n\nWe start with plant tissue and extract the contained DNA.\n\n\n\n\nNext, sequencing machines do not read whole chromosomes. Instead, DNA is broken into many small fragments, the so called DNA library.\n\n\n\n\nThe DNA library (with adapters added), is then run on a sequencing machine, which calls the bases of each fragment.\n\n\n\n\nThe final output are usually FASTQ files, which contain raw reads and quality scores.",
+    "crumbs": [
+      "Reproducibility",
+      "Quality control"
+    ]
+  },
+  {
+    "objectID": "qc.html#why-fastqc",
+    "href": "qc.html#why-fastqc",
+    "title": "Quality Control of Sequencing Data",
+    "section": "Why FastQC?",
+    "text": "Why FastQC?\nAfter sequencing, the first files we usually receive are FASTQ files. These files contain millions of short sequencing reads together with a quality score for every base.\nLooking directly at raw FASTQ files is not practical.\nFastQC is a tool that summarises this information and presents it in a form that humans can interpret.\nFastQC does not change the data.\nIt only helps us understand its quality.",
+    "crumbs": [
+      "Reproducibility",
+      "Quality control"
+    ]
+  },
+  {
+    "objectID": "qc.html#interpreting-fastqc-flags",
+    "href": "qc.html#interpreting-fastqc-flags",
+    "title": "Quality Control of Sequencing Data",
+    "section": "Interpreting FastQC flags",
+    "text": "Interpreting FastQC flags\nEach FastQC module ends with a simple label: pass, warning, or fail. These labels are often misunderstood. A fail does not mean the data is unusable. Alternatively, a pass does not mean the data is perfect.\nThe flags are based on generic thresholds that work reasonably well across many datasets, but they are not tailored to specific organisms or analyses.\nIn plant breeding projects, it is common to see warnings or failures even in perfectly usable datasets.\nFastQC flags should therefore be treated as signals to investigate, not as automatic decisions.",
     "crumbs": [
       "Reproducibility",
       "Quality control"
