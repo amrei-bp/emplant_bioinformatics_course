@@ -270,11 +270,32 @@ Overrepresented sequences might be biologically significant, or indicate that th
 
 This module is often useful for diagnosing specific technical issues, especially when combined with adapter content and duplication plots.
 
-### [Kmer content](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/11%20Kmer%20Content.html)
+### [optional: Kmer content](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/11%20Kmer%20Content.html)
 
 ![](figures/qc/kmer_profiles.png){.class width=50%}
 
+The k-mer content module looks for **short sequence motifs** that occur more often than expected in the reads.
 
+::: {.callout-note}
+A *k-mer* is simply a short DNA sequence of length *k*.  
+For example, if k = 7, a k-mer could be something like `ATCGTGA`. Fixed size kmers can also be called after their number: 3-mer, 7-mer etc. 
+:::
+
+FastQC scans all reads and checks whether certain k-mers are strongly enriched at specific positions along the read. In **random genomic sequencing data, short sequence motifs should be more or less evenly distributed**, so that is the basic assumption of FastQC.
+
+This module measures the number of each 7-mer at each position in your library and then looks for significant deviations from an even coverage at all positions. Any k-mers with positionally biased enrichment are reported. The top 6 most biased Kmer are additionally plotted to show their distribution. 
+
+When FastQC detects a strong enrichment of specific k-mers, this often indicates that something **systematic** is present in the data. Enrichment at the **start or end of reads** is especially common and often points to technical sequences rather than biological signal.
+
+Common causes include:
+
+- Adapter or primer sequences.
+- Library preparation artefacts.
+- Technical biases introduced during sequencing.
+
+::: {.callout-note}
+To save resources and time, only 2% of the sample is analysed. Results are then extrapolated to the rest of the library.  
+:::
 
 ### [Adapter content](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/10%20Adapter%20Content.html)
 

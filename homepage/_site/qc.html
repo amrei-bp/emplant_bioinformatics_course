@@ -446,9 +446,46 @@ ul.task-list li input[type="checkbox"] {
 <p>Overrepresented sequences might be biologically significant, or indicate that the library is contaminated, or simply not as diverse as expected. They can be adapter fragments, primers or highly repetitive genomic regions.</p>
 <p>This module is often useful for diagnosing specific technical issues, especially when combined with adapter content and duplication plots.</p>
 </section>
-<section id="kmer-content" class="level3">
-<h3 class="anchored" data-anchor-id="kmer-content"><a href="https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/11%20Kmer%20Content.html">Kmer content</a></h3>
+<section id="optional-kmer-content" class="level3">
+<h3 class="anchored" data-anchor-id="optional-kmer-content"><a href="https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/11%20Kmer%20Content.html">optional: Kmer content</a></h3>
 <p><img src="figures/qc/kmer_profiles.png" class="class img-fluid" style="width:50.0%"></p>
+<p>The k-mer content module looks for <strong>short sequence motifs</strong> that occur more often than expected in the reads.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A <em>k-mer</em> is simply a short DNA sequence of length <em>k</em>.<br>
+For example, if k = 7, a k-mer could be something like <code>ATCGTGA</code>. Fixed size kmers can also be called after their number: 3-mer, 7-mer etc.</p>
+</div>
+</div>
+<p>FastQC scans all reads and checks whether certain k-mers are strongly enriched at specific positions along the read. In <strong>random genomic sequencing data, short sequence motifs should be more or less evenly distributed</strong>, so that is the basic assumption of FastQC.</p>
+<p>This module measures the number of each 7-mer at each position in your library and then looks for significant deviations from an even coverage at all positions. Any k-mers with positionally biased enrichment are reported. The top 6 most biased Kmer are additionally plotted to show their distribution.</p>
+<p>When FastQC detects a strong enrichment of specific k-mers, this often indicates that something <strong>systematic</strong> is present in the data. Enrichment at the <strong>start or end of reads</strong> is especially common and often points to technical sequences rather than biological signal.</p>
+<p>Common causes include:</p>
+<ul>
+<li>Adapter or primer sequences.</li>
+<li>Library preparation artefacts.</li>
+<li>Technical biases introduced during sequencing.</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>To save resources and time, only 2% of the sample is analysed. Results are then extrapolated to the rest of the library.</p>
+</div>
+</div>
 </section>
 <section id="adapter-content" class="level3">
 <h3 class="anchored" data-anchor-id="adapter-content"><a href="https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/10%20Adapter%20Content.html">Adapter content</a></h3>
