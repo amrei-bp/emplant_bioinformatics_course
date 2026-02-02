@@ -364,6 +364,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="a-fastqc-report" class="level2">
 <h2 class="anchored" data-anchor-id="a-fastqc-report">A FastQC report</h2>
+<p>The following is adapted from the excellent <a href="https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/">FastQC tutorial at Babraham Bioinformatics</a>.</p>
 <section id="basic-statistics" class="level3">
 <h3 class="anchored" data-anchor-id="basic-statistics"><a href="https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/1%20Basic%20Statistics.html">Basic statistics</a></h3>
 <p><img src="figures/qc/bsic_stats_qc.png" class="class img-fluid" style="width:50.0%"></p>
@@ -415,6 +416,48 @@ ul.task-list li input[type="checkbox"] {
 <li>Targeted sequencing approaches</li>
 </ul>
 <p>This plot becomes <strong>more informative when comparing samples to each other</strong>, rather than judging a single sample in isolation.</p>
+</section>
+<section id="per-base-n-content" class="level3">
+<h3 class="anchored" data-anchor-id="per-base-n-content"><a href="https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/6%20Per%20Base%20N%20Content.html">Per Base N Content</a></h3>
+<p><img src="figures/qc/n_content.png" class="class img-fluid" style="width:50.0%"></p>
+<p>If a sequencer is unable to make a base call with sufficient confidence it will call an “N” rather than a conventional base.</p>
+<p>It is not unusual to see a very low proportion of Ns appearing in a sequence, especially closer to the end of a sequence.</p>
+</section>
+<section id="sequence-length-distribution" class="level3">
+<h3 class="anchored" data-anchor-id="sequence-length-distribution"><a href="https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/7%20Sequence%20Length%20Distribution.html">Sequence length distribution</a></h3>
+<p><img src="figures/qc/sequence_length.png" class="class img-fluid" style="width:50.0%"></p>
+<p>A graph showing the distribution of fragment sizes in the file which was analysed. Here, you can see a sample with many short, and a few very long reads.</p>
+<p>Some high throughput sequencers generate sequence fragments of uniform length, but others can contain reads of varying lengths.</p>
+</section>
+<section id="sequence-duplication-levels" class="level3">
+<h3 class="anchored" data-anchor-id="sequence-duplication-levels"><a href="https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/8%20Duplicate%20Sequences.html">Sequence Duplication Levels</a></h3>
+<p><img src="figures/qc/duplication_levels.png" class="class img-fluid" style="width:50.0%"></p>
+<p>This plot shows how often identical sequences occur in the data. In a diverse library most sequences will occur only once in the final set, so most sequences should fall into the far left of the plot</p>
+<p>High duplication can arise from:</p>
+<ul>
+<li>PCR amplification bias.</li>
+<li>Low library complexity.</li>
+<li>Very deep sequencing.</li>
+</ul>
+<p>In plant breeding data, duplication is not always technical. Highly conserved or repetitive regions can also produce high duplication levels.</p>
+<p>Interpretation depends strongly on the type of experiment and the genome being studied.</p>
+</section>
+<section id="overrepresented-sequences" class="level3">
+<h3 class="anchored" data-anchor-id="overrepresented-sequences"><a href="https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/9%20Overrepresented%20Sequences.html">Overrepresented sequences</a></h3>
+<p><img src="figures/qc/overrepresented.png" class="class img-fluid" style="width:50.0%"></p>
+<p>FastQC also identifies sequences that occur much more often than expected. A <strong>normal high-throughput library will contain a diverse set of sequences</strong>, with no individual sequence making up a substantial fraction of the whole.</p>
+<p>Overrepresented sequences might be biologically significant, or indicate that the library is contaminated, or simply not as diverse as expected. They can be adapter fragments, primers or highly repetitive genomic regions.</p>
+<p>This module is often useful for diagnosing specific technical issues, especially when combined with adapter content and duplication plots.</p>
+</section>
+<section id="kmer-content" class="level3">
+<h3 class="anchored" data-anchor-id="kmer-content"><a href="https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/11%20Kmer%20Content.html">Kmer content</a></h3>
+<p><img src="figures/qc/kmer_profiles.png" class="class img-fluid" style="width:50.0%"></p>
+</section>
+<section id="adapter-content" class="level3">
+<h3 class="anchored" data-anchor-id="adapter-content"><a href="https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/10%20Adapter%20Content.html">Adapter content</a></h3>
+<p><img src="figures/qc/adapter.png" class="class img-fluid" style="width:50.0%"></p>
+<p>This module will detect adapter content and plot it together with the identity of the adapter.</p>
+<p>Good to know if you have adapter contamination, and which ones you might have to remove from the data.</p>
 
 
 </section>
