@@ -283,7 +283,7 @@ For example, if k = 7, a k-mer could be something like `ATCGTGA`. Fixed size kme
 
 FastQC scans all reads and checks whether certain k-mers are strongly enriched at specific positions along the read. In **random genomic sequencing data, short sequence motifs should be more or less evenly distributed**, so that is the basic assumption of FastQC.
 
-This module measures the number of each 7-mer at each position in your library and then looks for significant deviations from an even coverage at all positions. Any k-mers with positionally biased enrichment are reported. The top 6 most biased Kmer are additionally plotted to show their distribution. 
+This module measures the number of each 5-mer (default, but adjustable) at each position in your library and then looks for significant deviations from an even coverage at all positions. Any k-mers with positionally biased enrichment are reported. The top 6 most biased Kmer are additionally plotted to show their distribution. 
 
 When FastQC detects a strong enrichment of specific k-mers, this often indicates that something **systematic** is present in the data. Enrichment at the **start or end of reads** is especially common and often points to technical sequences rather than biological signal.
 
@@ -305,4 +305,76 @@ This module will detect adapter content and plot it together with the identity o
 
 Good to know if you have adapter contamination, and which ones you might have to remove from the data. 
 
+## How FastQC fits into a larger workflow
+
+FastQC is usually used at least twice:
+
+1. Once on raw data
+2. Again after trimming or filtering
+
+Comparing FastQC reports before and after processing helps you evaluate whether your actions improved the data.
+
+FastQC is therefore not a one-time checkpoint, but part of an iterative process.
+
+
+## Interactive activity: interpreting a real FastQC report
+
+So, now let's have a look at some actual FastQC reports. Pick one of the below reports, take half an hour (with a partner if you have one at hand) and try to understand what is going on. Keep in mind what sort of data you are working with. 
+
+::: {.callout-note}
+Remember, most often, there is no single “correct” answer. What matters is whether your interpretation is **biologically and technically justified.**
+:::
+
+Here are some guiding questions for you:
+
+1. Looking at the summary table, which modules are marked as warnings or failures? Which ones would you look at first, and why?
+2. How does read quality change along the length of the reads? Is the quality along the sample problematic, or acceptable?
+3. Is there evidence of adapter contamination or overrepresented sequences?
+4. Based on this report, would you: i) Use the data as is? ii) Apply trimming or filtering? iii) Be concerned about the sample and investigate further?
+5. Are there any FastQC warnings you would ignore for this dataset? Why are they acceptable in this context?
+6. If you had three samples and only this one looked different, what would you want to check next?
+
+[Report 1: RNA-sequencing data](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/RNA-Seq_fastqc.html#M10) short read data - remember that RNA sequencing does not look at the whole genome. 
+
+[Report 2: PacBio Data](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/pacbio_srr075104_fastqc.html#M7), long read data - see how different this type of data looks like in the FastQC report. 
+
+[Report 3: bad sample data](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/bad_sequence_fastqc.html#M0) short read data - can you figure out what happened to this sample?
+
+[Here](https://training.galaxyproject.org/training-material/topics/sequence-analysis/tutorials/quality-control/tutorial.html#assess-quality-with-fastqc---short--long-reads) is a very nice and thorough tutorial on assessing quality of short and long read sequencing data. Great to have a look at the difference the sequencing technology can make!
+
+## After quality control: what comes next?
+
+After working through real FastQC reports, one important point should be clear: Quality control is not about deciding whether data is “good” or “bad”. It is about deciding **what to do next**.
+
+Sequencing data almost always contains imperfections. The goal of QC is to understand whether these imperfections matter for your biological question, and how they should be handled.
+
+## Acting on QC results
+
+Once you have interpreted a FastQC report, there are usually three possible outcomes.
+
+1. In some cases, the data can be used **as it is**. Minor warnings or expected patterns do not necessarily require any action, especially if they are unlikely to affect downstream analyses.
+
+2. In other cases, **simple processing steps** are appropriate. This often includes trimming adapters or low-quality read ends. After such processing, QC should be repeated to confirm that the data has improved.
+
+3. In a small number of cases, QC reveals **serious problems**. These may require investigating sample preparation, resequencing, or excluding a sample from further analysis.
+
+At the beginning it might be a lot to go through the reports and judge the samples, but with time and practice it will come more natural to you. 
+
+## QC as part of a reproducible workflow
+
+Quality control should not be an informal or invisible step.
+
+Good practice includes **running QC in a consistent way across all samples**, **recording which issues were observed** and **documenting which actions were taken, and why**.
+
+This is especially important in plant breeding projects, where results may influence long-term decisions.
+
+Clear QC reporting makes analyses more transparent and easier to reproduce.
+
+## Bonus: MultiQC
+
+So far, we have focused on **one FastQC report at a time**. In real projects, especially in plant breeding, we usually work with **many samples**.
+
+When dozens or hundreds of samples are sequenced, it becomes tedious to interpret QC results sample by sample. This is where **MultiQC** is useful because is collects reports from many samples and condenses them into a single report. 
+
+That way you can compare samples side by side, spot outliers quickly, and identify systematic problems across samples. 
 

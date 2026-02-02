@@ -465,7 +465,7 @@ For example, if k = 7, a k-mer could be something like <code>ATCGTGA</code>. Fix
 </div>
 </div>
 <p>FastQC scans all reads and checks whether certain k-mers are strongly enriched at specific positions along the read. In <strong>random genomic sequencing data, short sequence motifs should be more or less evenly distributed</strong>, so that is the basic assumption of FastQC.</p>
-<p>This module measures the number of each 7-mer at each position in your library and then looks for significant deviations from an even coverage at all positions. Any k-mers with positionally biased enrichment are reported. The top 6 most biased Kmer are additionally plotted to show their distribution.</p>
+<p>This module measures the number of each 5-mer (default, but adjustable) at each position in your library and then looks for significant deviations from an even coverage at all positions. Any k-mers with positionally biased enrichment are reported. The top 6 most biased Kmer are additionally plotted to show their distribution.</p>
 <p>When FastQC detects a strong enrichment of specific k-mers, this often indicates that something <strong>systematic</strong> is present in the data. Enrichment at the <strong>start or end of reads</strong> is especially common and often points to technical sequences rather than biological signal.</p>
 <p>Common causes include:</p>
 <ul>
@@ -492,9 +492,77 @@ Note
 <p><img src="figures/qc/adapter.png" class="class img-fluid" style="width:50.0%"></p>
 <p>This module will detect adapter content and plot it together with the identity of the adapter.</p>
 <p>Good to know if you have adapter contamination, and which ones you might have to remove from the data.</p>
-
-
 </section>
+</section>
+<section id="how-fastqc-fits-into-a-larger-workflow" class="level2">
+<h2 class="anchored" data-anchor-id="how-fastqc-fits-into-a-larger-workflow">How FastQC fits into a larger workflow</h2>
+<p>FastQC is usually used at least twice:</p>
+<ol type="1">
+<li>Once on raw data</li>
+<li>Again after trimming or filtering</li>
+</ol>
+<p>Comparing FastQC reports before and after processing helps you evaluate whether your actions improved the data.</p>
+<p>FastQC is therefore not a one-time checkpoint, but part of an iterative process.</p>
+</section>
+<section id="interactive-activity-interpreting-a-real-fastqc-report" class="level2">
+<h2 class="anchored" data-anchor-id="interactive-activity-interpreting-a-real-fastqc-report">Interactive activity: interpreting a real FastQC report</h2>
+<p>So, now let’s have a look at some actual FastQC reports. Pick one of the below reports, take half an hour (with a partner if you have one at hand) and try to understand what is going on. Keep in mind what sort of data you are working with.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Remember, most often, there is no single “correct” answer. What matters is whether your interpretation is <strong>biologically and technically justified.</strong></p>
+</div>
+</div>
+<p>Here are some guiding questions for you:</p>
+<ol type="1">
+<li>Looking at the summary table, which modules are marked as warnings or failures? Which ones would you look at first, and why?</li>
+<li>How does read quality change along the length of the reads? Is the quality along the sample problematic, or acceptable?</li>
+<li>Is there evidence of adapter contamination or overrepresented sequences?</li>
+<li>Based on this report, would you: i) Use the data as is? ii) Apply trimming or filtering? iii) Be concerned about the sample and investigate further?</li>
+<li>Are there any FastQC warnings you would ignore for this dataset? Why are they acceptable in this context?</li>
+<li>If you had three samples and only this one looked different, what would you want to check next?</li>
+</ol>
+<p><a href="https://www.bioinformatics.babraham.ac.uk/projects/fastqc/RNA-Seq_fastqc.html#M10">Report 1: RNA-sequencing data</a> short read data - remember that RNA sequencing does not look at the whole genome.</p>
+<p><a href="https://www.bioinformatics.babraham.ac.uk/projects/fastqc/pacbio_srr075104_fastqc.html#M7">Report 2: PacBio Data</a>, long read data - see how different this type of data looks like in the FastQC report.</p>
+<p><a href="https://www.bioinformatics.babraham.ac.uk/projects/fastqc/bad_sequence_fastqc.html#M0">Report 3: bad sample data</a> short read data - can you figure out what happened to this sample?</p>
+<p><a href="https://training.galaxyproject.org/training-material/topics/sequence-analysis/tutorials/quality-control/tutorial.html#assess-quality-with-fastqc---short--long-reads">Here</a> is a very nice and thorough tutorial on assessing quality of short and long read sequencing data. Great to have a look at the difference the sequencing technology can make!</p>
+</section>
+<section id="after-quality-control-what-comes-next" class="level2">
+<h2 class="anchored" data-anchor-id="after-quality-control-what-comes-next">After quality control: what comes next?</h2>
+<p>After working through real FastQC reports, one important point should be clear: Quality control is not about deciding whether data is “good” or “bad”. It is about deciding <strong>what to do next</strong>.</p>
+<p>Sequencing data almost always contains imperfections. The goal of QC is to understand whether these imperfections matter for your biological question, and how they should be handled.</p>
+</section>
+<section id="acting-on-qc-results" class="level2">
+<h2 class="anchored" data-anchor-id="acting-on-qc-results">Acting on QC results</h2>
+<p>Once you have interpreted a FastQC report, there are usually three possible outcomes.</p>
+<ol type="1">
+<li><p>In some cases, the data can be used <strong>as it is</strong>. Minor warnings or expected patterns do not necessarily require any action, especially if they are unlikely to affect downstream analyses.</p></li>
+<li><p>In other cases, <strong>simple processing steps</strong> are appropriate. This often includes trimming adapters or low-quality read ends. After such processing, QC should be repeated to confirm that the data has improved.</p></li>
+<li><p>In a small number of cases, QC reveals <strong>serious problems</strong>. These may require investigating sample preparation, resequencing, or excluding a sample from further analysis.</p></li>
+</ol>
+<p>At the beginning it might be a lot to go through the reports and judge the samples, but with time and practice it will come more natural to you.</p>
+</section>
+<section id="qc-as-part-of-a-reproducible-workflow" class="level2">
+<h2 class="anchored" data-anchor-id="qc-as-part-of-a-reproducible-workflow">QC as part of a reproducible workflow</h2>
+<p>Quality control should not be an informal or invisible step.</p>
+<p>Good practice includes <strong>running QC in a consistent way across all samples</strong>, <strong>recording which issues were observed</strong> and <strong>documenting which actions were taken, and why</strong>.</p>
+<p>This is especially important in plant breeding projects, where results may influence long-term decisions.</p>
+<p>Clear QC reporting makes analyses more transparent and easier to reproduce.</p>
+</section>
+<section id="bonus-multiqc" class="level2">
+<h2 class="anchored" data-anchor-id="bonus-multiqc">Bonus: MultiQC</h2>
+<p>So far, we have focused on <strong>one FastQC report at a time</strong>. In real projects, especially in plant breeding, we usually work with <strong>many samples</strong>.</p>
+<p>When dozens or hundreds of samples are sequenced, it becomes tedious to interpret QC results sample by sample. This is where <strong>MultiQC</strong> is useful because is collects reports from many samples and condenses them into a single report.</p>
+<p>That way you can compare samples side by side, spot outliers quickly, and identify systematic problems across samples.</p>
+
+
 </section>
 
 </main> <!-- /main -->
