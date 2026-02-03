@@ -298,7 +298,7 @@ FastQC is therefore not a one-time checkpoint, but part of an iterative process.
 
 ## Your turn: a real FastQC report
 
-So, now let's have a look at some actual FastQC reports. Pick one of the below reports, take half an hour (with a partner if you have one at hand) and try to understand what is going on. Keep in mind what sort of data you are working with. 
+So, now let's have a look at some actual FastQC reports. Pick one of the below reports, take 20 minutes (with a partner if you have one at hand) and try to understand what is going on. Keep in mind what sort of data you are working with. 
 
 ::: {.callout-note}
 Remember, most often, there is no single “correct” answer. What matters is whether your interpretation is **biologically and technically justified.**
@@ -306,7 +306,7 @@ Remember, most often, there is no single “correct” answer. What matters is w
 
 Here are some guiding questions for you:
 
-1. Depending on your sample, which modules would you look at first, and why?
+1. Looking at the summary table (in the left sidebar), which modules are marked as warnings or failures? Which ones would you look at first, and why?
 2. How does read quality change along the length of the reads? Is the quality along the sample problematic, or acceptable?
 3. Is there evidence of adapter contamination or overrepresented sequences?
 4. Based on this report, would you: i) Use the data as is? ii) Apply trimming or filtering? iii) Be concerned about the sample and investigate further?
