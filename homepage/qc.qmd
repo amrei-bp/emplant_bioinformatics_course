@@ -315,9 +315,7 @@ Here are some guiding questions for you:
 
 [Report 1: RNA-sequencing data](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/RNA-Seq_fastqc.html#M10) short read data - remember that RNA sequencing does not look at the whole genome. 
 
-[Report 2: PacBio Data](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/pacbio_srr075104_fastqc.html#M7), long read data - see how different this type of data looks like in the FastQC report. 
-
-[Report 3: bad sample data](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/bad_sequence_fastqc.html#M0) short read data - can you figure out what happened to this sample?
+[Report 2: bad sample data](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/bad_sequence_fastqc.html#M0) short read data - can you figure out what happened to this sample?
 
 [Here](https://training.galaxyproject.org/training-material/topics/sequence-analysis/tutorials/quality-control/tutorial.html#assess-quality-with-fastqc---short--long-reads) is a very nice and thorough tutorial on assessing quality of short and long read sequencing data. Great to have a look at the difference the sequencing technology can make!
 
