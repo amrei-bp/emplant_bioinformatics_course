@@ -1,9 +1,9 @@
 ---
 title: "Quality Control of Sequencing Data"
-format: 
+format:
     closeread-html:
         cr-section:
-            layout: "overlay-center"
+            layout: overlay-left
         cr-style:
             section-background-color: "#ffffff"
 ---
@@ -24,28 +24,35 @@ At a high level, the process looks like this:
 
 Each step can introduce technical effects that later appear in quality control reports. Let's have a closer look:
 
+<!--  {.column-screen-inset} -->
+
+
 :::{.cr-section}
 
 ::: {#cr-sticky_sampling}
-![](figures/qc/sampling.png)
+![](figures/qc/sampling.png){.class width=60%}
 :::
 
 @cr-sticky_sampling We start with **plant tissue** and extract the contained DNA.  
 
 ::: {#cr-sticky_prep}
-![](figures/qc/library_prep.png)
+![](figures/qc/library_prep.png){.class width=60%}
 :::
 
 @cr-sticky_prep Next, sequencing machines do not read whole chromosomes. Instead, DNA is broken into **many small fragments**, the so called **DNA library**.
 
 ::: {#cr-sticky_seq}
-![](figures/qc/sequencing.png)
+![](figures/qc/sequencing.png){.class width=60%}
 :::
 
 @cr-sticky_seq The **DNA library** (with adapters added), is then run on a **sequencing machine**, which calls the bases of each fragment.
 
 The final output are usually **FASTQ files**, which contain raw reads and quality scores.  
 :::
+
+<br>
+<br>
+<br>
 
 ## Why do we need quality control?
 
@@ -89,7 +96,7 @@ Sequencing errors can be introduced at several steps, long before we ever see a 
 
 ### Step 1: DNA extraction
 
-![](figures/qc/sampling.png){.class width=40%}
+![](figures/qc/sampling.png){.class width=60%}
 
 Plant material can be challenging to work with. Different issuea can affect the quality of the reads that will be sequenced:
 
@@ -100,7 +107,7 @@ Plant material can be challenging to work with. Different issuea can affect the 
 
 ### Step 2: Library preparation
 
-![](figures/qc/library_prep.png){.class width=40%}
+![](figures/qc/library_prep.png){.class width=60%}
 
 During library preparation, the DNA is sheared into fragments, adapters are ligated to these DNA fragments and the DNA is often amplified using PCR.
 
@@ -111,7 +118,7 @@ All these effects are *technical*, but they **shape the data we later analyse**.
 
 ### Sequencing
 
-![](figures/qc/sequencing.png){.class width=40%}
+![](figures/qc/sequencing.png){.class width=60%}
 
 Sequencing run itself can introduce errors. Base calling becomes less accurate toward the end of reads and errors accumulate across sequencing cycles. Different lanes or runs can have different overall quality. 
 
@@ -160,13 +167,13 @@ The following is adapted from the excellent [FastQC tutorial at Babraham Bioinfo
 
 ### [Basic statistics](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/1%20Basic%20Statistics.html)
 
-![](figures/qc/bsic_stats_qc.png){.class width=50%}
+![](figures/qc/bsic_stats_qc.png){.class width=60%}
 
 Simple summary statistics for the file that was analyzed. Good to check what sample was used, and to get initial stats on the sample. This section will never raise warnings. 
 
 ### [Per base sequence quality](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/2%20Per%20Base%20Sequence%20Quality.html)
 
-![](figures/qc/per_base_qc.png){.class width=50%}
+![](figures/qc/per_base_qc.png){.class width=60%}
 
 This plot shows the **quality score at each position in the read**. The higher the score, the better the base call. 
 
@@ -183,7 +190,7 @@ However, the sample can be problematic when:
 
 ### [Per Sequence Quality Scores](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/3%20Per%20Sequence%20Quality%20Scores.html)
 
-![](figures/qc/sequence_quality.png){.class width=50%}
+![](figures/qc/sequence_quality.png){.class width=60%}
 
 While the previous plot looks at quality **per position**, this plot looks at quality **per read**.
 
@@ -199,7 +206,7 @@ In plant breeding data, poor per-sequence quality can indicate issues such as:
 
 ### [Per Base Sequence Content]()
 
-![](figures/qc/Base_sequence_content.png){.class width=50%}
+![](figures/qc/Base_sequence_content.png){.class width=60%}
 
 This module shows the proportion of the bases - A, C, G, and T - at each position in the read. For random genomic DNA, these proportions should be relatively stable across the read length.
 
@@ -209,7 +216,7 @@ In plant genomes, GC content can vary naturally between regions, and this can in
 
 ### [Per Sequence GC Content](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/5%20Per%20Sequence%20GC%20Content.html)
 
-![](figures/qc/gc_content.png){.class width=50%}
+![](figures/qc/gc_content.png){.class width=60%}
 
 The GC content plot shows the overall GC distribution of reads in the sample. FastQC compares the observed distribution to a theoretical expectation, and can help identify contamination.
 
@@ -228,7 +235,7 @@ This plot becomes **more informative when comparing samples to each other**, rat
 
 ### [Per Base N Content](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/6%20Per%20Base%20N%20Content.html)
 
-![](figures/qc/n_content.png){.class width=50%}
+![](figures/qc/n_content.png){.class width=60%}
 
 If a sequencer is unable to make a base call with sufficient confidence it will call an “N” rather than a conventional base. 
 
@@ -237,7 +244,7 @@ It is not unusual to see a very low proportion of Ns appearing in a sequence, es
 
 ### [Sequence length distribution](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/7%20Sequence%20Length%20Distribution.html)
 
-![](figures/qc/sequence_length.png){.class width=50%}
+![](figures/qc/sequence_length.png){.class width=60%}
 
 
 A graph showing the distribution of fragment sizes in the file which was analysed. Here, you can see a sample with many short, and a few very long reads. 
@@ -246,7 +253,7 @@ Some high throughput sequencers generate sequence fragments of uniform length, b
 
 ### [Sequence Duplication Levels](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/8%20Duplicate%20Sequences.html)
 
-![](figures/qc/duplication_levels.png){.class width=50%}
+![](figures/qc/duplication_levels.png){.class width=60%}
 
 This plot shows how often identical sequences occur in the data. In a diverse library most sequences will occur only once in the final set, so most sequences should fall into the far left of the plot
 
@@ -262,7 +269,7 @@ Interpretation depends strongly on the type of experiment and the genome being s
 
 ### [Overrepresented sequences](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/9%20Overrepresented%20Sequences.html)
 
-![](figures/qc/overrepresented.png){.class width=50%}
+![](figures/qc/overrepresented.png){.class width=60%}
 
 FastQC also identifies sequences that occur much more often than expected. A **normal high-throughput library will contain a diverse set of sequences**, with no individual sequence making up a substantial fraction of the whole.
 
@@ -272,7 +279,7 @@ This module is often useful for diagnosing specific technical issues, especially
 
 ### [optional: Kmer content](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/11%20Kmer%20Content.html)
 
-![](figures/qc/kmer_profiles.png){.class width=50%}
+![](figures/qc/kmer_profiles.png){.class width=60%}
 
 The k-mer content module looks for **short sequence motifs** that occur more often than expected in the reads.
 
@@ -299,7 +306,7 @@ To save resources and time, only 2% of the sample is analysed. Results are then 
 
 ### [Adapter content](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/10%20Adapter%20Content.html)
 
-![](figures/qc/adapter.png){.class width=50%}
+![](figures/qc/adapter.png){.class width=60%}
 
 This module will detect adapter content and plot it together with the identity of the adapter. 
 
@@ -317,7 +324,7 @@ Comparing FastQC reports before and after processing helps you evaluate whether 
 FastQC is therefore not a one-time checkpoint, but part of an iterative process.
 
 
-## Interactive activity: interpreting a real FastQC report
+## Your turn: a real FastQC report
 
 So, now let's have a look at some actual FastQC reports. Pick one of the below reports, take half an hour (with a partner if you have one at hand) and try to understand what is going on. Keep in mind what sort of data you are working with. 
 
@@ -377,4 +384,5 @@ So far, we have focused on **one FastQC report at a time**. In real projects, es
 When dozens or hundreds of samples are sequenced, it becomes tedious to interpret QC results sample by sample. This is where **MultiQC** is useful because is collects reports from many samples and condenses them into a single report. 
 
 That way you can compare samples side by side, spot outliers quickly, and identify systematic problems across samples. 
+
 

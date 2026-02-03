@@ -1,9 +1,6 @@
 ---
 title: "Tips and Tools for Reproducible Bioinformatics"
 ---
-
-## Why should I care about reproducibility?
-
 <br>
 
 ## Data Life Cycle

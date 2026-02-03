@@ -30,7 +30,7 @@ website:
     search: true
     logo: figures/logo/SLUBI_logo.png
     contents:
-      - text: "Home"
+      - text: "About the course"
         href: index.qmd
       - text: "Reproducibility"
         href: data_management.qmd
@@ -39,6 +39,11 @@ website:
 
 format:
   html:
+    theme: yeti
+    css: styles.css
+    toc: true
+
+  closeread-html:
     theme: yeti
     css: styles.css
     toc: true
