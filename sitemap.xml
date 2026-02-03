@@ -1,19 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://amrei-bp.github.io/emplant_bioinformatics_course/qc.html</loc>
-    <lastmod>2026-02-03T08:23:16.712Z</lastmod>
-  </url>
-  <url>
-    <loc>https://amrei-bp.github.io/emplant_bioinformatics_course/data_management.html</loc>
-    <lastmod>2026-02-03T08:23:16.693Z</lastmod>
-  </url>
-  <url>
-    <loc>https://amrei-bp.github.io/emplant_bioinformatics_course/index.html</loc>
-    <lastmod>2026-02-03T08:23:16.712Z</lastmod>
+    <loc>https://amrei-bp.github.io/emplant_bioinformatics_course/closeread_section/sequencing_closeread.html</loc>
+    <lastmod>2026-02-03T13:57:36.097Z</lastmod>
   </url>
   <url>
     <loc>https://amrei-bp.github.io/emplant_bioinformatics_course/about.html</loc>
-    <lastmod>2026-02-03T08:23:16.692Z</lastmod>
+    <lastmod>2026-02-03T13:57:36.097Z</lastmod>
+  </url>
+  <url>
+    <loc>https://amrei-bp.github.io/emplant_bioinformatics_course/index.html</loc>
+    <lastmod>2026-02-03T13:57:36.113Z</lastmod>
+  </url>
+  <url>
+    <loc>https://amrei-bp.github.io/emplant_bioinformatics_course/data_management.html</loc>
+    <lastmod>2026-02-03T13:57:36.097Z</lastmod>
+  </url>
+  <url>
+    <loc>https://amrei-bp.github.io/emplant_bioinformatics_course/qc.html</loc>
+    <lastmod>2026-02-03T13:57:36.113Z</lastmod>
   </url>
 </urlset>
