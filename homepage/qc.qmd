@@ -6,6 +6,8 @@ format:
             layout: overlay-left
         cr-style:
             section-background-color: "#ffffff"
+        theme: yeti
+        toc: true
 ---
 <br>
 By the end of this module, you should be able to:

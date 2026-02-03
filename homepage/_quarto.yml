@@ -43,11 +43,6 @@ format:
     css: styles.css
     toc: true
 
-  closeread-html:
-    theme: yeti
-    css: styles.css
-    toc: true
-
 execute:
   freeze: auto
 
