@@ -10,33 +10,98 @@ When working with any type of data, it makes sense to sit down before the projec
 ::: {.callout-note}
 
 More and more funding agencies expect a Data Management Plan at some point of a project application. In there, you need to document that you have thought of, and planned for, the life cycle of your data. 
-
 :::
 
 ![[The Research Data Management toolkit for Life Sciences](https://rdmkit.elixir-europe.org/)](figures/data_management/Data_life_cycle.png){.class width=50%}
 
+Thinking about the data life cycle early helps avoid many common problems later — especially when projects grow, collaborators join, or analyses need to be repeated.
 
 ## FAIR principles
 
-In the past, research data was often generated with one question in mind. Often, they would afterwards land in some drawer and be forgotten about. Nowadays researchers acknowledge that data can also be re-used, or combined with other data, to answer different questions. 
+In the past, research **data was often generated with one question in mind**. Often, they would afterwards land in some drawer and be forgotten about. Nowadays researchers acknowledge that **data can also be re-used, or combined with other data, to answer different questions**. 
 
-The FAIR principles promote efficient data discovery and reuse by providing guidelines to make digital resources:
+The FAIR principles promote **efficient data discovery and reuse** by providing guidelines to make digital resources:
 
 ![[Wilkinson et al. (2016)](https://www.tpximpact.com/knowledge-hub/insights/fair-data-guide/
 )](figures/data_management/fair-data-principles.webp){.class width=50%}
 
-FAIR principles, in turn, rely on **good data management practices** in all phases of research:
+### FAIR in practice
+
+FAIR does **not** mean “open” or “perfect”. It means that *someone else* (or future-you)
+can understand and reuse your data with reasonable effort.
+
+Examples:
+
+- **Findable**
+  - Raw sequencing data deposited in ENA/SRA with a stable accession.
+  - Files named in a consistent way (not `final_final_v3_really_final.fastq.gz`).
+
+- **Accessible**
+  - Data stored in a repository that others can access (even if access is controlled).
+  - Clear instructions on *how* to request access if data is sensitive.
+
+- **Interoperable**
+  - Using standard formats (FASTQ, BAM, VCF).
+  - Using standard metadata (sample IDs, species names, genome versions).
+
+- **Reusable**
+  - A README explaining how the data was generated.
+  - Software versions and parameters documented.
+
+
+So you can see that FAIR principles, in turn, rely on **good data management practices** in all phases of research:
 
 - Research documentation
 - Data organisation
 - Information security
 - Ethics and legislation
 
+### A small FAIR habit: file names
+
+You will not make your data or analyses fully fair in one go. And you don't have to!
+
+Try implementing one, or a few things, at a time, and once they are part of the way you work try adding something else. 
+
+File names are often the **first piece of metadata** someone encounters. They are also one of the easiest things to improve. Remember: File names are not only for computers.
+They are for humans trying to make sense of a project.
+
+::: {.callout-tip title="Discussion: better file names"}
+
+You receive these three files from a collaborator:
+
+- `final.fastq`
+- `data_new.fastq`
+- `sampleB.fastq`
+
+What information is missing?
+What would you rename them to?
+:::
+
 ## Reproducible research
 
-Lucky for us, once we implement good data management practices, we will also increase the reproducibility of our analyses. Extensive documentation will increase faith in the outcome of analyses, and will help people (again, future-you) understand what has been done. 
+Lucky for us, once we implement good data management practices, we will also increase the **reproducibility of our analyses**. That means that analyses can be **run again on the same or similar data** and get the **same results**. 
 
-Last, but not least, reproducible research practices make project hand-overs smoother, when the next person already understands the structure of the project, and can rely on good documentation.
+::: {.callout-tip title="Think about it"}
+Have you ever:
+
+- re-run an analysis and obtained a different result?
+- struggled to understand your own code after some time?
+- inherited data or scripts without documentation?
+
+These are common reproducibility problems.
+:::
+
+Extensive documentation will increase trust in the outcome of analyses, and will help people (and again, future-you) **understand what was done, and why**. 
+
+Reproducibility is also important for practical reasons. Research projects often change over time: new samples are added, low-quality samples are removed, or reviewers ask for additional analyses. If analyses are reproducible, these changes are much easier to handle.
+
+Last, but not least, reproducible research practices make project hand-overs smoother. When someone new joins a project, they can rely on clear structure and good documentation, instead of starting from scratch.
+
+
+::: {.callout-note}
+And one more time: reproducible research is not about perfection. It is about making your work understandable and repeatable. **Small improvements already make a big difference.**
+:::
+
 
 ## What data do we work with?
 
@@ -61,7 +126,7 @@ At the same time, new technologies are being developed, and new tools that might
 
 Often, with a new project, one sits down with the data, tries out things and see if they worked. A lot of bioinformatics is not being afraid to try things, and reading the documentation. 
 
-This traditional way of working with bioinformatics data can have merits and lead to new discoveries. However, in this course we would like to introduce you to a more structured way to make sense of your data. 
+This traditional way of working with bioinformatics data can have merits and lead to new discoveries. However, in this course we would like to **introduce you to a more structured way to make sense of your data**. 
 
 Let's have a look at a typical PhD student's research project: 
 
@@ -74,6 +139,8 @@ In the "end" we have something like this:
 
 ![Which one of these is the latest version?](figures/data_management/data_chaos.png){.class width=20%}
 
+This kind of chaos is rarely due to bad intentions or lack of skill. It usually happens because **projects evolve**, **data changes**, and **analyses are repeated without a clear structure**.
+
 ::: {.callout-tip title="Best practices file organization"}
 - There is a folder for the raw data, which **does not get altered**.
 - Code is **kept separate** from data.
@@ -81,28 +148,67 @@ In the "end" we have something like this:
 - There should be a **README** in every directory, describing the purpose of the directory and its contents.
 - Use **file naming** schemes that makes it easy to find files and understand what they are (for humans and machines) and document them.
 - Use **non-proprietary formats** – .csv rather than .xlsx
+- **Separate files** input, intermediate, and final output files go in different directories.
+- **Avoid manual changes** to result files, use (semi-)automated scripts instead. 
 :::
 
 ## Literate programming
 
-Our hypothetical PhD student, even if taking into account the best practice tips from above, is still likely to run the same analyses over and over whenever the input data changes. Sometimes, this might be months, or even years, after the original analysis was performed. 
+Even with good file organisation, our hypothetical PhD student will still run the same analyses over and over whenever the input data changes. Sometimes, this might be months, or even years, after the original analysis was performed. 
 
-Luckily, they can save their code snippets (with intuitive file names) and re-use the code from back then. This is often done with R-scripts, but can just as well be applied to bash scripts, python scripts etc.
+One solution is to save analysis code in scripts (for example R, Python, or bash), using clear file names and comments. This already improves reproducibility compared to running commands manually.
 
-In the past years, the development went even further and one can even combine code and documentation in the same document. The code is wrapped in so called `chunks`, or `code cells`, that are executable from within the document. 
+However, **scripts and documentation are often stored in separate places**, the code in one file, the notes about the analysis in another document, and results somewhere else. This makes it harder to understand how everything fits together.
+
+Literate programming is an approach where **code and explanation are written together in the same document**. The idea is that a human should be able to read the document from top to bottom and understand what the analysis is doing and why they were chosen. 
+
+The code is placed in special blocks (often called *code chunks* or *code cells*) that can be run directly from within the document.
+
 
 > Debugging is twice as hard as writing the code in the first place.
-Therefore, if you write the code as cleverly as possible, you are,
-by definition, not smart enough to debug it.
-> Brian Kernighan
+> Therefore, if you write the code as cleverly as possible, you are,
+> by definition, not smart enough to debug it.  
+> — Brian Kernighan
 
-Before the course you have already worked with one such notebook - `Quarto`. We will continue to work with it during this course. 
+There are several tools that support literate programming.
+Examples include Jupyter Notebooks, R Markdown, and **Quarto**.
 
-::: {.callout-tip}
-- Document your methods and workflows.
-- Document where and when you downloaded data.
-- Document the versions of the software that you ran.
+Quarto is very close to my heart, and I have used it to make this homepage, for example. But for now, we will focus on the underlying idea using plain **Markdown**.
+
+::: {.callout-tip title="Think like a reader"}
+
+Imagine you open an analysis document written by someone else.
+
+What would you want to know:
+
+- before running the analysis?
+- while reading the code?
+- when interpreting the results?
+
+These are exactly the things literate programming tries to capture.
 :::
+
+
+## Practical: Markdown
+
+We can try out markdown, the language used in many listerate programming notebooks online. Please follow this link to [https://markdownlivepreview.com/](https://markdownlivepreview.com/). 
+
+::: {.callout-tip title="Exercise: a minimal reproducible document"}
+
+Using the online Markdown editor, create a short document that includes:
+
+- A title
+- A short description of where the data came from
+- A list of software tools used
+- One code block (it does not need to run)
+
+Think of this as a *human-readable analysis report*.
+:::
+
+Literate programming helps us keep code and explanation together.
+But analysis documents change over time.
+
+To keep track of *what* changed and *when*, we need **version control**.
 
 ## Version control
 
