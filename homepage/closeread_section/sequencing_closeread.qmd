@@ -1,0 +1,39 @@
+---
+title: ""
+format:
+  closeread-html:
+    remove-header-space: true
+    cr-section:
+      layout: overlay-center
+    cr-style:
+      section-background-color: "#ffffff"
+
+# turn off website chrome on this page
+navbar: false
+sidebar: false
+toc: false
+---
+
+
+:::{.cr-section}
+
+::: {#cr-sticky_sampling}
+![](../figures/qc/sampling.png)
+:::
+
+@cr-sticky_sampling We start with **plant tissue** and extract the contained DNA.  
+
+::: {#cr-sticky_prep}
+![](../figures/qc/library_prep.png)
+:::
+
+@cr-sticky_prep Next, sequencing machines do not read whole chromosomes. Instead, DNA is broken into **many small fragments**, the so called **DNA library**.
+
+::: {#cr-sticky_seq}
+![](../figures/qc/sequencing.png)
+:::
+
+@cr-sticky_seq The **DNA library** (with adapters added), is then run on a **sequencing machine**, which calls the bases of each fragment.
+
+The final output are usually **FASTQ files**, which contain raw reads and quality scores.  
+:::
