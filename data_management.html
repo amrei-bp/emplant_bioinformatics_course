@@ -178,11 +178,16 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#data-life-cycle" id="toc-data-life-cycle" class="nav-link active" data-scroll-target="#data-life-cycle">Data Life Cycle</a></li>
-  <li><a href="#fair-principles" id="toc-fair-principles" class="nav-link" data-scroll-target="#fair-principles">FAIR principles</a></li>
+  <li><a href="#fair-principles" id="toc-fair-principles" class="nav-link" data-scroll-target="#fair-principles">FAIR principles</a>
+  <ul class="collapse">
+  <li><a href="#fair-in-practice" id="toc-fair-in-practice" class="nav-link" data-scroll-target="#fair-in-practice">FAIR in practice</a></li>
+  <li><a href="#a-small-fair-habit-file-names" id="toc-a-small-fair-habit-file-names" class="nav-link" data-scroll-target="#a-small-fair-habit-file-names">A small FAIR habit: file names</a></li>
+  </ul></li>
   <li><a href="#reproducible-research" id="toc-reproducible-research" class="nav-link" data-scroll-target="#reproducible-research">Reproducible research</a></li>
   <li><a href="#what-data-do-we-work-with" id="toc-what-data-do-we-work-with" class="nav-link" data-scroll-target="#what-data-do-we-work-with">What data do we work with?</a></li>
   <li><a href="#working-with-data" id="toc-working-with-data" class="nav-link" data-scroll-target="#working-with-data">Working with data</a></li>
   <li><a href="#literate-programming" id="toc-literate-programming" class="nav-link" data-scroll-target="#literate-programming">Literate programming</a></li>
+  <li><a href="#practical-markdown" id="toc-practical-markdown" class="nav-link" data-scroll-target="#practical-markdown">Practical: Markdown</a></li>
   <li><a href="#version-control" id="toc-version-control" class="nav-link" data-scroll-target="#version-control">Version control</a></li>
   <li><a href="#environment-managers" id="toc-environment-managers" class="nav-link" data-scroll-target="#environment-managers">Environment managers</a></li>
   <li><a href="#containers-in-bioinformatics" id="toc-containers-in-bioinformatics" class="nav-link" data-scroll-target="#containers-in-bioinformatics">Containers in bioinformatics</a></li>
@@ -236,18 +241,45 @@ Note
 <figcaption><a href="https://rdmkit.elixir-europe.org/">The Research Data Management toolkit for Life Sciences</a></figcaption>
 </figure>
 </div>
+<p>Thinking about the data life cycle early helps avoid many common problems later — especially when projects grow, collaborators join, or analyses need to be repeated.</p>
 </section>
 <section id="fair-principles" class="level2">
 <h2 class="anchored" data-anchor-id="fair-principles">FAIR principles</h2>
-<p>In the past, research data was often generated with one question in mind. Often, they would afterwards land in some drawer and be forgotten about. Nowadays researchers acknowledge that data can also be re-used, or combined with other data, to answer different questions.</p>
-<p>The FAIR principles promote efficient data discovery and reuse by providing guidelines to make digital resources:</p>
+<p>In the past, research <strong>data was often generated with one question in mind</strong>. Often, they would afterwards land in some drawer and be forgotten about. Nowadays researchers acknowledge that <strong>data can also be re-used, or combined with other data, to answer different questions</strong>.</p>
+<p>The FAIR principles promote <strong>efficient data discovery and reuse</strong> by providing guidelines to make digital resources:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="figures/data_management/fair-data-principles.webp" class="class img-fluid figure-img" style="width:50.0%"></p>
 <figcaption><a href="https://www.tpximpact.com/knowledge-hub/insights/fair-data-guide/">Wilkinson et al.&nbsp;(2016)</a></figcaption>
 </figure>
 </div>
-<p>FAIR principles, in turn, rely on <strong>good data management practices</strong> in all phases of research:</p>
+<section id="fair-in-practice" class="level3">
+<h3 class="anchored" data-anchor-id="fair-in-practice">FAIR in practice</h3>
+<p>FAIR does <strong>not</strong> mean “open” or “perfect”. It means that <em>someone else</em> (or future-you) can understand and reuse your data with reasonable effort.</p>
+<p>Examples:</p>
+<ul>
+<li><strong>Findable</strong>
+<ul>
+<li>Raw sequencing data deposited in ENA/SRA with a stable accession.</li>
+<li>Files named in a consistent way (not <code>final_final_v3_really_final.fastq.gz</code>).</li>
+</ul></li>
+<li><strong>Accessible</strong>
+<ul>
+<li>Data stored in a repository that others can access (even if access is controlled).</li>
+<li>Clear instructions on <em>how</em> to request access if data is sensitive.</li>
+</ul></li>
+<li><strong>Interoperable</strong>
+<ul>
+<li>Using standard formats (FASTQ, BAM, VCF).</li>
+<li>Using standard metadata (sample IDs, species names, genome versions).</li>
+</ul></li>
+<li><strong>Reusable</strong>
+<ul>
+<li>A README explaining how the data was generated.</li>
+<li>Software versions and parameters documented.</li>
+</ul></li>
+</ul>
+<p>So you can see that FAIR principles, in turn, rely on <strong>good data management practices</strong> in all phases of research:</p>
 <ul>
 <li>Research documentation</li>
 <li>Data organisation</li>
@@ -255,10 +287,70 @@ Note
 <li>Ethics and legislation</li>
 </ul>
 </section>
+<section id="a-small-fair-habit-file-names" class="level3">
+<h3 class="anchored" data-anchor-id="a-small-fair-habit-file-names">A small FAIR habit: file names</h3>
+<p>You will not make your data or analyses fully fair in one go. And you don’t have to!</p>
+<p>Try implementing one, or a few things, at a time, and once they are part of the way you work try adding something else.</p>
+<p>File names are often the <strong>first piece of metadata</strong> someone encounters. They are also one of the easiest things to improve. Remember: File names are not only for computers. They are for humans trying to make sense of a project.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Discussion: better file names">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Discussion: better file names
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You receive these three files from a collaborator:</p>
+<ul>
+<li><code>final.fastq</code></li>
+<li><code>data_new.fastq</code></li>
+<li><code>sampleB.fastq</code></li>
+</ul>
+<p>What information is missing? What would you rename them to?</p>
+</div>
+</div>
+</section>
+</section>
 <section id="reproducible-research" class="level2">
 <h2 class="anchored" data-anchor-id="reproducible-research">Reproducible research</h2>
-<p>Lucky for us, once we implement good data management practices, we will also increase the reproducibility of our analyses. Extensive documentation will increase faith in the outcome of analyses, and will help people (again, future-you) understand what has been done.</p>
-<p>Last, but not least, reproducible research practices make project hand-overs smoother, when the next person already understands the structure of the project, and can rely on good documentation.</p>
+<p>Lucky for us, once we implement good data management practices, we will also increase the <strong>reproducibility of our analyses</strong>. That means that analyses can be <strong>run again on the same or similar data</strong> and get the <strong>same results</strong>.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Think about it">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Think about it
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Have you ever:</p>
+<ul>
+<li>re-run an analysis and obtained a different result?</li>
+<li>struggled to understand your own code after some time?</li>
+<li>inherited data or scripts without documentation?</li>
+</ul>
+<p>These are common reproducibility problems.</p>
+</div>
+</div>
+<p>Extensive documentation will increase trust in the outcome of analyses, and will help people (and again, future-you) <strong>understand what was done, and why</strong>.</p>
+<p>Reproducibility is also important for practical reasons. Research projects often change over time: new samples are added, low-quality samples are removed, or reviewers ask for additional analyses. If analyses are reproducible, these changes are much easier to handle.</p>
+<p>Last, but not least, reproducible research practices make project hand-overs smoother. When someone new joins a project, they can rely on clear structure and good documentation, instead of starting from scratch.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>And one more time: reproducible research is not about perfection. It is about making your work understandable and repeatable. <strong>Small improvements already make a big difference.</strong></p>
+</div>
+</div>
 </section>
 <section id="what-data-do-we-work-with" class="level2">
 <h2 class="anchored" data-anchor-id="what-data-do-we-work-with">What data do we work with?</h2>
@@ -290,7 +382,7 @@ Note
 <section id="working-with-data" class="level2">
 <h2 class="anchored" data-anchor-id="working-with-data">Working with data</h2>
 <p>Often, with a new project, one sits down with the data, tries out things and see if they worked. A lot of bioinformatics is not being afraid to try things, and reading the documentation.</p>
-<p>This traditional way of working with bioinformatics data can have merits and lead to new discoveries. However, in this course we would like to introduce you to a more structured way to make sense of your data.</p>
+<p>This traditional way of working with bioinformatics data can have merits and lead to new discoveries. However, in this course we would like to <strong>introduce you to a more structured way to make sense of your data</strong>.</p>
 <p>Let’s have a look at a typical PhD student’s research project:</p>
 <ul>
 <li>They might analyse their data, and get some results.</li>
@@ -305,6 +397,7 @@ Note
 <figcaption>Which one of these is the latest version?</figcaption>
 </figure>
 </div>
+<p>This kind of chaos is rarely due to bad intentions or lack of skill. It usually happens because <strong>projects evolve</strong>, <strong>data changes</strong>, and <strong>analyses are repeated without a clear structure</strong>.</p>
 <div class="callout callout-style-default callout-tip callout-titled" title="Best practices file organization">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -322,36 +415,71 @@ Note
 <li>There should be a <strong>README</strong> in every directory, describing the purpose of the directory and its contents.</li>
 <li>Use <strong>file naming</strong> schemes that makes it easy to find files and understand what they are (for humans and machines) and document them.</li>
 <li>Use <strong>non-proprietary formats</strong> – .csv rather than .xlsx</li>
+<li><strong>Separate files</strong> input, intermediate, and final output files go in different directories.</li>
+<li><strong>Avoid manual changes</strong> to result files, use (semi-)automated scripts instead.</li>
 </ul>
 </div>
 </div>
 </section>
 <section id="literate-programming" class="level2">
 <h2 class="anchored" data-anchor-id="literate-programming">Literate programming</h2>
-<p>Our hypothetical PhD student, even if taking into account the best practice tips from above, is still likely to run the same analyses over and over whenever the input data changes. Sometimes, this might be months, or even years, after the original analysis was performed.</p>
-<p>Luckily, they can save their code snippets (with intuitive file names) and re-use the code from back then. This is often done with R-scripts, but can just as well be applied to bash scripts, python scripts etc.</p>
-<p>In the past years, the development went even further and one can even combine code and documentation in the same document. The code is wrapped in so called <code>chunks</code>, or <code>code cells</code>, that are executable from within the document.</p>
+<p>Even with good file organisation, our hypothetical PhD student will still run the same analyses over and over whenever the input data changes. Sometimes, this might be months, or even years, after the original analysis was performed.</p>
+<p>One solution is to save analysis code in scripts (for example R, Python, or bash), using clear file names and comments. This already improves reproducibility compared to running commands manually.</p>
+<p>However, <strong>scripts and documentation are often stored in separate places</strong>, the code in one file, the notes about the analysis in another document, and results somewhere else. This makes it harder to understand how everything fits together.</p>
+<p>Literate programming is an approach where <strong>code and explanation are written together in the same document</strong>. The idea is that a human should be able to read the document from top to bottom and understand what the analysis is doing and why they were chosen.</p>
+<p>The code is placed in special blocks (often called <em>code chunks</em> or <em>code cells</em>) that can be run directly from within the document.</p>
 <blockquote class="blockquote">
-<p>Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it. Brian Kernighan</p>
+<p>Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.<br>
+— Brian Kernighan</p>
 </blockquote>
-<p>Before the course you have already worked with one such notebook - <code>Quarto</code>. We will continue to work with it during this course.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
+<p>There are several tools that support literate programming. Examples include Jupyter Notebooks, R Markdown, and <strong>Quarto</strong>.</p>
+<p>Quarto is very close to my heart, and I have used it to make this homepage, for example. But for now, we will focus on the underlying idea using plain <strong>Markdown</strong>.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Think like a reader">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Tip
+<span class="screen-reader-only">Tip</span>Think like a reader
 </div>
 </div>
 <div class="callout-body-container callout-body">
+<p>Imagine you open an analysis document written by someone else.</p>
+<p>What would you want to know:</p>
 <ul>
-<li>Document your methods and workflows.</li>
-<li>Document where and when you downloaded data.</li>
-<li>Document the versions of the software that you ran.</li>
+<li>before running the analysis?</li>
+<li>while reading the code?</li>
+<li>when interpreting the results?</li>
 </ul>
+<p>These are exactly the things literate programming tries to capture.</p>
 </div>
 </div>
+</section>
+<section id="practical-markdown" class="level2">
+<h2 class="anchored" data-anchor-id="practical-markdown">Practical: Markdown</h2>
+<p>We can try out markdown, the language used in many listerate programming notebooks online. Please follow this link to <a href="https://markdownlivepreview.com/">https://markdownlivepreview.com/</a>.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Exercise: a minimal reproducible document">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Exercise: a minimal reproducible document
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Using the online Markdown editor, create a short document that includes:</p>
+<ul>
+<li>A title</li>
+<li>A short description of where the data came from</li>
+<li>A list of software tools used</li>
+<li>One code block (it does not need to run)</li>
+</ul>
+<p>Think of this as a <em>human-readable analysis report</em>.</p>
+</div>
+</div>
+<p>Literate programming helps us keep code and explanation together. But analysis documents change over time.</p>
+<p>To keep track of <em>what</em> changed and <em>when</em>, we need <strong>version control</strong>.</p>
 </section>
 <section id="version-control" class="level2">
 <h2 class="anchored" data-anchor-id="version-control">Version control</h2>
