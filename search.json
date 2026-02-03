@@ -15,7 +15,7 @@
     "href": "qc.html#from-plant-tissue-to-sequencing-reads",
     "title": "Quality Control of Sequencing Data",
     "section": "From plant tissue to sequencing reads",
-    "text": "From plant tissue to sequencing reads\nBefore we talk about quality control, it is important to understand how sequencing data is produced. Many of the problems we detect during QC originate early in the sequencing workflow.\nAt a high level, the process looks like this:\n\nPlant tissue → DNA extraction → Library preparation → Sequencing → FASTQ files\n\nEach step can introduce technical effects that later appear in quality control reports. Let’s have a closer look:\n\n\n\n\nWe start with plant tissue and extract the contained DNA.\n\n\n\n\nNext, sequencing machines do not read whole chromosomes. Instead, DNA is broken into many small fragments, the so called DNA library.\n\n\n\n\nThe DNA library (with adapters added), is then run on a sequencing machine, which calls the bases of each fragment.\n\n\n\n\nThe final output are usually FASTQ files, which contain raw reads and quality scores.",
+    "text": "From plant tissue to sequencing reads\nBefore we talk about quality control, it is important to understand how sequencing data is produced. Many of the problems we detect during QC originate early in the sequencing workflow.\nAt a high level, the process looks like this:\n\nPlant tissue → DNA extraction → Library preparation → Sequencing → FASTQ files\n\nEach step can introduce technical effects that later appear in quality control reports. Let’s have a closer look:\n\n\n\n\n\nWe start with plant tissue and extract the contained DNA.\n\n\n\n\nNext, sequencing machines do not read whole chromosomes. Instead, DNA is broken into many small fragments, the so called DNA library.\n\n\n\n\nThe DNA library (with adapters added), is then run on a sequencing machine, which calls the bases of each fragment.\n\n\n\n\nThe final output are usually FASTQ files, which contain raw reads and quality scores.",
     "crumbs": [
       "Reproducibility",
       "Quality control"
@@ -110,11 +110,11 @@
     ]
   },
   {
-    "objectID": "qc.html#interactive-activity-interpreting-a-real-fastqc-report",
-    "href": "qc.html#interactive-activity-interpreting-a-real-fastqc-report",
+    "objectID": "qc.html#your-turn-a-real-fastqc-report",
+    "href": "qc.html#your-turn-a-real-fastqc-report",
     "title": "Quality Control of Sequencing Data",
-    "section": "Interactive activity: interpreting a real FastQC report",
-    "text": "Interactive activity: interpreting a real FastQC report\nSo, now let’s have a look at some actual FastQC reports. Pick one of the below reports, take half an hour (with a partner if you have one at hand) and try to understand what is going on. Keep in mind what sort of data you are working with.\n\n\n\n\n\n\nNote\n\n\n\nRemember, most often, there is no single “correct” answer. What matters is whether your interpretation is biologically and technically justified.\n\n\nHere are some guiding questions for you:\n\nLooking at the summary table, which modules are marked as warnings or failures? Which ones would you look at first, and why?\nHow does read quality change along the length of the reads? Is the quality along the sample problematic, or acceptable?\nIs there evidence of adapter contamination or overrepresented sequences?\nBased on this report, would you: i) Use the data as is? ii) Apply trimming or filtering? iii) Be concerned about the sample and investigate further?\nAre there any FastQC warnings you would ignore for this dataset? Why are they acceptable in this context?\nIf you had three samples and only this one looked different, what would you want to check next?\n\nReport 1: RNA-sequencing data short read data - remember that RNA sequencing does not look at the whole genome.\nReport 2: PacBio Data, long read data - see how different this type of data looks like in the FastQC report.\nReport 3: bad sample data short read data - can you figure out what happened to this sample?\nHere is a very nice and thorough tutorial on assessing quality of short and long read sequencing data. Great to have a look at the difference the sequencing technology can make!",
+    "section": "Your turn: a real FastQC report",
+    "text": "Your turn: a real FastQC report\nSo, now let’s have a look at some actual FastQC reports. Pick one of the below reports, take half an hour (with a partner if you have one at hand) and try to understand what is going on. Keep in mind what sort of data you are working with.\n\n\n\n\n\n\nNote\n\n\n\nRemember, most often, there is no single “correct” answer. What matters is whether your interpretation is biologically and technically justified.\n\n\nHere are some guiding questions for you:\n\nLooking at the summary table, which modules are marked as warnings or failures? Which ones would you look at first, and why?\nHow does read quality change along the length of the reads? Is the quality along the sample problematic, or acceptable?\nIs there evidence of adapter contamination or overrepresented sequences?\nBased on this report, would you: i) Use the data as is? ii) Apply trimming or filtering? iii) Be concerned about the sample and investigate further?\nAre there any FastQC warnings you would ignore for this dataset? Why are they acceptable in this context?\nIf you had three samples and only this one looked different, what would you want to check next?\n\nReport 1: RNA-sequencing data short read data - remember that RNA sequencing does not look at the whole genome.\nReport 2: PacBio Data, long read data - see how different this type of data looks like in the FastQC report.\nReport 3: bad sample data short read data - can you figure out what happened to this sample?\nHere is a very nice and thorough tutorial on assessing quality of short and long read sequencing data. Great to have a look at the difference the sequencing technology can make!",
     "crumbs": [
       "Reproducibility",
       "Quality control"
@@ -282,7 +282,7 @@
     "text": "This material is part of the emPLANT Bioinformatics Course.\nemPLANT is an international Master’s programme that trains students in modern plant breeding and innovative plant sciences, combining academic excellence with practical skills for research and industry.\nSee the course schedule here.",
     "crumbs": [
       "Reproducibility",
-      "Home"
+      "About the course"
     ]
   },
   {

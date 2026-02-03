@@ -40,7 +40,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-b754b9fd3853d7e56faef54c29c5d52b.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-7ff69c1ec09585e6d40427abec3a7d0f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-3662c5a84f8fabcaf76949411b4f4908.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="site_libs/quarto-contrib/intersection-observer-polyfill-1.0.0/intersection-observer.js"></script>
 <script src="site_libs/quarto-contrib/scrollama-3.2.0/scrollama.min.js"></script>
 <script src="site_libs/quarto-contrib/closeread-0.1.0/closeread.js"></script>
@@ -157,7 +157,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Home</span></a>
+ <span class="menu-text">About the course</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -177,9 +177,48 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#from-plant-tissue-to-sequencing-reads" id="toc-from-plant-tissue-to-sequencing-reads" class="nav-link active" data-scroll-target="#from-plant-tissue-to-sequencing-reads">From plant tissue to sequencing reads</a></li>
+  <li><a href="#why-do-we-need-quality-control" id="toc-why-do-we-need-quality-control" class="nav-link" data-scroll-target="#why-do-we-need-quality-control">Why do we need quality control?</a></li>
+  <li><a href="#what-can-go-wrong-if-data-quality-is-poor" id="toc-what-can-go-wrong-if-data-quality-is-poor" class="nav-link" data-scroll-target="#what-can-go-wrong-if-data-quality-is-poor">What can go wrong if data quality is poor?</a></li>
+  <li><a href="#where-do-sequencing-errors-come-from" id="toc-where-do-sequencing-errors-come-from" class="nav-link" data-scroll-target="#where-do-sequencing-errors-come-from">Where do sequencing errors come from?</a>
+  <ul class="collapse">
+  <li><a href="#step-1-dna-extraction" id="toc-step-1-dna-extraction" class="nav-link" data-scroll-target="#step-1-dna-extraction">Step 1: DNA extraction</a></li>
+  <li><a href="#step-2-library-preparation" id="toc-step-2-library-preparation" class="nav-link" data-scroll-target="#step-2-library-preparation">Step 2: Library preparation</a></li>
+  <li><a href="#sequencing" id="toc-sequencing" class="nav-link" data-scroll-target="#sequencing">Sequencing</a></li>
+  </ul></li>
+  <li><a href="#why-plant-genomes-are-special" id="toc-why-plant-genomes-are-special" class="nav-link" data-scroll-target="#why-plant-genomes-are-special">Why plant genomes are special</a></li>
+  <li><a href="#what-is-fastqc" id="toc-what-is-fastqc" class="nav-link" data-scroll-target="#what-is-fastqc">What is FastQC?</a></li>
+  <li><a href="#interpreting-fastqc-flags" id="toc-interpreting-fastqc-flags" class="nav-link" data-scroll-target="#interpreting-fastqc-flags">Interpreting FastQC flags</a></li>
+  <li><a href="#a-fastqc-report" id="toc-a-fastqc-report" class="nav-link" data-scroll-target="#a-fastqc-report">A FastQC report</a>
+  <ul class="collapse">
+  <li><a href="#basic-statistics" id="toc-basic-statistics" class="nav-link" data-scroll-target="#basic-statistics">Basic statistics</a></li>
+  <li><a href="#per-base-sequence-quality" id="toc-per-base-sequence-quality" class="nav-link" data-scroll-target="#per-base-sequence-quality">Per base sequence quality</a></li>
+  <li><a href="#per-sequence-quality-scores" id="toc-per-sequence-quality-scores" class="nav-link" data-scroll-target="#per-sequence-quality-scores">Per Sequence Quality Scores</a></li>
+  <li><a href="#per-base-sequence-content" id="toc-per-base-sequence-content" class="nav-link" data-scroll-target="#per-base-sequence-content">Per Base Sequence Content</a></li>
+  <li><a href="#per-sequence-gc-content" id="toc-per-sequence-gc-content" class="nav-link" data-scroll-target="#per-sequence-gc-content">Per Sequence GC Content</a></li>
+  <li><a href="#per-base-n-content" id="toc-per-base-n-content" class="nav-link" data-scroll-target="#per-base-n-content">Per Base N Content</a></li>
+  <li><a href="#sequence-length-distribution" id="toc-sequence-length-distribution" class="nav-link" data-scroll-target="#sequence-length-distribution">Sequence length distribution</a></li>
+  <li><a href="#sequence-duplication-levels" id="toc-sequence-duplication-levels" class="nav-link" data-scroll-target="#sequence-duplication-levels">Sequence Duplication Levels</a></li>
+  <li><a href="#overrepresented-sequences" id="toc-overrepresented-sequences" class="nav-link" data-scroll-target="#overrepresented-sequences">Overrepresented sequences</a></li>
+  <li><a href="#optional-kmer-content" id="toc-optional-kmer-content" class="nav-link" data-scroll-target="#optional-kmer-content">optional: Kmer content</a></li>
+  <li><a href="#adapter-content" id="toc-adapter-content" class="nav-link" data-scroll-target="#adapter-content">Adapter content</a></li>
+  </ul></li>
+  <li><a href="#how-fastqc-fits-into-a-larger-workflow" id="toc-how-fastqc-fits-into-a-larger-workflow" class="nav-link" data-scroll-target="#how-fastqc-fits-into-a-larger-workflow">How FastQC fits into a larger workflow</a></li>
+  <li><a href="#your-turn-a-real-fastqc-report" id="toc-your-turn-a-real-fastqc-report" class="nav-link" data-scroll-target="#your-turn-a-real-fastqc-report">Your turn: a real FastQC report</a></li>
+  <li><a href="#after-quality-control-what-comes-next" id="toc-after-quality-control-what-comes-next" class="nav-link" data-scroll-target="#after-quality-control-what-comes-next">After quality control: what comes next?</a></li>
+  <li><a href="#acting-on-qc-results" id="toc-acting-on-qc-results" class="nav-link" data-scroll-target="#acting-on-qc-results">Acting on QC results</a></li>
+  <li><a href="#qc-as-part-of-a-reproducible-workflow" id="toc-qc-as-part-of-a-reproducible-workflow" class="nav-link" data-scroll-target="#qc-as-part-of-a-reproducible-workflow">QC as part of a reproducible workflow</a></li>
+  <li><a href="#bonus-multiqc" id="toc-bonus-multiqc" class="nav-link" data-scroll-target="#bonus-multiqc">Bonus: MultiQC</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
-<main class="content column-page-right" id="quarto-document-content">
+<main class="content column-body" id="quarto-document-content">
       <!-- user-provided yaml closeread style options -->
       <style>
         :root {
@@ -195,7 +234,7 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<div class="quarto-title-meta column-page-right">
+<div class="quarto-title-meta column-body">
 
     
   
@@ -221,7 +260,8 @@ ul.task-list li input[type="checkbox"] {
 <p>Plant tissue → DNA extraction → Library preparation → Sequencing → FASTQ files</p>
 </blockquote>
 <p>Each step can introduce technical effects that later appear in quality control reports. Let’s have a closer look:</p>
-<div class="cr-section cr-column-screen overlay-center">
+<!--  {.column-screen-inset} -->
+<div class="cr-section cr-column-screen overlay-left">
 <div class="narrative-col">
 <div class="trigger new-trigger" data-focus-on="cr-sticky_sampling">
 <div class="narrative">
@@ -247,17 +287,18 @@ ul.task-list li input[type="checkbox"] {
 <div class="sticky-col">
 <div class="sticky-col-stack">
 <div id="cr-sticky_sampling" class="sticky">
-<p><img src="figures/qc/sampling.png" class="img-fluid"></p>
+<p><img src="figures/qc/sampling.png" class="class img-fluid" style="width:60.0%"></p>
 </div>
 <div id="cr-sticky_prep" class="sticky">
-<p><img src="figures/qc/library_prep.png" class="img-fluid"></p>
+<p><img src="figures/qc/library_prep.png" class="class img-fluid" style="width:60.0%"></p>
 </div>
 <div id="cr-sticky_seq" class="sticky">
-<p><img src="figures/qc/sequencing.png" class="img-fluid"></p>
+<p><img src="figures/qc/sequencing.png" class="class img-fluid" style="width:60.0%"></p>
 </div>
 </div>
 </div>
 </div>
+<p><br> <br> <br></p>
 </section>
 <section id="why-do-we-need-quality-control" class="level2">
 <h2 class="anchored" data-anchor-id="why-do-we-need-quality-control">Why do we need quality control?</h2>
@@ -314,7 +355,7 @@ ul.task-list li input[type="checkbox"] {
 <p>Sequencing errors can be introduced at several steps, long before we ever see a FASTQ file.</p>
 <section id="step-1-dna-extraction" class="level3">
 <h3 class="anchored" data-anchor-id="step-1-dna-extraction">Step 1: DNA extraction</h3>
-<p><img src="figures/qc/sampling.png" class="class img-fluid" style="width:40.0%"></p>
+<p><img src="figures/qc/sampling.png" class="class img-fluid" style="width:60.0%"></p>
 <p>Plant material can be challenging to work with. Different issuea can affect the quality of the reads that will be sequenced:</p>
 <ul>
 <li>Compounds such as polyphenols and polysaccharides can interfere with enzymes or make the DNA sticky.</li>
@@ -323,14 +364,14 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="step-2-library-preparation" class="level3">
 <h3 class="anchored" data-anchor-id="step-2-library-preparation">Step 2: Library preparation</h3>
-<p><img src="figures/qc/library_prep.png" class="class img-fluid" style="width:40.0%"></p>
+<p><img src="figures/qc/library_prep.png" class="class img-fluid" style="width:60.0%"></p>
 <p>During library preparation, the DNA is sheared into fragments, adapters are ligated to these DNA fragments and the DNA is often amplified using PCR.</p>
 <p>Sometimes, the DNA already degrades before the library preparation. That can lead to <strong>uneven sequencing coverage</strong> in the sequenced reads. The <strong>PCR can introduce a bias</strong>, where some fragments are amplified more than others.</p>
 <p>All these effects are <em>technical</em>, but they <strong>shape the data we later analyse</strong>.</p>
 </section>
 <section id="sequencing" class="level3">
 <h3 class="anchored" data-anchor-id="sequencing">Sequencing</h3>
-<p><img src="figures/qc/sequencing.png" class="class img-fluid" style="width:40.0%"></p>
+<p><img src="figures/qc/sequencing.png" class="class img-fluid" style="width:60.0%"></p>
 <p>Sequencing run itself can introduce errors. Base calling becomes less accurate toward the end of reads and errors accumulate across sequencing cycles. Different lanes or runs can have different overall quality.</p>
 </section>
 </section>
@@ -367,12 +408,12 @@ ul.task-list li input[type="checkbox"] {
 <p>The following is adapted from the excellent <a href="https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/">FastQC tutorial at Babraham Bioinformatics</a>.</p>
 <section id="basic-statistics" class="level3">
 <h3 class="anchored" data-anchor-id="basic-statistics"><a href="https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/1%20Basic%20Statistics.html">Basic statistics</a></h3>
-<p><img src="figures/qc/bsic_stats_qc.png" class="class img-fluid" style="width:50.0%"></p>
+<p><img src="figures/qc/bsic_stats_qc.png" class="class img-fluid" style="width:60.0%"></p>
 <p>Simple summary statistics for the file that was analyzed. Good to check what sample was used, and to get initial stats on the sample. This section will never raise warnings.</p>
 </section>
 <section id="per-base-sequence-quality" class="level3">
 <h3 class="anchored" data-anchor-id="per-base-sequence-quality"><a href="https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/2%20Per%20Base%20Sequence%20Quality.html">Per base sequence quality</a></h3>
-<p><img src="figures/qc/per_base_qc.png" class="class img-fluid" style="width:50.0%"></p>
+<p><img src="figures/qc/per_base_qc.png" class="class img-fluid" style="width:60.0%"></p>
 <p>This plot shows the <strong>quality score at each position in the read</strong>. The higher the score, the better the base call.</p>
 <p>This plot answers a simple question: <em>How confident are we in the base calls along the read?</em></p>
 <p>In most sequencing datasets, quality is highest at the beginning of the read and decreases toward the end. This pattern is normal and expected, a modest drop in quality at the end of reads is usually not a serious problem.</p>
@@ -385,7 +426,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="per-sequence-quality-scores" class="level3">
 <h3 class="anchored" data-anchor-id="per-sequence-quality-scores"><a href="https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/3%20Per%20Sequence%20Quality%20Scores.html">Per Sequence Quality Scores</a></h3>
-<p><img src="figures/qc/sequence_quality.png" class="class img-fluid" style="width:50.0%"></p>
+<p><img src="figures/qc/sequence_quality.png" class="class img-fluid" style="width:60.0%"></p>
 <p>While the previous plot looks at quality <strong>per position</strong>, this plot looks at quality <strong>per read</strong>.</p>
 <p>It allows you to see if a subset of your sequences have low quality values, or if the quality is homogeneous across the reads of your sample.</p>
 <p>The low quality reads should obviously only represent a small percentage of the total sequences. If a significant proportion of the sequences are of low quality there could be some kind of systematic problem.</p>
@@ -398,14 +439,14 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="per-base-sequence-content" class="level3">
 <h3 class="anchored" data-anchor-id="per-base-sequence-content"><a href="">Per Base Sequence Content</a></h3>
-<p><img src="figures/qc/Base_sequence_content.png" class="class img-fluid" style="width:50.0%"></p>
+<p><img src="figures/qc/Base_sequence_content.png" class="class img-fluid" style="width:60.0%"></p>
 <p>This module shows the proportion of the bases - A, C, G, and T - at each position in the read. For random genomic DNA, these proportions should be relatively stable across the read length.</p>
 <p>Some types of library will always produce biased sequence composition, normally at the start of the read. Not every deviation from equal base content is a problem. The key question is whether the pattern is expected given the experiment.</p>
 <p>In plant genomes, GC content can vary naturally between regions, and this can influence this plot.</p>
 </section>
 <section id="per-sequence-gc-content" class="level3">
 <h3 class="anchored" data-anchor-id="per-sequence-gc-content"><a href="https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/5%20Per%20Sequence%20GC%20Content.html">Per Sequence GC Content</a></h3>
-<p><img src="figures/qc/gc_content.png" class="class img-fluid" style="width:50.0%"></p>
+<p><img src="figures/qc/gc_content.png" class="class img-fluid" style="width:60.0%"></p>
 <p>The GC content plot shows the overall GC distribution of reads in the sample. FastQC compares the observed distribution to a theoretical expectation, and can help identify contamination.</p>
 <p>The <strong>expectation is a roughly normal distribution</strong> of GC content where the peak represents the overall GC content of the underlying genome. However, the acutal shape of the curve depends highly on your sample.</p>
 <p>In plant datasets, unusual GC content does not automatically mean contamination.</p>
@@ -419,19 +460,19 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="per-base-n-content" class="level3">
 <h3 class="anchored" data-anchor-id="per-base-n-content"><a href="https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/6%20Per%20Base%20N%20Content.html">Per Base N Content</a></h3>
-<p><img src="figures/qc/n_content.png" class="class img-fluid" style="width:50.0%"></p>
+<p><img src="figures/qc/n_content.png" class="class img-fluid" style="width:60.0%"></p>
 <p>If a sequencer is unable to make a base call with sufficient confidence it will call an “N” rather than a conventional base.</p>
 <p>It is not unusual to see a very low proportion of Ns appearing in a sequence, especially closer to the end of a sequence.</p>
 </section>
 <section id="sequence-length-distribution" class="level3">
 <h3 class="anchored" data-anchor-id="sequence-length-distribution"><a href="https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/7%20Sequence%20Length%20Distribution.html">Sequence length distribution</a></h3>
-<p><img src="figures/qc/sequence_length.png" class="class img-fluid" style="width:50.0%"></p>
+<p><img src="figures/qc/sequence_length.png" class="class img-fluid" style="width:60.0%"></p>
 <p>A graph showing the distribution of fragment sizes in the file which was analysed. Here, you can see a sample with many short, and a few very long reads.</p>
 <p>Some high throughput sequencers generate sequence fragments of uniform length, but others can contain reads of varying lengths.</p>
 </section>
 <section id="sequence-duplication-levels" class="level3">
 <h3 class="anchored" data-anchor-id="sequence-duplication-levels"><a href="https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/8%20Duplicate%20Sequences.html">Sequence Duplication Levels</a></h3>
-<p><img src="figures/qc/duplication_levels.png" class="class img-fluid" style="width:50.0%"></p>
+<p><img src="figures/qc/duplication_levels.png" class="class img-fluid" style="width:60.0%"></p>
 <p>This plot shows how often identical sequences occur in the data. In a diverse library most sequences will occur only once in the final set, so most sequences should fall into the far left of the plot</p>
 <p>High duplication can arise from:</p>
 <ul>
@@ -444,14 +485,14 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="overrepresented-sequences" class="level3">
 <h3 class="anchored" data-anchor-id="overrepresented-sequences"><a href="https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/9%20Overrepresented%20Sequences.html">Overrepresented sequences</a></h3>
-<p><img src="figures/qc/overrepresented.png" class="class img-fluid" style="width:50.0%"></p>
+<p><img src="figures/qc/overrepresented.png" class="class img-fluid" style="width:60.0%"></p>
 <p>FastQC also identifies sequences that occur much more often than expected. A <strong>normal high-throughput library will contain a diverse set of sequences</strong>, with no individual sequence making up a substantial fraction of the whole.</p>
 <p>Overrepresented sequences might be biologically significant, or indicate that the library is contaminated, or simply not as diverse as expected. They can be adapter fragments, primers or highly repetitive genomic regions.</p>
 <p>This module is often useful for diagnosing specific technical issues, especially when combined with adapter content and duplication plots.</p>
 </section>
 <section id="optional-kmer-content" class="level3">
 <h3 class="anchored" data-anchor-id="optional-kmer-content"><a href="https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/11%20Kmer%20Content.html">optional: Kmer content</a></h3>
-<p><img src="figures/qc/kmer_profiles.png" class="class img-fluid" style="width:50.0%"></p>
+<p><img src="figures/qc/kmer_profiles.png" class="class img-fluid" style="width:60.0%"></p>
 <p>The k-mer content module looks for <strong>short sequence motifs</strong> that occur more often than expected in the reads.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -492,7 +533,7 @@ Note
 </section>
 <section id="adapter-content" class="level3">
 <h3 class="anchored" data-anchor-id="adapter-content"><a href="https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/10%20Adapter%20Content.html">Adapter content</a></h3>
-<p><img src="figures/qc/adapter.png" class="class img-fluid" style="width:50.0%"></p>
+<p><img src="figures/qc/adapter.png" class="class img-fluid" style="width:60.0%"></p>
 <p>This module will detect adapter content and plot it together with the identity of the adapter.</p>
 <p>Good to know if you have adapter contamination, and which ones you might have to remove from the data.</p>
 </section>
@@ -507,8 +548,8 @@ Note
 <p>Comparing FastQC reports before and after processing helps you evaluate whether your actions improved the data.</p>
 <p>FastQC is therefore not a one-time checkpoint, but part of an iterative process.</p>
 </section>
-<section id="interactive-activity-interpreting-a-real-fastqc-report" class="level2">
-<h2 class="anchored" data-anchor-id="interactive-activity-interpreting-a-real-fastqc-report">Interactive activity: interpreting a real FastQC report</h2>
+<section id="your-turn-a-real-fastqc-report" class="level2">
+<h2 class="anchored" data-anchor-id="your-turn-a-real-fastqc-report">Your turn: a real FastQC report</h2>
 <p>So, now let’s have a look at some actual FastQC reports. Pick one of the below reports, take half an hour (with a partner if you have one at hand) and try to understand what is going on. Keep in mind what sort of data you are working with.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
