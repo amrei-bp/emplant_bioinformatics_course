@@ -8,6 +8,10 @@ This material is part of the [emPLANT](https://emplant-master.eu/) Bioinformatic
 
 See the course schedule [here](https://astrocyte.com/EMPLANT2026/index.html). 
 
+In this module we will talk about [reproducibility in bioinformatics analyses](data_management.qmd), which will briefly introduce you to some techniques and tools to make your life easier. 
+
+Then we will take a step back and look at how we can [assess the quality of (short read) sequencing data](qc.qmd). An important step that lays the groundwork to everything else that you will to with your data!
+
 <br>
 
 ![](figures/logo/logo-emplat-master-to-sucseed-2021.png)
