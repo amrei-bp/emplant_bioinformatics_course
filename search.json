@@ -18,7 +18,7 @@
     "href": "index.html",
     "title": "emPLANT Bioinformatics Course",
     "section": "",
-    "text": "This material is part of the emPLANT Bioinformatics Course.\nemPLANT is an international Master’s programme that trains students in modern plant breeding and innovative plant sciences, combining academic excellence with practical skills for research and industry.\nSee the course schedule here.",
+    "text": "This material is part of the emPLANT Bioinformatics Course.\nemPLANT is an international Master’s programme that trains students in modern plant breeding and innovative plant sciences, combining academic excellence with practical skills for research and industry.\nSee the course schedule here.\nIn this module we will talk about reproducibility in bioinformatics analyses, which will briefly introduce you to some techniques and tools to make your life easier.\nThen we will take a step back and look at how we can assess the quality of (short read) sequencing data. An important step that lays the groundwork to everything else that you will to with your data!",
     "crumbs": [
       "Reproducibility",
       "About the course"
