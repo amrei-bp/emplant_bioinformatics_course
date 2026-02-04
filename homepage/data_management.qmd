@@ -171,9 +171,9 @@ The code is placed in special blocks (often called *code chunks* or *code cells*
 > — Brian Kernighan
 
 There are several tools that support literate programming.
-Examples include Jupyter Notebooks, R Markdown, and **Quarto**.
+Examples include Jupyter Notebooks, R Markdown, and Quarto.
 
-Quarto is very close to my heart, and I have used it to make this homepage, for example. But for now, we will focus on the underlying idea using plain **Markdown**.
+Quarto is very close to my heart, it's easy and very versatile. I have, for example, used it to make this homepage, for example. But for now, we will focus on the underlying idea using plain **Markdown**.
 
 ::: {.callout-tip title="Think like a reader"}
 
@@ -192,7 +192,7 @@ These are exactly the things literate programming tries to capture.
 
 ## Practical: Markdown
 
-We can try out markdown, the language used in many listerate programming notebooks online. Please follow this link to [https://markdownlivepreview.com/](https://markdownlivepreview.com/). 
+We can try out markdown, the language used in many literate programming notebooks online. Please follow this link to [https://markdownlivepreview.com/](https://markdownlivepreview.com/). 
 
 ::: {.callout-tip title="Exercise: a minimal reproducible document"}
 
@@ -206,54 +206,168 @@ Using the online Markdown editor, create a short document that includes:
 Think of this as a *human-readable analysis report*.
 :::
 
-Literate programming helps us keep code and explanation together.
-But analysis documents change over time.
+## Goal for the rest of this session
 
-To keep track of *what* changed and *when*, we need **version control**.
+With the following, I want to give you ideas and tools that will help you plan and carry out your research. 
+
+We will not actually train on the tools, but if you spend some time learning them by yourself, I guarentee that **they will make your work more efficient** (and more reproducible). 
+
+No matter what kind of data you are working with, I hope you will take something useful from this course and today.
+
+<br>
+![Overview of modern sequencing technologies and where they apply to biological processes](figures/data_management/technologies.png){.class width=70%}
+
 
 ## Version control
 
-Now that our student has reproducible documents, with reasonable names, that can execute their analyses reliably over and over again, what happens if they modify their analyses? Will they end up again with different result files and their project sink down in chaos?
+Even with well-organised files and clearly documented analyses, our hypothetical PhD student’s **project continues to evolve over time**. They might fix a small mistake they caught somewhere, adjust parameters after discussing with their supervisor, or extend the analyses after reviewer comments. 
 
-No, because there is **version control**, the practice of tracking and managing changes to files. 
+A very common way of handling this is to create multiple copies of the same file, often with only slightly different names. While this feels safe, it **quickly becomes confusing**. It is hard to know which file was used to generate a specific result, and easy to accidentally work on the wrong version.
 
-Again, before the course you worked through the basics of git, and how to use it with GitHub collaboratively. We will continue using git during the course as well. 
+To keep track of *what* changed, *when*, and *why*, our student can use **version control**.
+
+There are several version control tools that can help with tracking files. One very popular one is **git**. Git keeps a history of changes to files, rather than creating multiple copies of them.
+
+It can track changes to text files and works best for **text-based files**, such as scripts, Markdown documents, and configuration files. 
+
+::: {.callout-note}
+**Large raw data files** (for example sequencing data) are usually **not tracked with git**. Instead, these files are stored separately, while git tracks the code and documentation that describe how the data was processed.
+:::
+
+Version control also helps when working with other people. Several people can work on the same project without overwriting each other’s work, and it is possible to return to an earlier state if something goes wrong.
+
+So, version control can help us manage changes to code and documentation. However, reproducibility also depends on having the same software available across systems.
 
 ## Environment managers
 
-Using git, our PhD student can now share their reproducible code with their colloaborators, or between systems. They can rest assured that the different versions of the notebook are tracked and can be checked out when necessary. But what about the bioinformatic tools? Can they also be shared easily?
+So far, our hypothetical PhD student has organised their files, documented their analyses, and started using version control to track changes to code and documents.
+
+However, they now run into a new problem: The **same analysis can behave differently on different computers**, **code that worked perfectly on one machine may fail or behave differently on another**.
 
 Different computers can run on different operating systems, or can have different versions of databases installed. This can lead to conflicts between tools, or software versions and can impact code usability, or reproducibility. 
 
-Fortunately, smart people have developed environment managers such as `conda`, `bioconda`, or `pixi`. These tools **find and install packages**, so that the same package versions are being run between different computers. However, the code might still give different results on different operating systems.
+One way to address this problem is to clearly define the **software environment** used for an analysis.
 
-During this course we will be building our own environments with Pixi - you'll see how great it is not having to manually install tools anymore!
+A software environment describes which tools and versions are used and which libraries they depend on.
+
+Environment managers are tools that help create and manage such software environments.
+
+They automatically **find and install the correct versions of tools and libraries**, making it much easier to run the same analysis on different computers.
+
+There are several environment managers commonly used in bioinformatics, for example: `Conda`, `Bioconda`, or `Pixi`. 
+
+::: {.callout-note}
+Today, we will not be using environment managers, but I hope you remember them when the time comes. It's great to not have to manually install tools anymore!
+:::
+
+By using an environment manager, we can be confident that:
+
+- the same tools are used across machines,
+- collaborators can recreate the environment,
+- and analyses are less likely to break due to software differences.
 
 ## Containers in bioinformatics
 
-But what if our PhD student needs to run their code on different operating systems? 
+Environment managers help our PhD student ensure that the same software versions are used across different computers.
 
-They can use containers, that contain everything needed to run the application, even the operating system. Containers are being exchanged as container images, which makes them lightweight. Containers do not change over time, so the results will be the same today and in a few years. Everyone gets the same container that works in the same way.
+However, there are **situations where this is not enough**.
 
-In this course, you will have guessed it, we will learn about containers, where to get them and how to use them.
+For example, the student might need to:
 
+- run their analysis on a high-performance computing cluster,
+- share the analysis with collaborators using a different operating system,
+- or rerun the analysis several years later on a new system.
+
+In these cases, **differences between operating systems can still cause problems**, even if the same software versions are used.
+
+Containers provide a way to package everything needed to run an analysis in one place. They **contain the software tools**, their **dependencies** and even the **operating system**. This means that the analysis runs in the same environment, regardless of where the container is used.
+
+Containers are shared as **container images**. An image is a fixed, read-only snapshot of the environment. Because container images do not change over time, they help ensure that analyses produce the same results today and in the future. **Think of a container as a self-contained box that runs the same way everywhere.**
+
+Common container technologies in bioinformatics include:
+
+- Docker
+- Singularity (also known as Apptainer)
+
+::: {.callout-note}
+We will not work with containers today, but remember that they are a powerful tool that can help you scale your analyses effectively. 
+:::
 
 ## Workflow manager
 
-Now our PhD student can use containers, or environments, to provide a uniform environment for their version controlled, wonderfully documented and reproducible code. Fantastic! But they still have to deploy, or at least monitor, their scripts manually. 
+At this point, our exemplary PhD student has:
 
-Fortunately there are workflow managers that can integrate all of the above, submit your jobs for you, and even monitor and re-submit scripts after failure. They will automatically submit jobs for you, decreasing downtime and increasing efficiency.
+- well-organised files,
+- documented analyses,
+- version-controlled code,
+- and a consistent software setup using environments or containers.
+
+This already improves reproducibility a lot. However, running analyses is still largely a manual process: running scripts in the correct order and monitoring them for execution of failure. 
+
+**Manual coordination takes time and concentration**. It also increases the risk of small mistakes, especially when analyses are complex or need to be repeated many times.
+
+`Workflow managers` are tools that describe an analysis as a **set of connected steps**.
+
+Each step takes defined input files, performs a specific task, and produces defined output files.
+
+The workflow manager then takes care of running these steps in the correct order. **This makes analyses more efficient and less error-prone.**
 
 ::: {.callout-tip}
-
 Humans tend to do mistakes, especially when it comes to tedious or repetitive tasks. If you automate data handling, formatting etc. you are less likely to make mistakes like typos, or changing colors in images.
-
 :::
 
-In this course, we will also cover a workflow manager, `Nextflow` and learn how to make our own workflow, and how to run already developed workflows. 
+There are several workflow managers used in bioinformatics. One widely used example is **Nextflow**. 
 
-## Goal of the course
+By using Nextflow, our student no longer has to remember which commands to run and in which order. Instead, **the workflow itself becomes a clear, reproducible description of the analysis**.
 
-With this, we want to give you tools that will help you plan and carry out your research. These tools will make your work more efficient and more reproducible. No matter what kind of data you use, you will take something useful from this course.
+## Putting it all together
 
-![Overview of modern sequencing technologies and where they apply to biological processes](figures/data_management/technologies.png){.class width=70%}
+Throughout this module, we followed our hypothetical PhD student as their project
+grew in complexity.
+
+At each stage, new challenges appeared:
+
+- data had to be organised and documented,
+- analyses needed to be rerun and updated,
+- software behaved differently across systems,
+- and manual execution became error-prone.
+
+Each tool we introduced addresses a **specific problem**.
+They are not alternatives to each other, but **build on top of one another**.
+
+::: {.center}
+```{mermaid}
+flowchart BT
+  R["Raw data<br/><span style='font-size:0.8em'>(stored separately, unchanged)</span>"]:::raw
+  D["Code & documentation<br/><span style='font-size:0.8em'>(scripts, Markdown, README)</span>"]:::code
+  E["Software environment<br/><span style='font-size:0.8em'>(Pixi, Conda)</span>"]:::env
+  C["Container<br/><span style='font-size:0.8em'>(Docker, Singularity)</span>"]:::cont
+  W["Workflow manager<br/><span style='font-size:0.8em'>(Nextflow)</span>"]:::wf
+
+  R --> D --> E --> C --> W
+
+  classDef raw  fill:#f9f9f9,stroke:#999,stroke-width:1px,rx:10,ry:10;
+  classDef code fill:#eef4ff,stroke:#6b8dd6,stroke-width:1px,rx:10,ry:10;
+  classDef env  fill:#e8f6f1,stroke:#4aa382,stroke-width:1px,rx:10,ry:10;
+  classDef cont fill:#fff3e6,stroke:#d19a66,stroke-width:1px,rx:10,ry:10;
+  classDef wf   fill:#f3e8ff,stroke:#8b6fcf,stroke-width:1px,rx:10,ry:10;
+```
+:::
+
+The higher we move in the diagram, the **more predictable and repeatable** our analysis becomes.
+
+At the same time, **the lower layers remain essential**:
+raw data stays unchanged, and clear code and documentation are always the foundation.
+
+::: {.callout-note}
+You **do not need to use all of these tools for every project**.
+Many analyses only require a few of these layers.
+
+However, understanding how they fit together helps you:
+
+- choose the right tool for the problem at hand,
+- recognise common sources of errors,
+- and gradually improve the reproducibility of your work.
+:::
+
+And most importanlty, these ideas apply regardless of the type of data or tools you use and they will remain useful throughout your research career.

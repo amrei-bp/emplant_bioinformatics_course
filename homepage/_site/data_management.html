@@ -65,6 +65,9 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script src="site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
 
 <link rel="stylesheet" href="styles.css">
@@ -185,11 +188,12 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#working-with-data" id="toc-working-with-data" class="nav-link" data-scroll-target="#working-with-data">Working with data</a></li>
   <li><a href="#literate-programming" id="toc-literate-programming" class="nav-link" data-scroll-target="#literate-programming">Literate programming</a></li>
   <li><a href="#practical-markdown" id="toc-practical-markdown" class="nav-link" data-scroll-target="#practical-markdown">Practical: Markdown</a></li>
+  <li><a href="#goal-for-the-rest-of-this-session" id="toc-goal-for-the-rest-of-this-session" class="nav-link" data-scroll-target="#goal-for-the-rest-of-this-session">Goal for the rest of this session</a></li>
   <li><a href="#version-control" id="toc-version-control" class="nav-link" data-scroll-target="#version-control">Version control</a></li>
   <li><a href="#environment-managers" id="toc-environment-managers" class="nav-link" data-scroll-target="#environment-managers">Environment managers</a></li>
   <li><a href="#containers-in-bioinformatics" id="toc-containers-in-bioinformatics" class="nav-link" data-scroll-target="#containers-in-bioinformatics">Containers in bioinformatics</a></li>
   <li><a href="#workflow-manager" id="toc-workflow-manager" class="nav-link" data-scroll-target="#workflow-manager">Workflow manager</a></li>
-  <li><a href="#goal-of-the-course" id="toc-goal-of-the-course" class="nav-link" data-scroll-target="#goal-of-the-course">Goal of the course</a></li>
+  <li><a href="#putting-it-all-together" id="toc-putting-it-all-together" class="nav-link" data-scroll-target="#putting-it-all-together">Putting it all together</a></li>
   </ul>
 </nav>
     </div>
@@ -429,8 +433,8 @@ Best practices file organization
 <p>Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.<br>
 — Brian Kernighan</p>
 </blockquote>
-<p>There are several tools that support literate programming. Examples include Jupyter Notebooks, R Markdown, and <strong>Quarto</strong>.</p>
-<p>Quarto is very close to my heart, and I have used it to make this homepage, for example. But for now, we will focus on the underlying idea using plain <strong>Markdown</strong>.</p>
+<p>There are several tools that support literate programming. Examples include Jupyter Notebooks, R Markdown, and Quarto.</p>
+<p>Quarto is very close to my heart, it’s easy and very versatile. I have, for example, used it to make this homepage, for example. But for now, we will focus on the underlying idea using plain <strong>Markdown</strong>.</p>
 <div class="callout callout-style-default callout-tip callout-titled" title="Think like a reader">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -454,7 +458,7 @@ Think like a reader
 </section>
 <section id="practical-markdown" class="level2">
 <h2 class="anchored" data-anchor-id="practical-markdown">Practical: Markdown</h2>
-<p>We can try out markdown, the language used in many listerate programming notebooks online. Please follow this link to <a href="https://markdownlivepreview.com/">https://markdownlivepreview.com/</a>.</p>
+<p>We can try out markdown, the language used in many literate programming notebooks online. Please follow this link to <a href="https://markdownlivepreview.com/">https://markdownlivepreview.com/</a>.</p>
 <div class="callout callout-style-default callout-tip callout-titled" title="Exercise: a minimal reproducible document">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -475,32 +479,113 @@ Exercise: a minimal reproducible document
 <p>Think of this as a <em>human-readable analysis report</em>.</p>
 </div>
 </div>
-<p>Literate programming helps us keep code and explanation together. But analysis documents change over time.</p>
-<p>To keep track of <em>what</em> changed and <em>when</em>, we need <strong>version control</strong>.</p>
+</section>
+<section id="goal-for-the-rest-of-this-session" class="level2">
+<h2 class="anchored" data-anchor-id="goal-for-the-rest-of-this-session">Goal for the rest of this session</h2>
+<p>With the following, I want to give you ideas and tools that will help you plan and carry out your research.</p>
+<p>We will not actually train on the tools, but if you spend some time learning them by yourself, I guarentee that <strong>they will make your work more efficient</strong> (and more reproducible).</p>
+<p>No matter what kind of data you are working with, I hope you will take something useful from this course and today.</p>
+<p><br> <img src="figures/data_management/technologies.png" class="class img-fluid" style="width:70.0%" alt="Overview of modern sequencing technologies and where they apply to biological processes"></p>
 </section>
 <section id="version-control" class="level2">
 <h2 class="anchored" data-anchor-id="version-control">Version control</h2>
-<p>Now that our student has reproducible documents, with reasonable names, that can execute their analyses reliably over and over again, what happens if they modify their analyses? Will they end up again with different result files and their project sink down in chaos?</p>
-<p>No, because there is <strong>version control</strong>, the practice of tracking and managing changes to files.</p>
-<p>Again, before the course you worked through the basics of git, and how to use it with GitHub collaboratively. We will continue using git during the course as well.</p>
+<p>Even with well-organised files and clearly documented analyses, our hypothetical PhD student’s <strong>project continues to evolve over time</strong>. They might fix a small mistake they caught somewhere, adjust parameters after discussing with their supervisor, or extend the analyses after reviewer comments.</p>
+<p>A very common way of handling this is to create multiple copies of the same file, often with only slightly different names. While this feels safe, it <strong>quickly becomes confusing</strong>. It is hard to know which file was used to generate a specific result, and easy to accidentally work on the wrong version.</p>
+<p>To keep track of <em>what</em> changed, <em>when</em>, and <em>why</em>, our student can use <strong>version control</strong>.</p>
+<p>There are several version control tools that can help with tracking files. One very popular one is <strong>git</strong>. Git keeps a history of changes to files, rather than creating multiple copies of them.</p>
+<p>It can track changes to text files and works best for <strong>text-based files</strong>, such as scripts, Markdown documents, and configuration files.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Large raw data files</strong> (for example sequencing data) are usually <strong>not tracked with git</strong>. Instead, these files are stored separately, while git tracks the code and documentation that describe how the data was processed.</p>
+</div>
+</div>
+<p>Version control also helps when working with other people. Several people can work on the same project without overwriting each other’s work, and it is possible to return to an earlier state if something goes wrong.</p>
+<p>So, version control can help us manage changes to code and documentation. However, reproducibility also depends on having the same software available across systems.</p>
 </section>
 <section id="environment-managers" class="level2">
 <h2 class="anchored" data-anchor-id="environment-managers">Environment managers</h2>
-<p>Using git, our PhD student can now share their reproducible code with their colloaborators, or between systems. They can rest assured that the different versions of the notebook are tracked and can be checked out when necessary. But what about the bioinformatic tools? Can they also be shared easily?</p>
+<p>So far, our hypothetical PhD student has organised their files, documented their analyses, and started using version control to track changes to code and documents.</p>
+<p>However, they now run into a new problem: The <strong>same analysis can behave differently on different computers</strong>, <strong>code that worked perfectly on one machine may fail or behave differently on another</strong>.</p>
 <p>Different computers can run on different operating systems, or can have different versions of databases installed. This can lead to conflicts between tools, or software versions and can impact code usability, or reproducibility.</p>
-<p>Fortunately, smart people have developed environment managers such as <code>conda</code>, <code>bioconda</code>, or <code>pixi</code>. These tools <strong>find and install packages</strong>, so that the same package versions are being run between different computers. However, the code might still give different results on different operating systems.</p>
-<p>During this course we will be building our own environments with Pixi - you’ll see how great it is not having to manually install tools anymore!</p>
+<p>One way to address this problem is to clearly define the <strong>software environment</strong> used for an analysis.</p>
+<p>A software environment describes which tools and versions are used and which libraries they depend on.</p>
+<p>Environment managers are tools that help create and manage such software environments.</p>
+<p>They automatically <strong>find and install the correct versions of tools and libraries</strong>, making it much easier to run the same analysis on different computers.</p>
+<p>There are several environment managers commonly used in bioinformatics, for example: <code>Conda</code>, <code>Bioconda</code>, or <code>Pixi</code>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Today, we will not be using environment managers, but I hope you remember them when the time comes. It’s great to not have to manually install tools anymore!</p>
+</div>
+</div>
+<p>By using an environment manager, we can be confident that:</p>
+<ul>
+<li>the same tools are used across machines,</li>
+<li>collaborators can recreate the environment,</li>
+<li>and analyses are less likely to break due to software differences.</li>
+</ul>
 </section>
 <section id="containers-in-bioinformatics" class="level2">
 <h2 class="anchored" data-anchor-id="containers-in-bioinformatics">Containers in bioinformatics</h2>
-<p>But what if our PhD student needs to run their code on different operating systems?</p>
-<p>They can use containers, that contain everything needed to run the application, even the operating system. Containers are being exchanged as container images, which makes them lightweight. Containers do not change over time, so the results will be the same today and in a few years. Everyone gets the same container that works in the same way.</p>
-<p>In this course, you will have guessed it, we will learn about containers, where to get them and how to use them.</p>
+<p>Environment managers help our PhD student ensure that the same software versions are used across different computers.</p>
+<p>However, there are <strong>situations where this is not enough</strong>.</p>
+<p>For example, the student might need to:</p>
+<ul>
+<li>run their analysis on a high-performance computing cluster,</li>
+<li>share the analysis with collaborators using a different operating system,</li>
+<li>or rerun the analysis several years later on a new system.</li>
+</ul>
+<p>In these cases, <strong>differences between operating systems can still cause problems</strong>, even if the same software versions are used.</p>
+<p>Containers provide a way to package everything needed to run an analysis in one place. They <strong>contain the software tools</strong>, their <strong>dependencies</strong> and even the <strong>operating system</strong>. This means that the analysis runs in the same environment, regardless of where the container is used.</p>
+<p>Containers are shared as <strong>container images</strong>. An image is a fixed, read-only snapshot of the environment. Because container images do not change over time, they help ensure that analyses produce the same results today and in the future. <strong>Think of a container as a self-contained box that runs the same way everywhere.</strong></p>
+<p>Common container technologies in bioinformatics include:</p>
+<ul>
+<li>Docker</li>
+<li>Singularity (also known as Apptainer)</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>We will not work with containers today, but remember that they are a powerful tool that can help you scale your analyses effectively.</p>
+</div>
+</div>
 </section>
 <section id="workflow-manager" class="level2">
 <h2 class="anchored" data-anchor-id="workflow-manager">Workflow manager</h2>
-<p>Now our PhD student can use containers, or environments, to provide a uniform environment for their version controlled, wonderfully documented and reproducible code. Fantastic! But they still have to deploy, or at least monitor, their scripts manually.</p>
-<p>Fortunately there are workflow managers that can integrate all of the above, submit your jobs for you, and even monitor and re-submit scripts after failure. They will automatically submit jobs for you, decreasing downtime and increasing efficiency.</p>
+<p>At this point, our exemplary PhD student has:</p>
+<ul>
+<li>well-organised files,</li>
+<li>documented analyses,</li>
+<li>version-controlled code,</li>
+<li>and a consistent software setup using environments or containers.</li>
+</ul>
+<p>This already improves reproducibility a lot. However, running analyses is still largely a manual process: running scripts in the correct order and monitoring them for execution of failure.</p>
+<p><strong>Manual coordination takes time and concentration</strong>. It also increases the risk of small mistakes, especially when analyses are complex or need to be repeated many times.</p>
+<p><code>Workflow managers</code> are tools that describe an analysis as a <strong>set of connected steps</strong>.</p>
+<p>Each step takes defined input files, performs a specific task, and produces defined output files.</p>
+<p>The workflow manager then takes care of running these steps in the correct order. <strong>This makes analyses more efficient and less error-prone.</strong></p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -514,17 +599,69 @@ Tip
 <p>Humans tend to do mistakes, especially when it comes to tedious or repetitive tasks. If you automate data handling, formatting etc. you are less likely to make mistakes like typos, or changing colors in images.</p>
 </div>
 </div>
-<p>In this course, we will also cover a workflow manager, <code>Nextflow</code> and learn how to make our own workflow, and how to run already developed workflows.</p>
+<p>There are several workflow managers used in bioinformatics. One widely used example is <strong>Nextflow</strong>.</p>
+<p>By using Nextflow, our student no longer has to remember which commands to run and in which order. Instead, <strong>the workflow itself becomes a clear, reproducible description of the analysis</strong>.</p>
 </section>
-<section id="goal-of-the-course" class="level2">
-<h2 class="anchored" data-anchor-id="goal-of-the-course">Goal of the course</h2>
-<p>With this, we want to give you tools that will help you plan and carry out your research. These tools will make your work more efficient and more reproducible. No matter what kind of data you use, you will take something useful from this course.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="figures/data_management/technologies.png" class="class img-fluid figure-img" style="width:70.0%"></p>
-<figcaption>Overview of modern sequencing technologies and where they apply to biological processes</figcaption>
-</figure>
+<section id="putting-it-all-together" class="level2">
+<h2 class="anchored" data-anchor-id="putting-it-all-together">Putting it all together</h2>
+<p>Throughout this module, we followed our hypothetical PhD student as their project grew in complexity.</p>
+<p>At each stage, new challenges appeared:</p>
+<ul>
+<li>data had to be organised and documented,</li>
+<li>analyses needed to be rerun and updated,</li>
+<li>software behaved differently across systems,</li>
+<li>and manual execution became error-prone.</li>
+</ul>
+<p>Each tool we introduced addresses a <strong>specific problem</strong>. They are not alternatives to each other, but <strong>build on top of one another</strong>.</p>
+<div class="center">
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart BT
+  R["Raw data&lt;br/&gt;&lt;span style='font-size:0.8em'&gt;(stored separately, unchanged)&lt;/span&gt;"]:::raw
+  D["Code &amp; documentation&lt;br/&gt;&lt;span style='font-size:0.8em'&gt;(scripts, Markdown, README)&lt;/span&gt;"]:::code
+  E["Software environment&lt;br/&gt;&lt;span style='font-size:0.8em'&gt;(Pixi, Conda)&lt;/span&gt;"]:::env
+  C["Container&lt;br/&gt;&lt;span style='font-size:0.8em'&gt;(Docker, Singularity)&lt;/span&gt;"]:::cont
+  W["Workflow manager&lt;br/&gt;&lt;span style='font-size:0.8em'&gt;(Nextflow)&lt;/span&gt;"]:::wf
+
+  R --&gt; D --&gt; E --&gt; C --&gt; W
+
+  classDef raw  fill:#f9f9f9,stroke:#999,stroke-width:1px,rx:10,ry:10;
+  classDef code fill:#eef4ff,stroke:#6b8dd6,stroke-width:1px,rx:10,ry:10;
+  classDef env  fill:#e8f6f1,stroke:#4aa382,stroke-width:1px,rx:10,ry:10;
+  classDef cont fill:#fff3e6,stroke:#d19a66,stroke-width:1px,rx:10,ry:10;
+  classDef wf   fill:#f3e8ff,stroke:#8b6fcf,stroke-width:1px,rx:10,ry:10;
+</pre>
 </div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</div>
+<p>The higher we move in the diagram, the <strong>more predictable and repeatable</strong> our analysis becomes.</p>
+<p>At the same time, <strong>the lower layers remain essential</strong>: raw data stays unchanged, and clear code and documentation are always the foundation.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You <strong>do not need to use all of these tools for every project</strong>. Many analyses only require a few of these layers.</p>
+<p>However, understanding how they fit together helps you:</p>
+<ul>
+<li>choose the right tool for the problem at hand,</li>
+<li>recognise common sources of errors,</li>
+<li>and gradually improve the reproducibility of your work.</li>
+</ul>
+</div>
+</div>
+<p>And most importanlty, these ideas apply regardless of the type of data or tools you use and they will remain useful throughout your research career.</p>
 
 
 </section>
