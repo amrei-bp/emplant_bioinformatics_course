@@ -352,6 +352,7 @@ flowchart BT
   classDef cont fill:#fff3e6,stroke:#d19a66,stroke-width:1px,rx:10,ry:10;
   classDef wf   fill:#f3e8ff,stroke:#8b6fcf,stroke-width:1px,rx:10,ry:10;
 
+linkStyle default stroke:#666,stroke-width:2.5px
 ```
 
 
