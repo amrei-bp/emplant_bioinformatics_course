@@ -469,13 +469,12 @@ Exercise: a minimal reproducible document
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Using the online Markdown editor, create a short document that includes:</p>
-<ul>
-<li>A title</li>
-<li>A short description of where the data came from</li>
-<li>A list of software tools used</li>
-<li>One code block (it does not need to run)</li>
-</ul>
+<p>Using the online Markdown editor, write a small report on a project you’d like to work on:</p>
+<ol type="1">
+<li>It should have a title</li>
+<li>It should contain a little bit of text about the project.</li>
+<li>It should contain a link to a wikipedia page (or any other homepage).</li>
+</ol>
 <p>Think of this as a <em>human-readable analysis report</em>.</p>
 </div>
 </div>
@@ -613,30 +612,31 @@ Tip
 <li>and manual execution became error-prone.</li>
 </ul>
 <p>Each tool we introduced addresses a <strong>specific problem</strong>. They are not alternatives to each other, but <strong>build on top of one another</strong>.</p>
-<div class="center">
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
 <p></p><figure class="figure"><p></p>
 <div>
 <pre class="mermaid mermaid-js">flowchart BT
-  R["Raw data&lt;br/&gt;&lt;span style='font-size:0.8em'&gt;(stored separately, unchanged)&lt;/span&gt;"]:::raw
-  D["Code &amp; documentation&lt;br/&gt;&lt;span style='font-size:0.8em'&gt;(scripts, Markdown, README)&lt;/span&gt;"]:::code
-  E["Software environment&lt;br/&gt;&lt;span style='font-size:0.8em'&gt;(Pixi, Conda)&lt;/span&gt;"]:::env
-  C["Container&lt;br/&gt;&lt;span style='font-size:0.8em'&gt;(Docker, Singularity)&lt;/span&gt;"]:::cont
-  W["Workflow manager&lt;br/&gt;&lt;span style='font-size:0.8em'&gt;(Nextflow)&lt;/span&gt;"]:::wf
+  R["Raw data&lt;br/&gt;&lt;span style='font-size:0.8em'&gt;stored separately, unchanged&lt;/span&gt;"]:::raw
+  D["Code &amp; documentation&lt;br/&gt;&lt;span style='font-size:0.8em'&gt;scripts, Markdown, README&lt;/span&gt;"]:::code
+  V["Version control&lt;br/&gt;&lt;span style='font-size:0.8em'&gt;git&lt;/span&gt;"]:::vc
+  E["Environment manager&lt;br/&gt;&lt;span style='font-size:0.8em'&gt;Pixi, Conda&lt;/span&gt;"]:::env
+  C["Container&lt;br/&gt;&lt;span style='font-size:0.8em'&gt;Docker, Singularity&lt;/span&gt;"]:::cont
+  W["Workflow manager&lt;br/&gt;&lt;span style='font-size:0.8em'&gt;Nextflow&lt;/span&gt;"]:::wf
 
-  R --&gt; D --&gt; E --&gt; C --&gt; W
+  R --&gt; D --&gt; V --&gt; E --&gt; C --&gt; W
 
   classDef raw  fill:#f9f9f9,stroke:#999,stroke-width:1px,rx:10,ry:10;
   classDef code fill:#eef4ff,stroke:#6b8dd6,stroke-width:1px,rx:10,ry:10;
+  classDef vc   fill:#ede7f6,stroke:#7e57c2,stroke-width:1px,rx:10,ry:10;
   classDef env  fill:#e8f6f1,stroke:#4aa382,stroke-width:1px,rx:10,ry:10;
   classDef cont fill:#fff3e6,stroke:#d19a66,stroke-width:1px,rx:10,ry:10;
   classDef wf   fill:#f3e8ff,stroke:#8b6fcf,stroke-width:1px,rx:10,ry:10;
+
 </pre>
 </div>
 <p></p></figure><p></p>
-</div>
 </div>
 </div>
 </div>

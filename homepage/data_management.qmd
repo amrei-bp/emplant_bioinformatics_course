@@ -196,12 +196,11 @@ We can try out markdown, the language used in many literate programming notebook
 
 ::: {.callout-tip title="Exercise: a minimal reproducible document"}
 
-Using the online Markdown editor, create a short document that includes:
+Using the online Markdown editor, write a small report on a project you'd like to work on: 
 
-- A title
-- A short description of where the data came from
-- A list of software tools used
-- One code block (it does not need to run)
+1. It should have a title
+2. It should contain a little bit of text about the project. 
+3. It should contain a link to a wikipedia page (or any other homepage). 
 
 Think of this as a *human-readable analysis report*.
 :::
@@ -335,24 +334,26 @@ At each stage, new challenges appeared:
 Each tool we introduced addresses a **specific problem**.
 They are not alternatives to each other, but **build on top of one another**.
 
-::: {.center}
 ```{mermaid}
 flowchart BT
-  R["Raw data<br/><span style='font-size:0.8em'>(stored separately, unchanged)</span>"]:::raw
-  D["Code & documentation<br/><span style='font-size:0.8em'>(scripts, Markdown, README)</span>"]:::code
-  E["Software environment<br/><span style='font-size:0.8em'>(Pixi, Conda)</span>"]:::env
-  C["Container<br/><span style='font-size:0.8em'>(Docker, Singularity)</span>"]:::cont
-  W["Workflow manager<br/><span style='font-size:0.8em'>(Nextflow)</span>"]:::wf
+  R["Raw data<br/><span style='font-size:0.8em'>stored separately, unchanged</span>"]:::raw
+  D["Code & documentation<br/><span style='font-size:0.8em'>scripts, Markdown, README</span>"]:::code
+  V["Version control<br/><span style='font-size:0.8em'>git</span>"]:::vc
+  E["Environment manager<br/><span style='font-size:0.8em'>Pixi, Conda</span>"]:::env
+  C["Container<br/><span style='font-size:0.8em'>Docker, Singularity</span>"]:::cont
+  W["Workflow manager<br/><span style='font-size:0.8em'>Nextflow</span>"]:::wf
 
-  R --> D --> E --> C --> W
+  R --> D --> V --> E --> C --> W
 
   classDef raw  fill:#f9f9f9,stroke:#999,stroke-width:1px,rx:10,ry:10;
   classDef code fill:#eef4ff,stroke:#6b8dd6,stroke-width:1px,rx:10,ry:10;
+  classDef vc   fill:#ede7f6,stroke:#7e57c2,stroke-width:1px,rx:10,ry:10;
   classDef env  fill:#e8f6f1,stroke:#4aa382,stroke-width:1px,rx:10,ry:10;
   classDef cont fill:#fff3e6,stroke:#d19a66,stroke-width:1px,rx:10,ry:10;
   classDef wf   fill:#f3e8ff,stroke:#8b6fcf,stroke-width:1px,rx:10,ry:10;
+
 ```
-:::
+
 
 The higher we move in the diagram, the **more predictable and repeatable** our analysis becomes.
 
